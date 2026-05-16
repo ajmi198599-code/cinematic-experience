@@ -1,0 +1,434 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@11.12.1
+2 info using node@v24.15.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\M.J\Documents\Codex\2026-05-15\files-mentioned-by-the-user-may\.npmrc
+5 silly config load:file:C:\Users\M.J\.npmrc
+6 silly config load:file:C:\Users\M.J\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm install
+8 verbose argv "install" "--cache" ".\\.npm-cache"
+9 verbose logfile logs-max:10 dir:C:\Users\M.J\Documents\Codex\2026-05-15\files-mentioned-by-the-user-may\.npm-cache\_logs\2026-05-15T15_31_06_399Z-
+10 verbose logfile C:\Users\M.J\Documents\Codex\2026-05-15\files-mentioned-by-the-user-may\.npm-cache\_logs\2026-05-15T15_31_06_399Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+13 silly idealTree buildDeps
+14 silly reify mark retired [
+14 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\code-frame'
+14 silly reify ]
+15 silly reify mark retired [
+15 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\compat-data'
+15 silly reify ]
+16 silly reify mark retired [
+16 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\core'
+16 silly reify ]
+17 silly reify mark retired [
+17 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\generator'
+17 silly reify ]
+18 silly reify mark retired [
+18 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\helper-compilation-targets'
+18 silly reify ]
+19 silly reify mark retired [
+19 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\helper-globals'
+19 silly reify ]
+20 silly reify mark retired [
+20 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\helper-module-imports'
+20 silly reify ]
+21 silly reify mark retired [
+21 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\helper-module-transforms'
+21 silly reify ]
+22 silly reify mark retired [
+22 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\helper-plugin-utils'
+22 silly reify ]
+23 silly reify mark retired [
+23 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\helper-string-parser'
+23 silly reify ]
+24 silly reify mark retired [
+24 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\helper-validator-identifier'
+24 silly reify ]
+25 silly reify mark retired [
+25 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\helper-validator-option'
+25 silly reify ]
+26 silly reify mark retired [
+26 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\helpers'
+26 silly reify ]
+27 silly reify mark retired [
+27 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\parser',
+27 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\parser',
+27 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\parser.cmd',
+27 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\parser.ps1'
+27 silly reify ]
+28 silly reify mark retired [
+28 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\plugin-transform-react-jsx-self'
+28 silly reify ]
+29 silly reify mark retired [
+29 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\plugin-transform-react-jsx-source'
+29 silly reify ]
+30 silly reify mark retired [
+30 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\template'
+30 silly reify ]
+31 silly reify mark retired [
+31 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\traverse'
+31 silly reify ]
+32 silly reify mark retired [
+32 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\types'
+32 silly reify ]
+33 silly reify mark retired [
+33 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@jridgewell\\remapping'
+33 silly reify ]
+34 silly reify mark retired [
+34 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@rolldown\\pluginutils'
+34 silly reify ]
+35 silly reify mark retired [
+35 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@types\\babel__core'
+35 silly reify ]
+36 silly reify mark retired [
+36 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@types\\babel__generator'
+36 silly reify ]
+37 silly reify mark retired [
+37 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@types\\babel__template'
+37 silly reify ]
+38 silly reify mark retired [
+38 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@types\\babel__traverse'
+38 silly reify ]
+39 silly reify mark retired [
+39 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@vitejs\\plugin-react'
+39 silly reify ]
+40 silly reify mark retired [
+40 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\convert-source-map'
+40 silly reify ]
+41 silly reify mark retired [
+41 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\debug'
+41 silly reify ]
+42 silly reify mark retired [
+42 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\framer-motion'
+42 silly reify ]
+43 silly reify mark retired [
+43 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\gensync'
+43 silly reify ]
+44 silly reify mark retired [
+44 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\jsesc',
+44 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\jsesc',
+44 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\jsesc.cmd',
+44 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\jsesc.ps1'
+44 silly reify ]
+45 silly reify mark retired [
+45 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\json5',
+45 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\json5',
+45 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\json5.cmd',
+45 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\json5.ps1'
+45 silly reify ]
+46 silly reify mark retired [
+46 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\lru-cache'
+46 silly reify ]
+47 silly reify mark retired [
+47 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\motion-dom'
+47 silly reify ]
+48 silly reify mark retired [
+48 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\motion-utils'
+48 silly reify ]
+49 silly reify mark retired [
+49 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\ms'
+49 silly reify ]
+50 silly reify mark retired [
+50 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\react-refresh'
+50 silly reify ]
+51 silly reify mark retired [
+51 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\semver',
+51 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\semver',
+51 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\semver.cmd',
+51 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\semver.ps1'
+51 silly reify ]
+52 silly reify mark retired [
+52 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\tslib'
+52 silly reify ]
+53 silly reify mark retired [
+53 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\yallist'
+53 silly reify ]
+54 silly reify moves {
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\code-frame': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\.code-frame-ui4fzM61',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\compat-data': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\.compat-data-u1KaKqO1',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\core': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\.core-lr7kMv9l',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\generator': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\.generator-Tk5OpfNE',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\helper-compilation-targets': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\.helper-compilation-targets-KO88OPcF',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\helper-globals': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\.helper-globals-SXlihSPm',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\helper-module-imports': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\.helper-module-imports-XKTaHv0s',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\helper-module-transforms': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\.helper-module-transforms-3HaHN52V',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\helper-plugin-utils': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\.helper-plugin-utils-FALekKUj',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\helper-string-parser': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\.helper-string-parser-hf7xjK3f',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\helper-validator-identifier': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\.helper-validator-identifier-7ChRl1qT',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\helper-validator-option': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\.helper-validator-option-ZI929yqB',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\helpers': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\.helpers-1fv5A6et',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\parser': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\.parser-t1lyNSaU',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\parser': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\.parser-7OHqfSAX',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\parser.cmd': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\.parser.cmd-6nyTKcDJ',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\parser.ps1': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\.parser.ps1-zi2GVvqz',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\plugin-transform-react-jsx-self': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\.plugin-transform-react-jsx-self-unUWupuz',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\plugin-transform-react-jsx-source': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\.plugin-transform-react-jsx-source-uknF6GKP',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\template': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\.template-Fk72cz7N',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\traverse': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\.traverse-GCu7VHXd',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\types': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@babel\\.types-TJEtDuZu',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@jridgewell\\remapping': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@jridgewell\\.remapping-guH4UoCC',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@rolldown\\pluginutils': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@rolldown\\.pluginutils-zQR0gz8W',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@types\\babel__core': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@types\\.babel__core-CigFYoU9',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@types\\babel__generator': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@types\\.babel__generator-OtsRvxme',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@types\\babel__template': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@types\\.babel__template-Dgq2rsrg',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@types\\babel__traverse': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@types\\.babel__traverse-wBRYuxi5',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@vitejs\\plugin-react': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\@vitejs\\.plugin-react-WVz6oT8Y',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\convert-source-map': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.convert-source-map-wOxkejGC',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\debug': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.debug-3XX4wkO1',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\framer-motion': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.framer-motion-1RL9ZTcH',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\gensync': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.gensync-3TgMBTqE',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\jsesc': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.jsesc-jYKpQ402',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\jsesc': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\.jsesc-Y87dGePV',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\jsesc.cmd': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\.jsesc.cmd-3ixvAmTq',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\jsesc.ps1': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\.jsesc.ps1-NGyYc6V7',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\json5': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.json5-oS7wEh13',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\json5': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\.json5-S9nabCcX',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\json5.cmd': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\.json5.cmd-hYbAO2mM',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\json5.ps1': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\.json5.ps1-KfOWxb4S',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\lru-cache': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.lru-cache-PNGbFwXk',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\motion-dom': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.motion-dom-2cvHFtet',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\motion-utils': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.motion-utils-ZLzxhOFM',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\ms': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.ms-Th0XIBAL',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\react-refresh': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.react-refresh-d55IwPIh',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\semver': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.semver-DIyIeFxM',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\semver': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\.semver-agEhnWvS',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\semver.cmd': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\.semver.cmd-i3lKtHg4',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\semver.ps1': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.bin\\.semver.ps1-5zz4dlh1',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\tslib': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.tslib-046VPMTR',
+54 silly reify   'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\yallist': 'C:\\Users\\M.J\\Documents\\Codex\\2026-05-15\\files-mentioned-by-the-user-may\\node_modules\\.yallist-FlWMmDNr'
+54 silly reify }
+55 silly audit bulk request {
+55 silly audit   '@alloc/quick-lru': [ '5.2.0' ],
+55 silly audit   '@babel/runtime': [ '7.29.2' ],
+55 silly audit   '@esbuild/aix-ppc64': [ '0.21.5' ],
+55 silly audit   '@esbuild/android-arm': [ '0.21.5' ],
+55 silly audit   '@esbuild/android-arm64': [ '0.21.5' ],
+55 silly audit   '@esbuild/android-x64': [ '0.21.5' ],
+55 silly audit   '@esbuild/darwin-arm64': [ '0.21.5' ],
+55 silly audit   '@esbuild/darwin-x64': [ '0.21.5' ],
+55 silly audit   '@esbuild/freebsd-arm64': [ '0.21.5' ],
+55 silly audit   '@esbuild/freebsd-x64': [ '0.21.5' ],
+55 silly audit   '@esbuild/linux-arm': [ '0.21.5' ],
+55 silly audit   '@esbuild/linux-arm64': [ '0.21.5' ],
+55 silly audit   '@esbuild/linux-ia32': [ '0.21.5' ],
+55 silly audit   '@esbuild/linux-loong64': [ '0.21.5' ],
+55 silly audit   '@esbuild/linux-mips64el': [ '0.21.5' ],
+55 silly audit   '@esbuild/linux-ppc64': [ '0.21.5' ],
+55 silly audit   '@esbuild/linux-riscv64': [ '0.21.5' ],
+55 silly audit   '@esbuild/linux-s390x': [ '0.21.5' ],
+55 silly audit   '@esbuild/linux-x64': [ '0.21.5' ],
+55 silly audit   '@esbuild/netbsd-x64': [ '0.21.5' ],
+55 silly audit   '@esbuild/openbsd-x64': [ '0.21.5' ],
+55 silly audit   '@esbuild/sunos-x64': [ '0.21.5' ],
+55 silly audit   '@esbuild/win32-arm64': [ '0.21.5' ],
+55 silly audit   '@esbuild/win32-ia32': [ '0.21.5' ],
+55 silly audit   '@esbuild/win32-x64': [ '0.21.5' ],
+55 silly audit   '@jridgewell/gen-mapping': [ '0.3.13' ],
+55 silly audit   '@jridgewell/resolve-uri': [ '3.1.2' ],
+55 silly audit   '@jridgewell/sourcemap-codec': [ '1.5.5' ],
+55 silly audit   '@jridgewell/trace-mapping': [ '0.3.31' ],
+55 silly audit   '@nodelib/fs.scandir': [ '2.1.5' ],
+55 silly audit   '@nodelib/fs.stat': [ '2.0.5' ],
+55 silly audit   '@nodelib/fs.walk': [ '1.2.8' ],
+55 silly audit   '@react-three/fiber': [ '8.18.0' ],
+55 silly audit   '@rollup/rollup-android-arm-eabi': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-android-arm64': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-darwin-arm64': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-darwin-x64': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-freebsd-arm64': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-freebsd-x64': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-linux-arm-gnueabihf': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-linux-arm-musleabihf': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-linux-arm64-gnu': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-linux-arm64-musl': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-linux-loong64-gnu': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-linux-loong64-musl': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-linux-ppc64-gnu': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-linux-ppc64-musl': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-linux-riscv64-gnu': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-linux-riscv64-musl': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-linux-s390x-gnu': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-linux-x64-gnu': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-linux-x64-musl': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-openbsd-x64': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-openharmony-arm64': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-win32-arm64-msvc': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-win32-ia32-msvc': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-win32-x64-gnu': [ '4.60.4' ],
+55 silly audit   '@rollup/rollup-win32-x64-msvc': [ '4.60.4' ],
+55 silly audit   '@types/estree': [ '1.0.8' ],
+55 silly audit   '@types/react': [ '19.2.14' ],
+55 silly audit   '@types/react-reconciler': [ '0.26.7', '0.28.9' ],
+55 silly audit   '@types/webxr': [ '0.5.24' ],
+55 silly audit   'any-promise': [ '1.3.0' ],
+55 silly audit   anymatch: [ '3.1.3' ],
+55 silly audit   arg: [ '5.0.2' ],
+55 silly audit   autoprefixer: [ '10.5.0' ],
+55 silly audit   'base64-js': [ '1.5.1' ],
+55 silly audit   'baseline-browser-mapping': [ '2.10.29' ],
+55 silly audit   'binary-extensions': [ '2.3.0' ],
+55 silly audit   braces: [ '3.0.3' ],
+55 silly audit   browserslist: [ '4.28.2' ],
+55 silly audit   buffer: [ '6.0.3' ],
+55 silly audit   'camelcase-css': [ '2.0.1' ],
+55 silly audit   'caniuse-lite': [ '1.0.30001792' ],
+55 silly audit   chokidar: [ '3.6.0' ],
+55 silly audit   'glob-parent': [ '5.1.2', '6.0.2' ],
+55 silly audit   commander: [ '4.1.1' ],
+55 silly audit   cssesc: [ '3.0.0' ],
+55 silly audit   csstype: [ '3.2.3' ],
+55 silly audit   didyoumean: [ '1.2.2' ],
+55 silly audit   dlv: [ '1.1.3' ],
+55 silly audit   'electron-to-chromium': [ '1.5.356' ],
+55 silly audit   'es-errors': [ '1.3.0' ],
+55 silly audit   esbuild: [ '0.21.5' ],
+55 silly audit   escalade: [ '3.2.0' ],
+55 silly audit   'fast-glob': [ '3.3.3' ],
+55 silly audit   fastq: [ '1.20.1' ],
+55 silly audit   'fill-range': [ '7.1.1' ],
+55 silly audit   'fraction.js': [ '5.3.4' ],
+55 silly audit   fsevents: [ '2.3.3' ],
+55 silly audit   'function-bind': [ '1.1.2' ],
+55 silly audit   gsap: [ '3.15.0' ],
+55 silly audit   hasown: [ '2.0.3' ],
+55 silly audit   ieee754: [ '1.2.1' ],
+55 silly audit   'is-binary-path': [ '2.1.0' ],
+55 silly audit   'is-core-module': [ '2.16.2' ],
+55 silly audit   'is-extglob': [ '2.1.1' ],
+55 silly audit   'is-glob': [ '4.0.3' ],
+55 silly audit   'is-number': [ '7.0.0' ],
+55 silly audit   'its-fine': [ '1.2.5' ],
+55 silly audit   jiti: [ '1.21.7' ],
+55 silly audit   'js-tokens': [ '4.0.0' ],
+55 silly audit   lenis: [ '1.3.23' ],
+55 silly audit   lilconfig: [ '3.1.3' ],
+55 silly audit   'lines-and-columns': [ '1.2.4' ],
+55 silly audit   'loose-envify': [ '1.4.0' ],
+55 silly audit   'lucide-react': [ '0.468.0' ],
+55 silly audit   merge2: [ '1.4.1' ],
+55 silly audit   micromatch: [ '4.0.8' ],
+55 silly audit   mz: [ '2.7.0' ],
+55 silly audit   nanoid: [ '3.3.12' ],
+55 silly audit   'node-releases': [ '2.0.44' ],
+55 silly audit   'normalize-path': [ '3.0.0' ],
+55 silly audit   'object-assign': [ '4.1.1' ],
+55 silly audit   'object-hash': [ '3.0.0' ],
+55 silly audit   'path-parse': [ '1.0.7' ],
+55 silly audit   picocolors: [ '1.1.1' ],
+55 silly audit   picomatch: [ '2.3.2', '4.0.4' ],
+55 silly audit   pify: [ '2.3.0' ],
+55 silly audit   pirates: [ '4.0.7' ],
+55 silly audit   postcss: [ '8.5.14' ],
+55 silly audit   'postcss-import': [ '15.1.0' ],
+55 silly audit   'postcss-js': [ '4.1.0' ],
+55 silly audit   'postcss-load-config': [ '6.0.1' ],
+55 silly audit   'postcss-nested': [ '6.2.0' ],
+55 silly audit   'postcss-selector-parser': [ '6.1.2' ],
+55 silly audit   'postcss-value-parser': [ '4.2.0' ],
+55 silly audit   'queue-microtask': [ '1.2.3' ],
+55 silly audit   react: [ '18.3.1' ],
+55 silly audit   'react-dom': [ '18.3.1' ],
+55 silly audit   scheduler: [ '0.23.2', '0.21.0' ],
+55 silly audit   'react-reconciler': [ '0.27.0' ],
+55 silly audit   'react-use-measure': [ '2.1.7' ],
+55 silly audit   'read-cache': [ '1.0.0' ],
+55 silly audit   readdirp: [ '3.6.0' ],
+55 silly audit   resolve: [ '1.22.12' ],
+55 silly audit   reusify: [ '1.1.0' ],
+55 silly audit   rollup: [ '4.60.4' ],
+55 silly audit   'run-parallel': [ '1.2.0' ],
+55 silly audit   'source-map-js': [ '1.2.1' ],
+55 silly audit   sucrase: [ '3.35.1' ],
+55 silly audit   'supports-preserve-symlinks-flag': [ '1.0.0' ],
+55 silly audit   'suspend-react': [ '0.1.3' ],
+55 silly audit   tailwindcss: [ '3.4.19' ],
+55 silly audit   thenify: [ '3.3.1' ],
+55 silly audit   'thenify-all': [ '1.6.0' ],
+55 silly audit   three: [ '0.171.0' ],
+55 silly audit   tinyglobby: [ '0.2.16' ],
+55 silly audit   fdir: [ '6.5.0' ],
+55 silly audit   'to-regex-range': [ '5.0.1' ],
+55 silly audit   'ts-interface-checker': [ '0.1.13' ],
+55 silly audit   'update-browserslist-db': [ '1.2.3' ],
+55 silly audit   'util-deprecate': [ '1.0.2' ],
+55 silly audit   vite: [ '5.4.21' ],
+55 silly audit   zustand: [ '3.7.2' ]
+55 silly audit }
+56 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 610ms
+57 silly audit report {
+57 silly audit report   esbuild: [
+57 silly audit report     {
+57 silly audit report       id: 1102341,
+57 silly audit report       url: 'https://github.com/advisories/GHSA-67mh-4wv8-2f99',
+57 silly audit report       title: 'esbuild enables any website to send any requests to the development server and read the response',
+57 silly audit report       severity: 'moderate',
+57 silly audit report       vulnerable_versions: '<=0.24.2',
+57 silly audit report       cwe: [Array],
+57 silly audit report       cvss: [Object]
+57 silly audit report     }
+57 silly audit report   ],
+57 silly audit report   vite: [
+57 silly audit report     {
+57 silly audit report       id: 1116229,
+57 silly audit report       url: 'https://github.com/advisories/GHSA-4w7w-66w2-5vf9',
+57 silly audit report       title: 'Vite Vulnerable to Path Traversal in Optimized Deps `.map` Handling',
+57 silly audit report       severity: 'moderate',
+57 silly audit report       vulnerable_versions: '<=6.4.1',
+57 silly audit report       cwe: [Array],
+57 silly audit report       cvss: [Object]
+57 silly audit report     }
+57 silly audit report   ]
+57 silly audit report }
+58 silly packumentCache corgi:https://registry.npmjs.org/esbuild cache-miss
+59 silly packumentCache corgi:https://registry.npmjs.org/vite cache-miss
+60 http cache https://registry.npmjs.org/esbuild 9ms (cache hit)
+61 silly packumentCache corgi:https://registry.npmjs.org/esbuild set size:885757 disposed:false
+62 http cache https://registry.npmjs.org/vite 16ms (cache hit)
+63 silly packumentCache corgi:https://registry.npmjs.org/vite set size:2246766 disposed:false
+64 silly REMOVE node_modules/yallist
+65 silly REMOVE node_modules/tslib
+66 silly REMOVE node_modules/semver
+67 silly REMOVE node_modules/react-refresh
+68 silly REMOVE node_modules/ms
+69 silly REMOVE node_modules/motion-utils
+70 silly REMOVE node_modules/motion-dom
+71 silly REMOVE node_modules/lru-cache
+72 silly REMOVE node_modules/json5
+73 silly REMOVE node_modules/jsesc
+74 silly REMOVE node_modules/gensync
+75 silly REMOVE node_modules/framer-motion
+76 silly REMOVE node_modules/debug
+77 silly REMOVE node_modules/convert-source-map
+78 silly REMOVE node_modules/@vitejs/plugin-react
+79 silly REMOVE node_modules/@types/babel__traverse
+80 silly REMOVE node_modules/@types/babel__template
+81 silly REMOVE node_modules/@types/babel__generator
+82 silly REMOVE node_modules/@types/babel__core
+83 silly REMOVE node_modules/@rolldown/pluginutils
+84 silly REMOVE node_modules/@jridgewell/remapping
+85 silly REMOVE node_modules/@babel/types
+86 silly REMOVE node_modules/@babel/traverse
+87 silly REMOVE node_modules/@babel/template
+88 silly REMOVE node_modules/@babel/plugin-transform-react-jsx-source
+89 silly REMOVE node_modules/@babel/plugin-transform-react-jsx-self
+90 silly REMOVE node_modules/@babel/parser
+91 silly REMOVE node_modules/@babel/helpers
+92 silly REMOVE node_modules/@babel/helper-validator-option
+93 silly REMOVE node_modules/@babel/helper-validator-identifier
+94 silly REMOVE node_modules/@babel/helper-string-parser
+95 silly REMOVE node_modules/@babel/helper-plugin-utils
+96 silly REMOVE node_modules/@babel/helper-module-transforms
+97 silly REMOVE node_modules/@babel/helper-module-imports
+98 silly REMOVE node_modules/@babel/helper-globals
+99 silly REMOVE node_modules/@babel/helper-compilation-targets
+100 silly REMOVE node_modules/@babel/generator
+101 silly REMOVE node_modules/@babel/core
+102 silly REMOVE node_modules/@babel/compat-data
+103 silly REMOVE node_modules/@babel/code-frame
+104 verbose cwd C:\Users\M.J\Documents\Codex\2026-05-15\files-mentioned-by-the-user-may
+105 verbose os Windows_NT 10.0.22631
+106 verbose node v24.15.0
+107 verbose npm  v11.12.1
+108 verbose exit 0
+109 info ok
