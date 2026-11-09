@@ -426,6 +426,9 @@ const oldSetActiveStage=setActiveStage;
 setActiveStage=function(name){oldSetActiveStage(name);setHash(name)};
 const oldEnter=enter;
 enter=function(){scene='arrival';oldEnter()};
+// Shareable direct showroom preview without replaying the five chapters.
+if(location.hash==='#mall')setActiveStage('mall');
+window.addEventListener('hashchange',()=>{if(location.hash==='#mall'&&scene!=='mall')setActiveStage('mall')});
 
 resize();start();
 })();
