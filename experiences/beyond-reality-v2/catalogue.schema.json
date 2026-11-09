@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Beyond Reality bilingual demonstration catalogue",
+  "type": "object",
+  "required": [
+    "version",
+    "purpose",
+    "currency",
+    "products"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "purpose": {
+      "const": "demonstration-only"
+    },
+    "currency": {
+      "const": "SAR"
+    },
+    "products": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 80,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "sku",
+          "shop",
+          "en",
+          "ar",
+          "descEn",
+          "descAr",
+          "labelEn",
+          "labelAr",
+          "price",
+          "image",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]{3,50}$"
+          },
+          "sku": {
+            "type": "string",
+            "pattern": "^[A-Z0-9-]{3,60}$"
+          },
+          "shop": {
+            "enum": [
+              "tech",
+              "market",
+              "style"
+            ]
+          },
+          "en": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 140
+          },
+          "ar": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 140
+          },
+          "descEn": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 400
+          },
+          "descAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 400
+          },
+          "labelEn": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "labelAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "price": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100000
+          },
+          "image": {
+            "type": "string",
+            "pattern": "^photo-[0-9]+-[a-z0-9]+$"
+          },
+          "status": {
+            "const": "demo"
+          },
+          "mediaStatus": {
+            "const": "representative-photo"
+          },
+          "priceStatus": {
+            "const": "illustrative"
+          },
+          "imageAltEn": {
+            "type": "string"
+          },
+          "imageAltAr": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
