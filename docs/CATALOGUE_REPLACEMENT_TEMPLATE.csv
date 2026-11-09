@@ -1,0 +1,10 @@
+draft_sku,department,product_name_en,product_name_ar,description_en,description_ar,indicative_demo_price_sar,verified_price_sar,vat_included,stock_quantity,supplier_name,brand_model,verified_image_path,alt_en,alt_ar,image_rights_evidence,warranty,shipping_time,return_policy,verified,published
+DEMO-HEADPHONES,tech,Studio Headphones,سماعات استوديو,"Comfort-focused listening, imagined for a quieter everyday.",تجربة استماع مريحة لمحبي التفاصيل الهادئة.,349,,,,,,,,,,,,,NO,NO
+DEMO-WATCH,tech,Everyday Watch,ساعة يومية,A minimal timepiece that brings clarity to every moment.,ساعة بتصميم بسيط لكل لحظة في يومك.,289,,,,,,,,,,,,,NO,NO
+DEMO-CAMERA,tech,Creator Camera,كاميرا للمبدعين,An idea for capturing the beautiful things we notice.,فكرة لالتقاط التفاصيل الجميلة من حولنا.,899,,,,,,,,,,,,,NO,NO
+DEMO-COFFEE,market,Roasted Coffee,قهوة محمصة,"A rich morning ritual, inspired by the aroma of freshly roasted beans.",طقس صباحي مستوحى من رائحة البن المحمص.,59,,,,,,,,,,,,,NO,NO
+DEMO-TEA,market,Loose Leaf Tea,شاي أوراق,"An unhurried pause, steeped in warmth.",استراحة دافئة في كوب شاي بهدوء.,45,,,,,,,,,,,,,NO,NO
+DEMO-CANDLE,market,Evening Candle,شمعة المساء,A soft glow for slow evenings and thoughtful spaces.,إضاءة هادئة لأمسيات مريحة ومساحات أنيقة.,79,,,,,,,,,,,,,NO,NO
+DEMO-SNEAKERS,style,City Sneakers,حذاء يومي,Made for the rhythm of the city in this illustrative collection.,حذاء يعكس إيقاع المدينة ضمن مجموعة توضيحية.,269,,,,,,,,,,,,,NO,NO
+DEMO-BAG,style,Everyday Carry,حقيبة يومية,A practical silhouette for a considered daily routine.,حقيبة بتصميم عملي لتفاصيل اليوم.,199,,,,,,,,,,,,,NO,NO
+DEMO-SUNGLASSES,style,Sunlight Frames,نظارة شمسية,A clean accent for bright days and open roads.,لمسة أنيقة للأيام المشرقة والطرق المفتوحة.,149,,,,,,,,,,,,,NO,NO
