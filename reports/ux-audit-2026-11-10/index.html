@@ -1,0 +1,313 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#07151b"><meta name="description" content="Beyond Reality UX audit, tested shopping workflows, improvements, and commercial launch checklist."><title>BEYOND REALITY — UX Audit &amp; Improvement Report</title>
+<style>
+:root{color-scheme:dark;--bg:#07151b;--panel:#11232c;--line:#29454d;--ink:#eaf9f5;--muted:#a0c0bb;--accent:#8af1d7;--gold:#f7d492;--error:#f2a599}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 90% 0%,#153a47 0%,transparent 33%),#07151b;color:var(--ink);font:16px/1.75 system-ui,-apple-system,'Segoe UI',Arial,sans-serif}a{color:#a7f4df}a:hover{text-decoration:underline}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:4px}.wrap{width:min(1190px,calc(100% - 44px));margin:auto}header{position:sticky;top:0;background:#081820ec;backdrop-filter:blur(18px);z-index:20;border-bottom:1px solid #2e4549}.nav{display:flex;align-items:center;justify-content:space-between;gap:15px;min-height:66px}.brand{font-size:13px;letter-spacing:.14em;font-weight:850;color:#e1fff7;text-decoration:none}.brand span{color:var(--accent)}.navlinks{display:flex;gap:16px;flex-wrap:wrap}.navlinks a{text-decoration:none;font-size:12px;color:#b1ceca}.navlinks a:hover{color:white}.hero{padding:80px 0 65px;border-bottom:1px solid #29434a;position:relative;overflow:hidden}.hero:after{content:'◇';position:absolute;right:5%;top:-80px;font-size:400px;color:rgba(113,213,201,.06);line-height:1;pointer-events:none}.eyebrow{font-size:11px;letter-spacing:.2em;font-weight:800;color:var(--accent)}h1{font-size:clamp(43px,7vw,84px);line-height:1.06;letter-spacing:-.06em;margin:22px 0 20px;max-width:850px}h1 em{color:var(--accent);font-style:normal}.lead{color:#b8d3d0;max-width:730px;font-size:18px;margin:0 0 24px}.hero-actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:30px}.action{display:inline-block;padding:11px 19px;border:1px solid #95efdc;text-decoration:none;font-size:13px;font-weight:760}.action.primary{background:#9bf1da;color:#0b242b}.action:hover{text-decoration:none;background:#21444c;color:#eafff8}.action.primary:hover{background:#c4ffee;color:#0b242b}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:45px}.metric{padding:22px 19px;border:1px solid var(--line);background:#10283270}.metric strong{display:block;font-size:35px;font-variant-numeric:tabular-nums;line-height:1.2}.metric small{font-size:11px;letter-spacing:.04em;color:#abc7c1}main{padding:35px 0 90px}article>h2{font-size:clamp(27px,4vw,42px);letter-spacing:-.045em;line-height:1.2;margin:70px 0 23px;scroll-margin-top:90px;padding-top:5px}article h3{font-size:20px;line-height:1.3;margin:35px 0 12px}article p,article li{color:#b9d2d2}article strong{color:#e9f9f5}article ul,article ol{padding-left:25px}article blockquote{border-left:3px solid var(--accent);padding:15px 22px;margin:22px 0;background:#143038}article table{width:100%;border-collapse:collapse;text-align:left;min-width:690px}article table th{font-weight:750;color:#d9fbef;background:#19343c;font-size:12px}article table td,article table th{border-bottom:1px solid #2b454c;padding:13px 14px;vertical-align:top}article table td{color:#bed2d0;font-size:13px;line-height:1.65}article table tr:hover td{background:#112932}article table td:first-child{color:#effff9;font-weight:650}article table td:last-child{max-width:290px}.table-frame{overflow-x:auto;border:1px solid var(--line);border-radius:8px;margin:20px 0 28px}article code{padding:2px 5px;background:#1c3541;border-radius:3px}article hr{border:0;border-top:1px solid var(--line)}.filters{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px}.filters button{padding:7px 12px;border:1px solid #3f696a;background:transparent;color:#b4d4ce;font-size:12px;border-radius:4px;min-height:42px}.filters button[aria-pressed="true"]{background:var(--accent);color:#092b30;border-color:var(--accent);font-weight:800}.status{border-left:3px solid #89e7d0;padding:17px 20px;background:#18333b;font-size:14px;color:#c9ece2;margin:20px 0}footer{border-top:1px solid var(--line);padding:30px 0 60px;color:#90aaa9;font-size:12px}.footrow{display:flex;justify-content:space-between;flex-wrap:wrap;gap:15px}#jumpTop{position:fixed;right:19px;bottom:18px;border:1px solid #83d8c5;background:#0b2e36;width:44px;height:44px;border-radius:50%;z-index:10;color:#d3fff2;display:none}#jumpTop.visible{display:grid;place-items:center}a[href^='#']{scroll-margin-top:78px}@media(max-width:760px){.wrap{width:min(100% - 30px,900px)}.nav{min-height:65px}.navlinks{gap:8px}.navlinks a{font-size:11px}.navlinks a:nth-child(1),.navlinks a:nth-child(4){display:none}.hero{padding:50px 0 38px}.hero:after{font-size:260px;right:-40px;top:15px}h1{font-size:clamp(42px,10vw,62px)}.lead{font-size:15px}.metrics{grid-template-columns:repeat(2,1fr);gap:9px;margin-top:25px}.metric{padding:15px 14px}.metric strong{font-size:28px}.metric small{font-size:10px}article>h2{margin-top:55px}article table td{font-size:12px;padding:10px 11px}article table th{padding:12px 11px}.hero-actions a{width:100%;text-align:center}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head><body>
+<header><div class="wrap nav"><a class="brand" href="#top">BEYOND <span>REALITY</span> / UX</a><nav class="navlinks" aria-label="Report sections"><a href="#overview">Overview</a><a href="#journey">Journey</a><a href="#findings">Findings</a><a href="#catalogue">Content</a><a href="#release">Launch gates</a></nav></div></header>
+<div id="top" class="hero"><div class="wrap"><div class="eyebrow">USABILITY RESEARCH · INTERNAL CONCEPT REVIEW · 10 NOV 2026</div><h1>The experience is built.<br><em>Now make it effortless.</em></h1><p class="lead">A practical, evidence-based UX report for our cinematic portal, bilingual product gallery, search, detail views and demonstration basket. Includes repairs already made and everything still required before selling real products.</p><div class="hero-actions"><a class="action primary" href="https://beyond-reality-ux-preview.vercel.app/#mall">Open improved shop preview ↗</a><a class="action" href="https://beyond-reality-gallery.vercel.app/#mall">Original gallery ↗</a><a class="action" href="#findings">Review all findings ↓</a></div><div class="metrics"><div class="metric"><strong>5</strong><small>VIEWPORTS TESTED</small></div><div class="metric"><strong>9</strong><small>DEMO PRODUCTS</small></div><div class="metric"><strong>16</strong><small>PRIORITISED FINDINGS</small></div><div class="metric"><strong>0</strong><small>OBSERVED JS ERRORS IN TEST FLOWS</small></div></div></div></div>
+<main class="wrap"><div class="status">Verdict: <strong>Showcase ready for review</strong> · shopping interactions improved in a separate preview · <strong>not ready for real orders</strong> without verified merchandise, inventory, checkout and operational safeguards.</div><article>
+<p><strong>Date:</strong> 10 November 2026<br />
+<strong>Subject:</strong> <a href="https://beyond-reality-gallery.vercel.app/#mall">Beyond Reality Gallery</a><br />
+<strong>Scope:</strong> Cinematic journey (Chapters 01–04), photographic shopping gallery (Chapter 05), bilingual search, catalogue filtering, details, basket and content replacement.<br />
+<strong>Method:</strong> Source inspection, automated Chromium interaction tests at widths <strong>360, 390, 430, 768 and 1440 pixels</strong>, keyboard checks and offline-photo-fallback simulation. These tests <strong>are not user research, a real-device performance benchmark, a legal review, or full WCAG certification.</strong></p>
+<h2 id="overview">Executive summary</h2>
+<p>The project is <strong>strong as an interactive creative showcase</strong>. The portal, underwater world, three universes and finale provide a memorable narrative; the gallery has the foundations of a usable product browser. The purchase journey is <em>not</em> production-ready: nine products, prices and photos are illustrative; there is no stock, checkout, merchant integration or order fulfilment.</p>
+<p>Our main UX direction is <strong>dual-route navigation</strong>: keep the cinematic journey for first-time visitors, but offer shoppers a clear <strong>Skip to Showroom</strong> route. A compelling sales experience requires people to <strong>find, understand, trust, add, modify and (eventually) buy</strong> products quickly.</p>
+<h3>Evidence and results</h3>
+<table>
+<thead>
+<tr>
+<th>Baseline test</th>
+<th>Observed result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mobile / tablet / desktop widths</td>
+<td>360, 390, 430, 768, 1440 px; <strong>no horizontal overflow</strong> in the tested gallery</td>
+</tr>
+<tr>
+<td>Product collection</td>
+<td>9 sample products in 3 collections; all nine initially appear</td>
+</tr>
+<tr>
+<td>Category filter</td>
+<td>Selecting Ritual &amp; Home yields <strong>3</strong> products</td>
+</tr>
+<tr>
+<td>English and Arabic search</td>
+<td>“tea” and “شاي” each yield <strong>1</strong> match</td>
+</tr>
+<tr>
+<td>Price sorting</td>
+<td>Low-first starts with Loose Leaf Tea, indicative <strong>SAR 45</strong></td>
+</tr>
+<tr>
+<td>Product details</td>
+<td>Opens; closes via Escape</td>
+</tr>
+<tr>
+<td>Basket</td>
+<td>Add one item, then increment to two; subtotal updates</td>
+</tr>
+<tr>
+<td>Language</td>
+<td>Arabic content and RTL switch worked in the tested flow</td>
+</tr>
+<tr>
+<td>Browser script exceptions</td>
+<td><strong>0</strong> observed in the sampled test flows</td>
+</tr>
+<tr>
+<td>Mobile targets before UX pass</td>
+<td>Several <strong>36–39 px</strong> button dimensions were measured in the gallery</td>
+</tr>
+<tr>
+<td>External photography</td>
+<td>External URLs are used; remote image availability was <strong>not</strong> verified in isolated Chromium tests; fallback artwork was exercised</td>
+</tr>
+</tbody>
+</table>
+<h2 id="journey">UX journey assessment</h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>What visitors can do</th>
+<th>Finding / opportunity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Arrival</td>
+<td>Enter a glowing portal</td>
+<td>Delightful for exploration, but slow if someone is trying to buy something; add a showroom shortcut</td>
+</tr>
+<tr>
+<td>2. Ocean</td>
+<td>Explore underwater scene and touch ripples</td>
+<td>Keep animations optional and respect reduced-motion settings; avoid blocking the way forward</td>
+</tr>
+<tr>
+<td>3. Choose world</td>
+<td>Explore Fire / Nature / Space</td>
+<td>Current navigation is primarily a guided narrative; a visible progress indicator or hub navigation would help orientation</td>
+</tr>
+<tr>
+<td>4. Finale</td>
+<td>View closing scene, continue or replay</td>
+<td>Add a clear next action to visit the showroom</td>
+</tr>
+<tr>
+<td>5. Showroom</td>
+<td>Browse three categories, search, sort, inspect products</td>
+<td>Excellent starting point; improve touch targets, feedback, empty results, accurate images and copy</td>
+</tr>
+<tr>
+<td>6. Basket</td>
+<td>Add or change quantity, review indicative total</td>
+<td>Make edits understandable and accessible; session persistence is useful, but a real checkout is not yet available</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Important distinction:</strong> The current mall is a <strong>clickable 2D showroom</strong>, not a free-roaming 3D shopping centre. To build genuine walking-style navigation later, we should add a lightweight corridor with entry hotspots, a mini-map, back-to-corridor control, shop signs, keyboard/touch equivalents and a normal product-list fallback. Full 3D should be reserved for clear customer benefit.</p>
+<h2 id="findings">Prioritised findings and actions</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Priority</th>
+<th>Observation / risk</th>
+<th>Action</th>
+<th>Status after UX pass</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UX-01</td>
+<td>High</td>
+<td>Cinematic path can delay access to products</td>
+<td>Add <strong>Skip to Showroom</strong> at the arrival screen</td>
+<td><strong>Fixed in preview</strong></td>
+</tr>
+<tr>
+<td>UX-02</td>
+<td>High</td>
+<td>Several tappable controls only ~36–39 px</td>
+<td>Bring shopping buttons, basket and close controls to <strong>44–48 px</strong></td>
+<td><strong>Fixed in preview</strong></td>
+</tr>
+<tr>
+<td>UX-03</td>
+<td>High</td>
+<td>No-results search message gave little help</td>
+<td>Clear-search button, contextual result count, reset-search-and-filters action</td>
+<td><strong>Fixed in preview</strong></td>
+</tr>
+<tr>
+<td>UX-04</td>
+<td>High</td>
+<td>Search was plain substring matching</td>
+<td>Normalise Arabic letter variants, tokenise queries, and add relevant synonyms</td>
+<td><strong>Improved in preview</strong>; typo tolerance remains future work</td>
+</tr>
+<tr>
+<td>UX-05</td>
+<td>High</td>
+<td>Modal focus could be confusing and background remained keyboard reachable</td>
+<td>Focus first close action, trap reverse Tab, make underlying showroom inert while dialog is open</td>
+<td><strong>Fixed in preview</strong></td>
+</tr>
+<tr>
+<td>UX-06</td>
+<td>Medium</td>
+<td>Add-to-basket feedback was subtle, especially lower down the page</td>
+<td>Display transient feedback, provide live count and clear contextual labels</td>
+<td><strong>Fixed in preview</strong></td>
+</tr>
+<tr>
+<td>UX-07</td>
+<td>Medium</td>
+<td>Empty basket / quantity change had no persistence between reloads</td>
+<td>Session-scoped demo basket storage, with safe fallback when storage is disabled</td>
+<td><strong>Implemented</strong>; requires regular-origin reload QA</td>
+</tr>
+<tr>
+<td>UX-08</td>
+<td>Medium</td>
+<td>If photos fail to load, artwork was visually cluttered</td>
+<td>Design readable fallback graphics with category variants</td>
+<td><strong>Fixed in preview</strong></td>
+</tr>
+<tr>
+<td>UX-09</td>
+<td>Medium</td>
+<td>Tiny captions and technical language distract shoppers</td>
+<td>Increase key catalogue text sizes; simplify labels and copy</td>
+<td><strong>Partially improved</strong></td>
+</tr>
+<tr>
+<td>UX-10</td>
+<td>High before selling</td>
+<td>Photographs are illustrative, not supplier-verified</td>
+<td>Replace with real, licensed photos of the exact products</td>
+<td><strong>Not done — needs merchandise/content</strong></td>
+</tr>
+<tr>
+<td>UX-11</td>
+<td>Critical before selling</td>
+<td>Demo items have no verified vendor, SKU, stock, tax or delivery information</td>
+<td>Obtain verified catalogue records; set availability, SAR pricing, VAT, specifications and shipping details</td>
+<td><strong>Not done</strong></td>
+</tr>
+<tr>
+<td>UX-12</td>
+<td>Critical before selling</td>
+<td>Checkout is intentionally disabled</td>
+<td>Integrate secure order, payment and fulfilment services; conduct privacy and compliance review</td>
+<td><strong>Not done</strong></td>
+</tr>
+<tr>
+<td>UX-13</td>
+<td>Medium</td>
+<td>A single hard-coded JS catalogue is not easy for an editor to maintain</td>
+<td>Start with a CSV replacement worksheet, then connect a validated catalogue API or CMS</td>
+<td><strong>Template prepared</strong>; integration pending</td>
+</tr>
+<tr>
+<td>UX-14</td>
+<td>Medium</td>
+<td>Accessibility confidence limited to keyboard and code checks</td>
+<td>Real assistive-technology review, text contrast and 200% zoom, RTL and screen-reader tests</td>
+<td><strong>Pending manual audit</strong></td>
+</tr>
+<tr>
+<td>UX-15</td>
+<td>Medium</td>
+<td>External photos and effects may affect load on real devices</td>
+<td>Compress licensed assets, adopt CDN/image optimisation, test LCP, INP, CLS</td>
+<td><strong>Pending measurement</strong></td>
+</tr>
+<tr>
+<td>UX-16</td>
+<td>Low</td>
+<td>No behavioural feedback from actual customers</td>
+<td>Run 5–8 moderated tasks; track search failures and funnel events with appropriate consent</td>
+<td><strong>Pending research</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="catalogue">Content, text and replacement plan</h2>
+<p>Before a sale-ready launch, each product must have verifiable content, not placeholder branding or AI-generated specifications. Use the accompanying <strong>CATALOGUE_REPLACEMENT_TEMPLATE.csv</strong> as a <em>worksheet</em>, not an automatically connected store database. A production catalogue should contain:</p>
+<ol>
+<li><strong>Product identification:</strong> permanent SKU, supplier name, brand permission, category, name in Arabic and English, model/variant/size.</li>
+<li><strong>Verified product data:</strong> description, exact specifications, dimensions, materials, warranty, reliable stock and availability.</li>
+<li><strong>Genuine media:</strong> original high-resolution image files, usage permission, licence/credit evidence, alt text in Arabic and English, image-to-SKU match.</li>
+<li><strong>Accurate pricing:</strong> SAR price, whether VAT is included, discount validity, shipping cost, offer expiry and returns conditions.</li>
+<li><strong>Operations:</strong> inventory, secure orders and payments, deliveries, customer support, privacy, terms and required Saudi-market compliance review.</li>
+</ol>
+<p><strong>Add a product:</strong> create the verified record and images, preview the card and detail view, validate Arabic/English copy, test search and basket, then publish. <strong>Replace a product:</strong> keep the SKU stable only when it is genuinely the same item; otherwise use a new SKU and remove the old listing. <strong>Remove a product:</strong> archive it safely, maintain order-history references in a future backend, and do not reuse identifiers improperly. The current demo has no order histories or real inventory.</p>
+<h3>Copywriting upgrades</h3>
+<table>
+<thead>
+<tr>
+<th>Current demo language</th>
+<th>Better production wording (only when factual)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“Objects”</td>
+<td>“Products” or the actual collection name</td>
+</tr>
+<tr>
+<td>“Illustrative price”</td>
+<td>“Price incl. VAT” if verified and applicable</td>
+</tr>
+<tr>
+<td>“View details”</td>
+<td>“View specifications” when proper details exist</td>
+</tr>
+<tr>
+<td>“ADD TO DEMO BASKET”</td>
+<td>“Add to basket” only after real cart integration</td>
+</tr>
+<tr>
+<td>“Checkout unavailable”</td>
+<td>A tested real checkout action with delivery and tax clarity</td>
+</tr>
+<tr>
+<td>Generic “Creator Camera”</td>
+<td>Exact brand, model, variant, warranty and genuine photos</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tasks">Usability walk-through scripts for real participants</h2>
+<p>Ask participants to complete tasks <strong>without hints</strong>. Observe where they hesitate and whether they understand the showroom is currently a prototype.</p>
+<ol>
+<li><strong>Find without the film:</strong> Open the home page and reach the shopping catalogue in under two interactions. Measure time and errors.</li>
+<li><strong>Search:</strong> Find tea using English and Arabic, including “شاي” and “شاى”. Try a misspelling and note whether results help recovery.</li>
+<li><strong>Filter:</strong> Find a product in Style &amp; Motion, then remove filters. Confirm the number of visible products makes sense.</li>
+<li><strong>Inspect:</strong> Open a detail view, identify the exact product and understand the price and availability. At present, they should recognise it is illustrative.</li>
+<li><strong>Basket:</strong> Add an item, increase and decrease quantity, clear the basket and return to browsing. Confirm feedback and focus are obvious.</li>
+<li><strong>Mobile accessibility:</strong> Use larger text, VoiceOver or TalkBack, keyboard navigation, RTL mode and reduced motion. Record any trap or unreadable label.</li>
+<li><strong>Walkthrough:</strong> Navigate portal → ocean → one chosen universe → finale → showroom and find the way back.</li>
+</ol>
+<h2 id="release">Release criteria</h2>
+<p><strong>Prototype publication (now):</strong> successful navigation, no blocking script errors, functional search/basket, accessible dialog focus, 44+ px core touch controls, appropriate demo disclaimers and public Vercel link.</p>
+<p><strong>Content launch (later):</strong> all listed photos/licences/SKUs/specifications verified, storefront labels factual, working inventory and documented returns/shipping policies. No fake scarcity, ratings or discounts.</p>
+<p><strong>Commercial launch (later):</strong> tested real checkout/payment, fulfilment and refunds, error/recovery states, privacy/security and local legal review, device/browser/accessibility tests and an operational support process.</p>
+<h2 id="measurement">Measurement plan and limitations</h2>
+<p>Once actual customer testing is allowed, instrument (with suitable notice/consent) <strong>arrival-to-gallery skip rate, gallery entry, category selection, search use, zero-result rate, detail opens, add-to-cart rate, basket edits, checkout starts and completed purchases</strong>. Measure Web Vitals (<strong>LCP, INP, CLS</strong>) on real mobile connections. Do not invent scores before gathering data.</p>
+<h3>Final verdict</h3>
+<p><strong>Creative showcase:</strong> complete and worth keeping. <strong>Shopping prototype:</strong> usable, with fixes implemented in a separate UX preview. <strong>Real ecommerce:</strong> not ready until verified products, content rights, order/payment/stock integrations and operational/legal checks exist.</p>
+<p><strong>Arabic summary:</strong> التجربة السينمائية مكتملة كنموذج إبداعي، ومعرض المنتجات أصبح أسهل في البحث والتصفية والتفاعل مع السلة. لكن الصور والأسعار والمنتجات ما تزال توضيحية، والبيع الحقيقي يتطلب منتجات ومخزوناً وأسعاراً موثقة ونظام دفع وشحن وامتثال قبل الإطلاق التجاري.</p>
+</article></main><footer><div class="wrap footrow"><span>© 2026 BEYOND REALITY · UX Review · Automated browser inspection, not a full accessibility or live-device certification.</span><a href="#top">Back to top ↑</a></div></footer><button type="button" id="jumpTop" aria-label="Back to report top" onclick="location.hash='#top'">↑</button>
+<script>
+(()=>{'use strict';
+document.querySelectorAll('article table').forEach(t=>{let box=document.createElement('div');box.className='table-frame';t.replaceWith(box);box.append(t)});
+let findings=[...document.querySelectorAll('article h2')].find(h=>h.id==='findings');
+if(findings){let table=findings.nextElementSibling;while(table&&(!table.classList||!table.classList.contains('table-frame')))table=table.nextElementSibling;
+ if(table){const buttons=document.createElement('div');buttons.className='filters';buttons.setAttribute('aria-label','Filter findings by priority');const options=[['all','All 16'],['fixed','Fixed / improved'],['open','Remaining work'],['critical','Critical before selling']];for(const [key,label] of options){let btn=document.createElement('button');btn.type='button';btn.textContent=label;btn.setAttribute('aria-pressed',String(key==='all'));btn.addEventListener('click',()=>{buttons.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===btn)));table.querySelectorAll('tbody tr').forEach(row=>{const cells=[...row.cells].map(c=>c.textContent.toLowerCase());const status=cells.at(-1)||'',priority=cells[1]||'';row.hidden=key==='all'?false:key==='fixed'?!/(fixed|improved|implemented|template prepared)/.test(status):key==='open'?/(not done|pending|partially)/.test(status):!priority.includes('critical')})});buttons.append(btn)}table.before(buttons)} }
+const top=document.getElementById('jumpTop');window.addEventListener('scroll',()=>top.classList.toggle('visible',scrollY>850),{passive:true});
+})();
+</script></body></html>
