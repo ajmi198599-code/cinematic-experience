@@ -37,7 +37,7 @@ a{color:inherit}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-
 </head>
 <body>
 <div class="wrap">
-  <header class="header"><div class="brand">BEYOND <em>REALITY</em></div><div class="navnote">Interactive concept lab / v1</div></header>
+  <header class="header"><div class="brand">BEYOND <em>REALITY</em></div><div style="display:flex;align-items:center;gap:12px"><div class="navnote">Interactive concept lab / v1</div><button id="langToggle" class="outlineBtn" style="padding:8px 12px;white-space:nowrap" type="button" aria-label="Switch language">العربية</button></div></header>
   <section class="intro">
     <div><div class="eyebrow">A vision you can actually explore</div><h1>Don't just read<br>the idea. <span>Feel it.</span></h1><p>Two big ideas, one simple demonstration. Click through the cinematic landing page, then walk into a miniature virtual shopping mall. Everything here is an interactive mock-up—not a finished 3D website.</p></div><span class="tag">✦ Built to explain, not overwhelm</span>
   </section>
@@ -97,6 +97,7 @@ $('prevBtn').disabled=step===0;$('nextBtn').textContent=step===steps.length-1?'�
 $('modeCinema').classList.toggle('active',mode==='cinema');$('modeMall').classList.toggle('active',mode==='mall');$('modeCinema').setAttribute('aria-pressed',mode==='cinema');$('modeMall').setAttribute('aria-pressed',mode==='mall');
 fc.replaceChildren();
 if(mode==='cinema')renderCinemaControls(d);else renderMallControls();
+applyLocale();
 }
 function overlayButton(label,handler){let b=document.createElement('button');b.className='nextBubble';b.textContent=label;b.onclick=handler;fc.append(b)}
 function renderCinemaControls(d){if(step===0||step===1){overlayButton(d.cta,advance)}else if(step===3){let panel=document.createElement('div');panel.className='worldpanel';[['fire','🔥 Fire'],['nature','🌿 Nature'],['space','🪐 Space']].forEach(([k,label])=>{let b=document.createElement('button');b.className='worldbtn'+(world===k?' active':'');b.textContent=label;b.addEventListener('click',()=>{world=k;render()});panel.append(b)});fc.append(panel)}else if(step===4)overlayButton(d.cta,()=>{step=0;render()})}
@@ -106,7 +107,104 @@ function showToast(msg){let t=document.createElement('div');t.textContent=msg;t.
 function advance(){const max=(mode==='cinema'?cinema:mall).length;step=(step+1)%max;render()}
 $('modeCinema').addEventListener('click',()=>{mode='cinema';step=0;render()});$('modeMall').addEventListener('click',()=>{mode='mall';step=0;render()});$('nextBtn').addEventListener('click',advance);$('prevBtn').addEventListener('click',()=>{step=Math.max(0,step-1);render()});$('replayBtn').addEventListener('click',()=>{step=0;render();$('theatre').scrollIntoView({behavior:'smooth',block:'center'})});
 const qualities={lite:{c:25,w:20,cl:'Low',wl:'Low',icon:'✓',msg:'Our recommended start for the cinematic page: lightweight layered imagery, CSS movement and small media files.'},balanced:{c:58,w:54,cl:'Medium',wl:'Medium',icon:'✦',msg:'Best for selected wow moments: mainly lightweight scenes, plus one or two compressed interactive 3D objects.'},full:{c:92,w:91,cl:'High',wl:'High',icon:'!',msg:'Consider only if free movement is essential. More development, testing and rendering cost—especially on phones.'}};
-document.querySelectorAll('[data-quality]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-quality]').forEach(x=>x.classList.remove('active'));b.classList.add('active');const d=qualities[b.dataset.quality];$('complexityBar').style.width=d.c+'%';$('weightBar').style.width=d.w+'%';safeText('complexityLabel',d.cl);safeText('weightLabel',d.wl);safeText('recommendIcon',d.icon);safeText('recommendText',d.msg)}));
+document.querySelectorAll('[data-quality]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-quality]').forEach(x=>x.classList.remove('active'));b.classList.add('active');const d=qualities[b.dataset.quality];$('complexityBar').style.width=d.c+'%';$('weightBar').style.width=d.w+'%';safeText('complexityLabel',d.cl);safeText('weightLabel',d.wl);safeText('recommendIcon',d.icon);safeText('recommendText',d.msg);applyLocale()}));
+
+const translations = {
+cinema:[
+{chapter:'الوصول',eyebrow:'البداية السينمائية',title:'الواقع اختيارك.',desc:'تبدأ الصفحة في الظلام، ثم يضيء أمامك باب إلى عالم آخر. اضغط عليه لتدخل.',sideTitle:'انطباع أول لا يُنسى',sideDesc:'نخلق إحساساً بعالم ضخم باستخدام خلفية ذكية وبوابة مضيئة وظلال وحركة بسيطة.',points:['خلفية سينمائية واحدة بدلاً من مدينة ثلاثية الأبعاد كاملة.','البوابة المضيئة تُصنع بتأثيرات خفيفة داخل المتصفح.','زر واضح لبدء الرحلة.'],benefit:'تجربة مثيرة دون تحميل عالم ثلاثي الأبعاد ثقيل.',cta:'اكسر القواعد'},
+{chapter:'البوابة',eyebrow:'المفاجأة الأولى',title:'العالم ينفتح.',desc:'ضغطة واحدة تدفع الكاميرا بصرياً نحو البوابة؛ المشهد يتغير من دون فتح صفحة أخرى.',sideTitle:'الحركة تصنع الوهم',sideDesc:'تكبير تدريجي وتمويه وتغير في الألوان، وكل ذلك داخل الصفحة نفسها.',points:['انتقال سلس من دون إعادة تحميل الصفحة.','إعادة استخدام العناصر المرئية.','النقر بالكمبيوتر أو اللمس بالجوال.'],benefit:'تأثير بصري قوي من دون بناء مدينة ثلاثية الأبعاد.',cta:'ادخل البوابة'},
+{chapter:'تحت الماء',eyebrow:'العالم المخفي',title:'أنت في مكان آخر.',desc:'يتحوّل المشهد إلى اللون الأزرق، وتطفو جزيئات ضوئية كأنك تحت الماء.',sideTitle:'عالم جديد، لا موقع جديد',sideDesc:'نغيّر الخلفية والألوان والحركة لتشعر بانتقال كامل.',points:['ألوان البحر والأشعة والجزيئات البطيئة.','نُخفي ما لم يعد مطلوباً من المشهد السابق.','الحركة الزخرفية بدل الأجسام الضخمة.'],benefit:'مشاهد متعددة باستخدام عناصر قليلة وخفيفة.'},
+{chapter:'قرارك',eyebrow:'التفاعل',title:'اختر عالمك.',desc:'اختر النار أو الطبيعة أو الفضاء. ألوان المشهد وأجواؤه تتبدل فوراً.',sideTitle:'الزائر يصبح المخرج',sideDesc:'ليست مجرد صور جميلة؛ اختياراتك تغيّر التجربة أمامك.',points:['العوالم الثلاثة تستخدم التصميم الأساسي نفسه.','تغيير الألوان والتأثيرات وبعض العناصر فقط.','يمكن إضافة حركة أغنى بعد اختبار الأداء.'],benefit:'أصول قليلة تعطي تجربة شخصية ومتنوعة.'},
+{chapter:'النهاية',eyebrow:'الانطباع الأخير',title:'أنت صنعت عالماً.',desc:'تلتقي العوالم داخل كرة ضوء واحدة، وتظهر رسالة ختامية مع خيار إعادة الرحلة.',sideTitle:'نهاية تستحق المشاركة',sideDesc:'تصبح التجربة قصة ذات بداية واختيارات ونهاية مميزة.',points:['نهاية بسيطة وأنيقة.','زر واضح لإعادة التجربة.','الموقع كله في صفحة متجاوبة.'],benefit:'رحلة محكمة أفضل من صفحة مزدحمة بالتأثيرات.',cta:'أعد الرحلة'}],
+mall:[
+{chapter:'المدخل',eyebrow:'نوع مختلف من التسوق',title:'ادخل المركز التجاري.',desc:'تصل إلى مول عصري؛ تنفتح الأبواب الزجاجية وتدعوك للدخول.',sideTitle:'نبدأ من المدخل',sideDesc:'لا نحتاج إلى بناء مركز تسوق ضخم؛ مدخل وممر واحد يوضحان الفكرة.',points:['مدخل واضح وحركة ترحيبية.','اضغط لتمر من الأبواب.','نحمّل الممر عند الحاجة.'],benefit:'موقع واحد متقن أفضل من عشرات المتاجر غير المكتملة.',cta:'ادخل المول'},
+{chapter:'الممر',eyebrow:'دليل المتاجر',title:'إلى أين نذهب؟',desc:'اختر متجراً، تصفّح منتجات تجريبية ثم عد إلى الممر.',sideTitle:'ممر واحد يربط الجميع',sideDesc:'نستخدم منظوراً ثنائي الأبعاد أو مشاهد بانورامية خفيفة، ويكون كل متجر قسماً مستقلاً.',points:['ثلاثة أبواب: إلكترونيات وبقالة وأزياء.','تحميل المتجر عند فتحه فقط.','سلة مشتركة تصحب الزائر.'],benefit:'يمكن التوسع متجراً تلو الآخر.'},
+{chapter:'داخل المتجر',eyebrow:'محاكاة التسوق',title:'اختر منتجاً.',desc:'أضف منتجاً تجريبياً إلى السلة، ثم انتقل إلى متجر آخر دون فقد ما اخترته.',sideTitle:'التفاعل أهم من المجسمات',sideDesc:'تجربة التسوق الفعلية تحتاج قوائم منتجات ومواصفات وسلة تعمل.',points:['كتالوج تجريبي صغير.','الإضافة إلى السلة والرجوع للممر.','ربط المخزون والدفع لاحقاً إذا تحول إلى متجر حقيقي.'],benefit:'نختبر سلوك التسوق قبل الاستثمار في عالم ثلاثي الأبعاد.'},
+{chapter:'سلّتك',eyebrow:'تجربة متصلة',title:'السلة ترافقك.',desc:'انتقل إلى متجر آخر وتظل السلة معك، ليبدو المكان مركز تسوق واحداً.',sideTitle:'المول نظام مترابط',sideDesc:'السلة المشتركة والخريطة والتنقل السهل أهم من أي مبنى ثلاثي الأبعاد.',points:['السلة تظهر عبر المتاجر.','قائمة لتحديد المتجر والعودة.','الشراء الحقيقي يحتاج نظام دفع آمن.'],benefit:'ننجز مسار التسوق المفيد أولاً.'}]
+};
+const staticArabic=[
+['.header .navnote','مختبر الفكرة التفاعلية / ١'],
+['.intro .eyebrow','رؤية يمكنك استكشافها بنفسك'],
+['.intro h1','لا تقرأ الفكرة فقط.<br><span>عِشها.</span>'],
+['.intro p','فكرتان كبيرتان في نموذج واحد بسيط. جرّب رحلة الصفحة السينمائية، ثم ادخل مركز تسوق افتراضياً مصغراً. هذه محاكاة تفاعلية لشرح الفكرة وليست موقعاً ثلاثي الأبعاد مكتملاً.'],
+['.intro .tag','✦ صُمّم للفهم لا للتعقيد'],
+['#modeCinema','✦ صفحة سينمائية'],
+['#modeMall','▣ مركز تسوق افتراضي'],
+['.side > .eyebrow','كيف تعمل الفكرة ببساطة'],
+['.side .miniHeader','ماذا يحدث فعلياً؟'],
+['.sideBottom strong','لماذا هذا مهم؟'],
+['#method .eyebrow','سرّ الإبداع'],
+['#method h2','أقصى قدر من الدهشة.<br>بأقل تعقيد غير ضروري.'],
+['#method .sectionHead p','نستخدم طبقات حركة ذكية بدلاً من بناء لعبة كاملة دون حاجة.'],
+['#method .card:nth-child(1) small','التصميم المرئي'],
+['#method .card:nth-child(1) h3','عمق بدون تعقيد'],
+['#method .card:nth-child(1) p','صور بطبقات، وتحريك متباين خفيف، وعناصر مضيئة تجعل المشهد يبدو واسعاً.'],
+['#method .card:nth-child(2) small','الرسوم المتحركة'],
+['#method .card:nth-child(2) h3','حركة لها هدف'],
+['#method .card:nth-child(2) p','GIF جزء من الحل؛ أحياناً يكون تحريك CSS والفيديو المضغوط والمجسم الخفيف أكثر سلاسة.'],
+['#method .card:nth-child(3) small','التفاعل'],
+['#method .card:nth-child(3) h3','كل نقرة تغيّر القصة'],
+['#method .card:nth-child(3) p','بوابة تنفتح أو عالم يتحوّل أو متجر يعرض منتجاته؛ المفاجأة في استجابة الصفحة لك.'],
+['#performance .eyebrow','تجربة جميلة وسريعة'],
+['#performance h2','اختر مستوى<br>التفاصيل الذي نريده.'],
+['#performance .sectionHead p','جرّب الخيارات الثلاثة؛ المؤشرات توضيحية وليست قياسات فعلية.'],
+['#performance .perfPanel:nth-child(1) h3','محاكاة تعقيد المشاهد'],
+['#performance .perfPanel:nth-child(1) > p','شاهد كيف يغير أسلوب البناء التعقيد وحجم التنزيل المتوقع نسبياً.'],
+['#performance .quality button:nth-child(1) strong','خفيف'],
+['#performance .quality button:nth-child(1) span','2D + حركة'],
+['#performance .quality button:nth-child(2) strong','متوازن'],
+['#performance .quality button:nth-child(2) span','2D + 3D بسيط'],
+['#performance .quality button:nth-child(3) strong','3D كامل'],
+['#performance .quality button:nth-child(3) span','عالم يمكن التجول فيه'],
+['#performance .meters > div:nth-child(1) .meterlabel span','التعقيد المرئي'],
+['#performance .meters > div:nth-child(2) .meterlabel span','الحجم النسبي للتنزيل'],
+['#performance .perfPanel:nth-child(2) h3','كيف نحافظ على سرعة التحميل؟'],
+['#performance .perfPanel:nth-child(2) .point:nth-of-type(1) span:last-child','نحمّل المشهد الأول فقط، ثم بقية العوالم عند الحاجة.'],
+['#performance .perfPanel:nth-child(2) .point:nth-of-type(2) span:last-child','نضغط الصور والفيديو والمجسمات ونتجنب ملفات GIF الضخمة كخلفيات.'],
+['#performance .perfPanel:nth-child(2) .point:nth-of-type(3) span:last-child','وضع مبسط للأجهزة الضعيفة واحترام خيار تقليل الحركة.'],
+['#performance .perfPanel:nth-child(2) .point:nth-of-type(4) span:last-child','نختبر على هواتف حقيقية قبل تحديد حجم تنزيل نهائي.'],
+['#performance .smallprint','الأحجام السابقة 3–8 ميغابايت عند دخول المول و5–20 ميغابايت عند فتح متجر هي أمثلة تخطيطية وليست ضماناً؛ القياسات الفعلية تُحدد بعد بناء الأصول واختبارها.'],
+['#roadmap .eyebrow','الطريق المختصر'],
+['#roadmap h2','من الفكرة إلى موقع منشور.'],
+['#roadmap .sectionHead p','لا يلزم بناء كل العوالم أو المول من اليوم الأول.'],
+['#roadmap .road:nth-child(1) .roadnumber','المرحلة 01'],
+['#roadmap .road:nth-child(1) h3','لحظة مبهرة واحدة'],
+['#roadmap .road:nth-child(1) p','ننشئ بوابة البداية وتحولاً واحداً ونجرب اللمس والتمرير على الجوال.'],
+['#roadmap .road:nth-child(2) .roadnumber','المرحلة 02'],
+['#roadmap .road:nth-child(2) h3','رحلة تفاعلية واحدة'],
+['#roadmap .road:nth-child(2) p','نضيف اختيار العوالم الثلاثة، أو ممر مول ومتجراً تجريبياً يعمل.'],
+['#roadmap .road:nth-child(3) .roadnumber','المرحلة 03'],
+['#roadmap .road:nth-child(3) h3','النشر والتوسع'],
+['#roadmap .road:nth-child(3) p','ننظم الملفات في GitHub ثم ننشر في Vercel ونقيس سرعة التحميل قبل إضافة مشاهد جديدة.'],
+['.ending .eyebrow','الفكرة في جملة واحدة'],
+['.ending h2','اجعل الزائر يشعر بأنه داخل الموقع.'],
+['.ending p','ليس بكثرة التعقيد، بل بحركة وانتقالات واختيارات مصممة بعناية.'],
+['#replayBtn','↻ أعد التجربة'],
+['footer.tiny','تقرير تفاعلي لشرح فكرتين. لا توجد متاجر أو مدفوعات أو منتجات حقيقية أو صوت أو ثلاثي أبعاد ثقيل أو تتبع. يعمل دون اتصال.']
+].map(([selector,ar])=>{const el=document.querySelector(selector);return {el,en:el?.innerHTML,ar}});
+let locale='en';
+function applyLocale(){
+ const ar=locale==='ar';document.documentElement.lang=locale;document.documentElement.dir=ar?'rtl':'ltr';
+ $('langToggle').textContent=ar?'English':'العربية';
+ for(const d of staticArabic)if(d.el)d.el.innerHTML=ar?d.ar:d.en;
+ if(!ar)return;
+ const d=translations[mode][step];
+ safeText('sceneTop','الفصل '+String(step+1).padStart(2,'0')+' / '+d.chapter);
+ safeText('sceneEyebrow',d.eyebrow);safeText('sceneTitle',d.title);safeText('sceneDesc',d.desc);
+ safeText('sideTitle',d.sideTitle);safeText('sideDesc',d.sideDesc);safeText('benefit',d.benefit);
+ const pointEls=[...document.querySelectorAll('#points .point span:last-child')];d.points.forEach((p,i)=>{if(pointEls[i])pointEls[i].textContent=p});
+ $('prevBtn').textContent='→ السابق';$('nextBtn').textContent=step===(mode==='cinema'?4:3)?'↻ أعد الرحلة':'التالي ←';
+ const bubble=document.querySelector('.nextBubble');if(bubble)bubble.textContent=d.cta||'تابع ←';
+ document.querySelectorAll('.worldbtn').forEach(b=>{const s=b.textContent.trim();if(s.includes('Fire'))b.textContent='🔥 النار';else if(s.includes('Nature'))b.textContent='🌿 الطبيعة';else if(s.includes('Space'))b.textContent='🪐 الفضاء';else if(s.includes('All shops'))b.textContent='→ كل المتاجر';else if(s.includes('Switch shop'))b.textContent='بدّل المتجر'});
+ document.querySelectorAll('.storeDoor strong').forEach((e,i)=>e.textContent=['إلكترونيات','بقالة','أزياء'][i]);
+ document.querySelectorAll('.product button').forEach(e=>e.textContent='أضف +');
+ const ct=document.querySelector('.cart');if(ct)ct.textContent='🛒 '+cart+' منتجات تجريبية';
+ const q=document.querySelector('[data-quality].active')?.dataset.quality||'lite';
+ const lvl={lite:['منخفض','منخفض','نوصي ببدء الصفحة السينمائية بخلفيات ذات طبقات وحركة CSS وملفات خفيفة.'],balanced:['متوسط','متوسط','مناسب للحظات الإبهار: مشاهد خفيفة مع مجسم أو مجسمين مضغوطين.'],full:['مرتفع','مرتفع','نستخدمه فقط إذا كان التجول الحر ضرورياً؛ التكلفة والتطوير أكبر خصوصاً على الهواتف.']}[q];
+ safeText('complexityLabel',lvl[0]);safeText('weightLabel',lvl[1]);safeText('recommendText',lvl[2]);
+}
+$('langToggle').addEventListener('click',()=>{locale=locale==='en'?'ar':'en';render()});
+
 render();
 })();
 </script>
