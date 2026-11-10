@@ -30,7 +30,10 @@ export function percentile95(samples) {
   return ordered[Math.ceil(ordered.length * 0.95) - 1];
 }
 
-export function summarizeTravel({ started, intervals, renderCosts, initialWait, pauses, clock, renders }, now) {
+export function summarizeTravel({
+  started, intervals, renderCosts, initialWait, pauses, clock, renders,
+  nativeIntervals = intervals, timerFrames = 0,
+}, now) {
   const stalls = intervals.filter(ms => ms >= STALL_MS).length;
   const active = intervals.filter(ms => ms < STALL_MS);
   return {
@@ -44,5 +47,8 @@ export function summarizeTravel({ started, intervals, renderCosts, initialWait, 
     cameraMs: Math.round(clock),
     renderP95: Math.round(percentile95(renderCosts) * 10) / 10,
     initialWait: Math.round(initialWait ?? 0),
+    nativeP95: Math.round(percentile95(nativeIntervals)),
+    nativeMax: Math.round(Math.max(0, ...nativeIntervals)),
+    timerFrames,
   };
 }

@@ -289,6 +289,9 @@ function finish(destination, timing) {
     stage.dataset.travelRenderP95 = String(timing.renderP95);
     stage.dataset.travelCameraMs = String(timing.cameraMs);
     stage.dataset.travelInitialWait = String(timing.initialWait);
+    stage.dataset.travelNativeP95 = String(timing.nativeP95);
+    stage.dataset.travelNativeMax = String(timing.nativeMax);
+    stage.dataset.travelTimerFrames = String(timing.timerFrames);
   } else if (sceneStatus !== 'ready') {
     const { position: [x, , z] } = destinationView(destination);
     drawMap({ x, z });

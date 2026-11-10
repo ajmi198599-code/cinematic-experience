@@ -32,6 +32,17 @@ test('the performance report separates raw stalls from active frame intervals', 
   assert.deepEqual(record, {
     ms: 1113, frames: 5, p95: 1017, activeP95: 33, max: 1017, stalls: 1, pauses: 0,
     cameraMs: 110, renderP95: 7.8, initialWait: 30,
+    nativeP95: 1017, nativeMax: 1017, timerFrames: 0,
   });
   assert.equal(percentile95([]), 0);
+});
+
+test('timer recovery retains separate native frame cadence', () => {
+  const report = summarizeTravel({
+    started: 0, intervals: [32, 33, 32, 33], renderCosts: [0.7, 0.5],
+    nativeIntervals: [1016], timerFrames: 4, clock: 130, renders: 5, pauses: 0,
+  }, 160);
+  assert.equal(report.p95, 33);
+  assert.equal(report.nativeP95, 1016);
+  assert.equal(report.timerFrames, 4);
 });

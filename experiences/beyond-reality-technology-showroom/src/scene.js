@@ -11,6 +11,8 @@ const lerp = THREE.MathUtils.lerp;
 const halfTurn = Math.PI;
 const angleDelta = (from, to) => THREE.MathUtils.euclideanModulo(to - from + halfTurn, 2 * halfTurn) - halfTurn;
 const xz = ({ x, z }) => [x, z];
+const FRAME_WATCHDOG_MS = 125;
+const RECOVERY_FRAME_MS = 32;
 const yieldWork = () => typeof scheduler !== 'undefined' && scheduler.yield
   ? scheduler.yield() : new Promise(resolve => setTimeout(resolve, 0));
 
@@ -123,9 +125,10 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
   let width = viewport.clientWidth;
   let height = viewport.clientHeight;
   let frame = 0;
+  let frameTimer = 0;
   let frameCount = 0;
   let previousTime = null;
-  let previousCallback = 0;
+  let previousNative = null;
   let travel = null;
   let pointer = null;
   let failed = false;
@@ -156,7 +159,50 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
   }
 
   function requestDraw() {
-    if (!frame && !failed && !paused()) frame = requestAnimationFrame(draw);
+    if (failed || paused()) return;
+    if (!frame) frame = requestAnimationFrame(nativeFrame);
+    if (travel && !frameTimer && document.hasFocus()) {
+      // Keep the native request pending while the visible tour recovers.
+      frameTimer = setTimeout(recoveryFrame, travel.recovering ? RECOVERY_FRAME_MS : FRAME_WATCHDOG_MS);
+    }
+  }
+
+  function cancelDraw() {
+    cancelAnimationFrame(frame);
+    clearTimeout(frameTimer);
+    frame = frameTimer = 0;
+  }
+
+  function nativeFrame(timestamp) {
+    frame = 0;
+    clearTimeout(frameTimer);
+    frameTimer = 0;
+    if (failed || paused()) return;
+    const now = performance.now();
+    if (travel) {
+      const gap = previousNative === null ? null : timestamp - previousNative;
+      previousNative = timestamp;
+      if (gap !== null) {
+        travel.nativeIntervals.push(gap);
+        profile?.nativeFrame(now, gap);
+        travel.healthyFrames = gap <= 65 ? travel.healthyFrames + 1 : 0;
+        if (travel.healthyFrames >= 4) travel.recovering = false;
+      }
+      if (travel.recovering && previousTime !== null && now - previousTime < 12) {
+        requestDraw();
+        return;
+      }
+    }
+    draw(now);
+  }
+
+  function recoveryFrame() {
+    frameTimer = 0;
+    if (!travel || failed || paused() || !document.hasFocus()) return;
+    if (!travel.recovering) travel.healthyFrames = 0;
+    travel.recovering = true;
+    travel.timerFrames++;
+    draw(performance.now());
   }
 
   function updateLens(force = false) {
@@ -241,13 +287,9 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
   }
 
   function draw(now) {
-    frame = 0;
     if (paused()) return;
-    const frameStarted = profile ? performance.now() : 0;
     const gap = previousTime === null ? null : now - previousTime;
-    const callbackGap = gap === null ? null : frameStarted - previousCallback;
     previousTime = now;
-    previousCallback = frameStarted;
     const active = travel;
     let arrived = false;
     if (active) {
@@ -289,7 +331,7 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     const cost = render(now, !moving);
     if (active) {
       active.renderCosts.push(cost);
-      profile?.frame(now, gap, frameStarted, callbackGap);
+      profile?.frame(now, gap);
       if (!arrived && gap !== null && gap < STALL_MS) {
         slowFrames = gap >= 39 || cost > 13 ? slowFrames + 1 : Math.max(0, slowFrames - 1);
         if (slowFrames >= 8 && nextQuality === quality && quality > 0.58) nextQuality *= 0.78;
@@ -301,6 +343,7 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     }
     if (moving) requestDraw();
     else {
+      cancelDraw();
       previousTime = null;
       if (nextQuality !== quality) {
         quality = nextQuality;
@@ -312,12 +355,14 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
 
   function complete(view, destination) {
     travel = null;
+    cancelDraw();
     profile?.cancel();
     previousTime = null;
     setView(view);
     render(performance.now(), true);
     callbacks.onArrive(destination, {
       ms: 0, frames: 1, p95: 0, activeP95: 0, max: 0, stalls: 0, pauses: 0, cameraMs: 0, renderP95: 0, initialWait: 0,
+      nativeP95: 0, nativeMax: 0, timerFrames: 0,
     });
   }
 
@@ -328,15 +373,18 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     const angles = viewAngles(view);
     transitioningToEye = false;
     held.clear();
+    cancelDraw();
     previousTime = null;
+    previousNative = null;
     slowFrames = 0;
     if (reducedMotion) {
       complete(view, destination);
       return true;
     }
     travel = {
-      route, destination, view, intervals: [], renderCosts: [], started: performance.now(),
+      route, destination, view, intervals: [], nativeIntervals: [], renderCosts: [], started: performance.now(),
       clock: 0, renders: 0, pauses: 0, stalls: 0, duration: routeDuration(route.length),
+      timerFrames: 0, healthyFrames: 0, recovering: false,
       y: camera.position.y, yaw, pitch, fov: lens,
       turn: angleDelta(yaw, angles.yaw), targetPitch: angles.pitch,
     };
@@ -369,10 +417,9 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
   }
   function syncPause() {
     if (paused()) {
-      if (frame && travel) travel.pauses++;
-      cancelAnimationFrame(frame);
-      frame = 0;
-      previousTime = null;
+      if ((frame || frameTimer) && travel) travel.pauses++;
+      cancelDraw();
+      previousTime = previousNative = null;
       resetInput();
     } else {
       requestDraw();
@@ -444,7 +491,7 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
   canvas.addEventListener('webglcontextlost', event => {
     event.preventDefault();
     failed = true;
-    cancelAnimationFrame(frame);
+    cancelDraw();
     observer.disconnect();
     listeners.abort();
     resetInput();

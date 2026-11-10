@@ -37,13 +37,19 @@ export function createProfile(stage) {
         destination, complete, initialVisibility, initiallyFocused,
         longTasks: taskStats(started, end), frameWorkP95Ms: round(percentile95(work)),
         callbackP95Ms: round(percentile95(callbacks)),
-        gaps: gaps.map(({ now, gap, visibility, focused, callbackGap }) => ({
-          ms: round(gap), callbackMs: round(callbackGap ?? 0), visibility, focused,
+        gaps: gaps.map(({ now, gap, visibility, focused, source }) => ({
+          ms: round(gap), source, visibility, focused,
           timerTicks: ticks.filter(t => t > now - gap && t < now).length,
           ...taskStats(now - gap, now),
         })),
       },
     });
+  }
+
+  function recordGap(now, gap, source) {
+    if (!route || gap < STALL_MS || gap === null || route.gaps.length >= 12) return;
+    route.gaps.push({ now, gap, source, visibility: document.visibilityState, focused: document.hasFocus() });
+    publish(route, performance.now(), false);
   }
 
   return {
@@ -68,14 +74,14 @@ export function createProfile(stage) {
       const active = route;
       timer = setInterval(() => active.ticks.push(performance.now()), 75);
     },
-    frame(now, gap, started, callbackGap) {
+    frame(now, gap) {
       if (!route) return;
-      route.work.push(performance.now() - started);
-      if (callbackGap !== null) route.callbacks.push(callbackGap);
-      if (gap >= STALL_MS && route.gaps.length < 12) {
-        route.gaps.push({ now, gap, callbackGap, visibility: document.visibilityState, focused: document.hasFocus() });
-        publish(route, performance.now(), false);
-      }
+      route.work.push(performance.now() - now);
+      if (gap !== null) route.callbacks.push(gap);
+      recordGap(now, gap, 'submission');
+    },
+    nativeFrame(now, gap) {
+      recordGap(now, gap, 'native');
     },
     finish() {
       if (!route) return;
