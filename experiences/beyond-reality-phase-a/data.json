@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "stage": "Phase A: Design Prototype",
+  "purpose": "demonstration-only",
+  "currency": "SAR",
+  "products": [
+    {
+      "id": "headphones",
+      "sku": "CONCEPT-001",
+      "categoryEn": "SOUND / 001",
+      "categoryAr": "الصوت / ٠٠١",
+      "en": "Studio Headphones",
+      "ar": "سماعات استوديو",
+      "descriptionEn": "A considered listening experience, framed by calm lines and a sense of quiet. Designed as a showcase concept.",
+      "descriptionAr": "تجربة استماع متخيلة بتفاصيل هادئة وتصميم أنيق، ضمن نموذج عرض تجريبي.",
+      "tagsEn": ["Sound", "Everyday", "Designed to inspire"],
+      "tagsAr": ["الصوت", "للاستخدام اليومي", "تصميم ملهم"],
+      "price": 349,
+      "image": "photo-1505740420928-5e560c06d30e",
+      "altEn": "Representative photograph of headphones — not verified product media",
+      "altAr": "صورة توضيحية لسماعات وليست صورة المنتج الفعلي",
+      "status": "demo"
+    },
+    {
+      "id": "watch",
+      "sku": "CONCEPT-002",
+      "categoryEn": "TIME / 002",
+      "categoryAr": "الوقت / ٠٠٢",
+      "en": "Everyday Watch",
+      "ar": "ساعة يومية",
+      "descriptionEn": "An understated object that brings a sense of intention to the everyday. An illustrative design concept.",
+      "descriptionAr": "تفصيل بسيط يضيف لمسة من الأناقة إلى كل يوم، ضمن مفهوم تصميمي توضيحي.",
+      "tagsEn": ["Time", "Minimal", "Everyday"],
+      "tagsAr": ["الوقت", "بسيط", "يومي"],
+      "price": 289,
+      "image": "photo-1523275335684-37898b6baf30",
+      "altEn": "Representative photograph of a watch — not verified product media",
+      "altAr": "صورة توضيحية لساعة وليست صورة المنتج الفعلي",
+      "status": "demo"
+    },
+    {
+      "id": "camera",
+      "sku": "CONCEPT-003",
+      "categoryEn": "CREATIVE / 003",
+      "categoryAr": "الإبداع / ٠٠٣",
+      "en": "Creator Camera",
+      "ar": "كاميرا للمبدعين",
+      "descriptionEn": "A reminder to notice what surrounds us. Photography, storytelling and curiosity in a single creative concept.",
+      "descriptionAr": "دعوة لملاحظة جمال التفاصيل من حولنا؛ التصوير والحكايات والفضول في فكرة واحدة.",
+      "tagsEn": ["Creative", "Photography", "Exploration"],
+      "tagsAr": ["الإبداع", "التصوير", "الاستكشاف"],
+      "price": 899,
+      "image": "photo-1516035069371-29a1b244cc32",
+      "altEn": "Representative photograph of a camera — not verified product media",
+      "altAr": "صورة توضيحية لكاميرا وليست صورة المنتج الفعلي",
+      "status": "demo"
+    }
+  ]
+}
