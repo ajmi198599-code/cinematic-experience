@@ -1,11 +1,17 @@
 import './styles.css';
 import { products } from './catalog.js';
+import { BASKET_KEY, MAX_QUANTITY, createBasket } from './basket.js';
 import { copy } from './copy.js';
 import { DISPLAYS, ROOM, VIEWS, inspectionView } from './world.js';
 
 const $ = id => document.getElementById(id);
 const stage = $('stage');
 const controlsDialog = $('controls-dialog');
+const basketDialog = $('basket-dialog');
+const basketOpen = $('basket-open');
+const basket = createBasket(products.map(item => item.id));
+const basketRows = new Map();
+const addButtons = [...document.querySelectorAll('[data-add]')];
 const reduceMotion = $('reduce-motion');
 const systemMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const words = () => copy[language];
@@ -17,6 +23,7 @@ let scene;
 let sceneStatus = 'loading';
 let lastFrame = null;
 let motionPreference = null;
+let feedbackTimer;
 
 const indexButtons = new Map();
 const markers = new Map();
@@ -51,6 +58,75 @@ for (const product of products) {
   markers.set(product.id, marker);
   $('object-hotspots').append(marker);
 }
+
+for (const product of products) {
+  const row = document.createElement('li');
+  row.className = 'basket-row';
+  row.dataset.item = product.id;
+  row.innerHTML = `
+    <div class="basket-object"><span class="object-icon-frame">${symbol(product.id, 'object-icon')}</span><strong data-name></strong></div>
+    <div class="quantity-controls" role="group">
+      <button type="button" class="quiet-button icon-button" data-quantity="less">${symbol('minus')}</button>
+      <span data-value></span>
+      <button type="button" class="quiet-button icon-button" data-quantity="add">${symbol('plus')}</button>
+    </div>
+    <button type="button" class="remove-button" data-quantity="remove"></button>`;
+  basketRows.set(product.id, {
+    row, name: row.querySelector('[data-name]'), group: row.querySelector('.quantity-controls'),
+    value: row.querySelector('[data-value]'), less: row.querySelector('[data-quantity="less"]'),
+    more: row.querySelector('[data-quantity="add"]'), remove: row.querySelector('[data-quantity="remove"]'),
+  });
+  $('basket-items').append(row);
+}
+
+function updateBasket() {
+  const t = words();
+  const items = basket.items;
+  const total = Object.values(items).reduce((sum, quantity) => sum + quantity, 0);
+  $('basket-count').textContent = total;
+  basketOpen.setAttribute('aria-label', t.openBasket(total));
+  $('basket-empty').hidden = total !== 0;
+  $('basket-session').hidden = basket.persistent;
+  for (const { id, name } of products) {
+    const elements = basketRows.get(id);
+    const quantity = items[id] ?? 0;
+    const label = name[language];
+    if (!quantity && elements.row.contains(document.activeElement)) {
+      basketDialog.querySelector('button').focus();
+    }
+    elements.row.hidden = !quantity;
+    elements.name.textContent = label;
+    elements.group.setAttribute('aria-label', t.quantity(label, quantity));
+    elements.value.textContent = quantity;
+    elements.less.setAttribute('aria-label', t.decrease(label));
+    elements.more.setAttribute('aria-label', t.increase(label));
+    elements.remove.setAttribute('aria-label', t.removeItem(label));
+    elements.remove.textContent = t.remove;
+    if ((quantity === 1 && document.activeElement === elements.less)
+        || (quantity === MAX_QUANTITY && document.activeElement === elements.more)) elements.remove.focus();
+    elements.less.disabled = quantity <= 1;
+    elements.more.disabled = quantity >= MAX_QUANTITY;
+  }
+  for (const button of addButtons) {
+    button.disabled = Boolean(journey && journey.id !== current.id)
+      || (items[current.id] ?? 0) >= MAX_QUANTITY;
+  }
+}
+
+function addCurrentProduct() {
+  const id = current.id;
+  if (!id || (journey && journey.id !== id)) return;
+  basket.change(id, 'add');
+  updateBasket();
+  const message = words().added(productById(id).name[language]);
+  const feedback = $('basket-feedback');
+  feedback.textContent = message;
+  feedback.hidden = false;
+  $('live-status').textContent = message;
+  clearTimeout(feedbackTimer);
+  feedbackTimer = setTimeout(() => { feedback.hidden = true; }, 2200);
+}
+
 
 function mapX(x) { return 130 + x * 14.3; }
 function mapZ(z) { return 11 + (z + ROOM.depth) * 8.15; }
@@ -140,7 +216,8 @@ function updateUI() {
   stage.dataset.angle = item ? String(angle) : '';
   stage.dataset.scene = sceneStatus;
   $('scene-mode').textContent = t[sceneStatus];
-  $('placeholder-title').textContent = sceneStatus === 'fallback' ? t.fallbackTitle : t.preparing;
+  $('placeholder-title').textContent = sceneStatus === 'fallback' ? item?.name[language] ?? t.fallbackTitle : t.preparing;
+  $('placeholder-icon').setAttribute('href', `#icon-${sceneStatus === 'fallback' && id ? id : 'mark'}`);
   $('placeholder-copy').textContent = t.fallbackCopy;
   $('placeholder-copy').hidden = sceneStatus !== 'fallback';
   $('scene-number').textContent = item?.number ?? (kind === 'concourse' ? 'G' : '01');
@@ -149,7 +226,12 @@ function updateUI() {
   $('walk-hint').hidden = kind === 'inspect';
   movement.hidden = kind === 'inspect';
   $('travel-note').textContent = journey ? travelText(journey) : '';
-  $('travel-note').hidden = !journey;
+  if (!journey && document.activeElement === $('skip-journey')) stage.focus({ preventScroll: true });
+  $('journey-tools').hidden = !journey;
+  $('quick-enter').hidden = kind !== 'concourse';
+  $('quick-exit').hidden = kind !== 'showroom';
+  $('quick-inspect').hidden = kind !== 'inspect';
+  $('quick-angles').hidden = sceneStatus !== 'ready';
   $('shop-card').hidden = kind !== 'concourse';
   $('inside-actions').hidden = kind !== 'showroom';
   $('inspection-actions').hidden = kind !== 'inspect';
@@ -177,6 +259,7 @@ function updateUI() {
     $(`map-${product.id}`).dataset.current = String(active);
   }
   updateHotspots();
+  updateBasket();
 }
 
 function finish(destination, timing) {
@@ -186,6 +269,13 @@ function finish(destination, timing) {
     stage.dataset.travelMs = String(timing.ms);
     stage.dataset.travelFrames = String(timing.frames);
     stage.dataset.travelP95 = String(timing.p95);
+    stage.dataset.travelActiveP95 = String(timing.activeP95);
+    stage.dataset.travelMax = String(timing.max);
+    stage.dataset.travelStalls = String(timing.stalls);
+    stage.dataset.travelPauses = String(timing.pauses);
+    stage.dataset.travelRenderP95 = String(timing.renderP95);
+    stage.dataset.travelCameraMs = String(timing.cameraMs);
+    stage.dataset.travelInitialWait = String(timing.initialWait);
   } else if (sceneStatus !== 'ready') {
     const { position: [x, , z] } = destinationView(destination);
     drawMap({ x, z });
@@ -198,13 +288,14 @@ function finish(destination, timing) {
 function navigate(destination, source) {
   const t = words();
   const nextView = destinationView(destination);
+  $('basket-feedback').hidden = true;
   if (source && sceneStatus === 'ready') {
     const viewport = stage.getBoundingClientRect();
     if (viewport.top < -45 || viewport.bottom > window.innerHeight + 55) {
       stage.scrollIntoView({ block: 'start', behavior: reduced() ? 'instant' : 'smooth' });
     }
   }
-  if (source?.closest('#shop-card, #inside-actions, #inspection-actions') && !source.matches('[data-angle]')) {
+  if (source?.closest('#shop-card, #inside-actions, #inspection-actions, #quick-actions') && !source.matches('[data-angle]')) {
     stage.focus({ preventScroll: true });
   }
   if (sceneStatus !== 'ready') {
@@ -223,13 +314,15 @@ function navigate(destination, source) {
 
 function updatePose(data) {
   lastFrame = data;
-  const { x, y, z, yaw, pitch, frameCount, draws, triangles, software } = data;
+  const { x, y, z, yaw, pitch, frameCount, draws, triangles, bufferPixels, bufferChanges, software } = data;
   stage.dataset.camera = [x, y, z].map(value => value.toFixed(3)).join(',');
   stage.dataset.yaw = yaw.toFixed(3);
   stage.dataset.pitch = pitch.toFixed(3);
   stage.dataset.frames = String(frameCount);
   stage.dataset.draws = String(draws);
   stage.dataset.triangles = String(triangles);
+  stage.dataset.bufferPixels = String(bufferPixels);
+  stage.dataset.bufferChanges = String(bufferChanges);
   stage.dataset.graphics = software ? 'software' : 'standard';
   drawMap(data);
   if (!journey && current.kind !== 'inspect') {
@@ -248,14 +341,45 @@ function enableFallback() {
   $('live-status').textContent = words().fallbackCopy;
 }
 
+function setAngle(angle) {
+  if (current.id && (!journey || journey.id === current.id) && (journey?.angle ?? current.angle) !== angle) {
+    navigate({ kind: 'inspect', id: current.id, angle });
+  }
+}
+
 document.addEventListener('click', event => {
   const button = event.target.closest('button');
   if (!button) return;
   if (button.dataset.go) navigate({ kind: button.dataset.go }, button);
-  if (button.dataset.product) navigate({ kind: 'inspect', id: button.dataset.product, angle: 1 }, button);
-  if (button.dataset.angle && current.id) {
-    const angle = Number(button.dataset.angle);
-    if ((journey?.angle ?? current.angle) !== angle) navigate({ kind: 'inspect', id: current.id, angle }, button);
+  else if (button.dataset.product) navigate({ kind: 'inspect', id: button.dataset.product, angle: 1 }, button);
+  else if (button.dataset.angle) setAngle(Number(button.dataset.angle));
+  else if (button.hasAttribute('data-add')) addCurrentProduct();
+  else if (button.dataset.quantity) {
+    const id = button.closest('[data-item]').dataset.item;
+    const quantity = basket.change(id, button.dataset.quantity);
+    updateBasket();
+    $('basket-status').textContent = words().quantity(productById(id).name[language], quantity);
+  }
+});
+$('skip-journey').addEventListener('click', () => scene?.skipJourney());
+
+function openDialog(dialog) {
+  dialog.showModal();
+  scene?.setModalOpen(true);
+}
+
+for (const dialog of [controlsDialog, basketDialog]) {
+  dialog.addEventListener('close', () => scene?.setModalOpen(controlsDialog.open || basketDialog.open));
+}
+basketOpen.addEventListener('click', () => {
+  basket.refresh();
+  updateBasket();
+  openDialog(basketDialog);
+});
+window.addEventListener('storage', ({ key }) => {
+  if (key === BASKET_KEY || key === null) {
+    basket.refresh();
+    updateBasket();
   }
 });
 
@@ -275,7 +399,7 @@ for (const button of movement.querySelectorAll('button')) {
 }
 
 document.addEventListener('keydown', event => {
-  if (!scene || controlsDialog.open || event.ctrlKey || event.metaKey || event.altKey
+  if (!scene || controlsDialog.open || basketDialog.open || event.ctrlKey || event.metaKey || event.altKey
     || event.target.matches('input, textarea, select, [contenteditable]')) return;
   if (event.key === 'Escape' && (current.kind === 'inspect' || journey?.kind === 'inspect')) {
     stage.focus({ preventScroll: true });
@@ -294,7 +418,7 @@ $('language').addEventListener('click', () => {
   language = language === 'en' ? 'ar' : 'en';
   translate();
 });
-$('help').addEventListener('click', () => controlsDialog.showModal());
+$('help').addEventListener('click', () => openDialog(controlsDialog));
 reduceMotion.addEventListener('change', () => {
   motionPreference = reduceMotion.checked;
   scene?.setReducedMotion(reduced());
@@ -326,11 +450,16 @@ async function initialize() {
       onPick(id) {
         if (current.kind === 'showroom') navigate({ kind: 'inspect', id, angle: 1 });
       },
-      canLook: () => current.kind !== 'inspect' || Boolean(journey),
+      isInspecting: () => current.kind === 'inspect' && (!journey || journey.id === current.id),
+      onOrbit(step) {
+        setAngle(Math.min(2, Math.max(0, (journey?.angle ?? current.angle) + step)));
+      },
       onUnavailable: enableFallback,
     }, reduced());
     sceneStatus = 'ready';
-    performance.mark('showroom-ready');
+    const ready = performance.mark('showroom-ready');
+    stage.dataset.readyMs = String(Math.round(ready.startTime));
+    scene.setModalOpen(controlsDialog.open || basketDialog.open);
     scene.setReducedMotion(reduced());
     if (current.kind !== 'concourse') navigate(current);
     else updateUI();

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { ANGLES, DISPLAYS, VIEWS, inspectionView, isClearSegment, isWalkable, planRoute, sampleRoute } from '../src/world.js';
+import { ANGLES, DISPLAYS, STORE_PLANTERS, VIEWS, inspectionView, isClearSegment, isWalkable, planRoute, sampleRoute } from '../src/world.js';
 
 const xz = ([x, , z]) => [x, z];
 const destinations = [
@@ -38,5 +38,12 @@ test('visitors at the perimeter can route through the door and around fixtures',
       const route = planRoute(from, to);
       assert.ok(route?.slice(1).every((p, i) => isClearSegment(route[i], p)));
     }
+  }
+});
+
+test('rear planters stay outside walkable space and guided lines', () => {
+  for (const { x, z } of STORE_PLANTERS) {
+    assert.equal(isWalkable(x, z), false);
+    assert.equal(isClearSegment([x, z + 0.8], [x, z - 0.8]), false);
   }
 });

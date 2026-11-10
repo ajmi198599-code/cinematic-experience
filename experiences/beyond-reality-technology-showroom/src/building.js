@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { randomFrom } from './materials.js';
-import { COLUMNS, CONCOURSE, DISPLAYS, PLANTERS, ROOM, SERVICE_DESK, SIDE_BENCHES, TABLE_HEIGHT } from './world.js';
+import { COLUMNS, CONCOURSE, DISPLAYS, PLANTERS, ROOM, SERVICE_DESK, SIDE_BENCHES, STORE_PLANTERS, TABLE_HEIGHT } from './world.js';
 
 const flat = [-Math.PI / 2, 0, 0];
 const facingDown = [Math.PI / 2, 0, 0];
@@ -51,6 +51,10 @@ export function buildConcourse(root, k, m) {
   k.surface(m.concourse, halfWidth * 2, depth, [0, 0, depth / 2], flat, [17, 8]);
   k.box(m.stone, [24.15, 2.1, 0.40], [0, 5.27, -0.10]);
   k.box(m.bronze, [24.2, 0.022, 0.32], [0, 4.23, 0.13]);
+  k.box(m.desk, [23.9, 0.018, 0.011], [0, 5.31, 0.104]);
+  for (const x of [-9, -6, -3, 0, 3, 6, 9]) {
+    k.box(m.desk, [0.012, 1.03, 0.011], [x, 5.83, 0.106]);
+  }
   k.box(m.stone, [24.25, 6.42, 0.38], [0, 3.17, depth + 0.07]);
   for (const x of [-12.11, 12.11]) k.box(m.stone, [0.34, 6.5, depth + 0.4], [x, 3.22, depth / 2]);
 
@@ -104,8 +108,8 @@ export function buildStorefront(k, m) {
     k.softBox(m.stone, [0.49, 4.25, 0.51], 0.032, [side * 6.18, 2.125, 0.047]);
   }
   k.box(m.darkOak, [11.99, 1.24, 0.38], [0, 3.625, -0.026]);
-  for (let x = -5.91; x < 6; x += 0.139) {
-    k.box(m.oak, [0.112, 1.16, 0.059], [x, 3.63, 0.17]);
+  for (let x = -5.91; x < 6; x += 0.218) {
+    k.box(m.oak, [0.179, 1.16, 0.055], [x, 3.63, 0.17]);
   }
   k.softBox(m.pineDark, [5.95, 0.89, 0.16], 0.026, [0, 3.62, 0.235]);
   k.box(m.bronze, [5.95, 0.014, 0.016], [0, 3.175, 0.322]);
@@ -145,16 +149,21 @@ export function buildShowroom(root, k, m) {
     for (let i = 0; i < 22; i++) {
       k.box(m.darkOak, [0.082, 3.90, 0.044], [side * 4.58 + (i - 10.5) * 0.121, 2.0, -11.223]);
     }
-    k.softBox(m.desk, [0.69, 0.61, 0.69], 0.105, [side * 4.64, 0.305, -10.10]);
-    k.box(m.soil, [0.51, 0.028, 0.51], [side * 4.64, 0.613, -10.10]);
-    tree(root, k, m, side * 4.64, 0.61, -10.10, side < 0 ? 212 : 311, 0.77);
+    k.box(m.bronze, [2.72, 0.016, 0.017], [side * 4.58, 3.85, -11.183]);
+    k.box(m.lamp, [2.62, 0.020, 0.041], [side * 4.58, 3.819, -11.182]);
   }
 
-  for (let x = -4.96; x <= 5; x += 0.22) {
-    k.box(m.oak, [0.116, 0.108, 10.88], [x, 4.154, -5.72]);
+  for (const { x, z, width, depth } of STORE_PLANTERS) {
+    k.softBox(m.desk, [width, 0.61, depth], 0.105, [x, 0.305, z]);
+    k.box(m.soil, [width - 0.18, 0.028, depth - 0.18], [x, 0.613, z]);
+    tree(root, k, m, x, 0.61, z, x < 0 ? 212 : 311, 0.77);
+  }
+
+  for (let x = -4.96; x <= 5; x += 0.318) {
+    k.box(m.darkOak, [0.216, 0.088, 10.88], [x, 4.168, -5.72]);
   }
   for (const x of [-3.37, 0, 3.37]) {
-    k.box(m.black, [0.105, 0.073, 10.86], [x, 4.113, -5.73]);
+    k.box(m.black, [0.120, 0.073, 10.86], [x, 4.113, -5.73]);
     for (const z of [-1.55, -4.42, -7.50, -9.98]) {
       const housing = k.mesh(new THREE.CylinderGeometry(0.078, 0.069, 0.14, 12), m.dark, [x, 4.025, z]);
       housing.rotation.x = 0.11;
@@ -189,14 +198,15 @@ const fixtureText = {
 export function buildFixtures(k, m) {
   for (const item of DISPLAYS) {
     const { id, x, z, width, depth } = item;
-    k.softBox(m.black, [width - 0.21, 0.105, depth - 0.18], 0.043, [x, 0.064, z]);
-    k.softBox(m.oak, [width - 0.13, 0.80, depth - 0.13], 0.060, [x, 0.51, z]);
-    k.softBox(m.table, [width, 0.104, depth], 0.040, [x, TABLE_HEIGHT - 0.052, z]);
-    k.box(m.bronze, [width - 0.22, 0.014, 0.017], [x, 0.921, z + depth * 0.44]);
-    k.softBox(m.dark, [0.45, 0.021, 0.144], 0.010, [x, 1.023, z + 0.398]);
+    k.softBox(m.black, [width - 0.24, 0.097, depth - 0.24], 0.036, [x, 0.052, z]);
+    k.softBox(m.darkOak, [width - 0.14, 0.81, depth - 0.13], 0.053, [x, 0.502, z]);
+    k.softBox(m.dark, [width - 0.10, 0.035, depth - 0.09], 0.010, [x, 0.925, z]);
+    k.softBox(m.table, [width, 0.067, depth], 0.021, [x, TABLE_HEIGHT - 0.0335, z]);
+    k.box(m.bronze, [width - 0.20, 0.009, 0.014], [x, 0.944, z + depth * 0.46]);
+    k.softBox(m.dark, [0.36, 0.017, 0.128], 0.010, [x, 1.023, z + 0.398]);
     k.sign([
       { value: fixtureText[id][1], y: 0.26, size: 32, spacing: 5, color: '#d9b88a', weight: 700 },
       { value: fixtureText[id][0], y: 0.66, size: 39, spacing: 3, weight: 600 },
-    ], 0.425, 0.120, [x, 1.035, z + 0.397], { resolution: 512, canvasHeight: 144, rotation: flat, background: '#252d27' });
+    ], 0.338, 0.108, [x, 1.033, z + 0.397], { resolution: 512, canvasHeight: 144, rotation: flat, background: '#252d27' });
   }
 }

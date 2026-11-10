@@ -5,7 +5,7 @@ export const TABLE_HEIGHT = 1.01;
 
 export const DISPLAYS = [
   { id: 'headphones', x: -2.26, z: -6.25, width: 1.65, depth: 1.02, modelZ: 0.13, focusY: 1.29, markerY: 1.67, distance: 1.10, fov: 39 },
-  { id: 'watch', x: 0, z: -8.37, width: 1.55, depth: 1.04, modelZ: 0.22, focusY: 1.17, markerY: 1.55, distance: 0.88, fov: 31 },
+  { id: 'watch', x: 0, z: -8.37, width: 1.55, depth: 1.04, modelZ: 0.22, focusY: 1.17, markerY: 1.55, distance: 0.88, fov: 24 },
   { id: 'camera', x: 2.26, z: -6.25, width: 1.65, depth: 1.02, modelZ: 0.16, focusY: 1.17, markerY: 1.58, distance: 0.99, fov: 34 },
 ];
 
@@ -16,6 +16,7 @@ export const PLANTERS = [
 
 export const COLUMNS = [-8.25, 8.25].map(x => ({ x, z: 2.3, width: 0.76, depth: 0.78 }));
 export const SIDE_BENCHES = [-5.22, 5.22].map(x => ({ x, z: -7.84, width: 0.86, depth: 3.50 }));
+export const STORE_PLANTERS = [-4.64, 4.64].map(x => ({ x, z: -10.10, width: 0.69, depth: 0.69 }));
 export const SERVICE_DESK = { x: 0, z: -10.48, width: 3.7, depth: 0.58 };
 
 export const VIEWS = {
@@ -55,7 +56,7 @@ function rectangle({ x, z, width, depth }) {
 }
 
 const obstacles = [
-  ...[...DISPLAYS, ...PLANTERS, ...COLUMNS, ...SIDE_BENCHES, SERVICE_DESK].map(rectangle),
+  ...[...DISPLAYS, ...PLANTERS, ...COLUMNS, ...SIDE_BENCHES, ...STORE_PLANTERS, SERVICE_DESK].map(rectangle),
   { minX: -13, maxX: -ROOM.doorHalf + clearance, minZ: -0.43, maxZ: 0.43 },
   { minX: ROOM.doorHalf - clearance, maxX: 13, minZ: -0.43, maxZ: 0.43 },
   { minX: -13, maxX: -ROOM.halfWidth + 0.33, minZ: -12, maxZ: 0 },
