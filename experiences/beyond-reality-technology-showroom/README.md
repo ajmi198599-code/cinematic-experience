@@ -27,6 +27,7 @@ Select the doorway or **Enter showroom**. In the view, drag to look and use the 
 | `src/app.js`, `src/catalog.js`, `src/copy.js` | Accessible interface, language, floor plan and shared Phase A catalogue |
 | `tests/navigation.test.js` | Doorway, obstacle and route coverage |
 | [Specification](docs/SPECIFICATION.md) | Architecture, design direction and acceptance criteria |
+| [Verification](docs/VERIFICATION.md) | Browser evidence, performance and next priorities |
 
 ## Deploy
 
