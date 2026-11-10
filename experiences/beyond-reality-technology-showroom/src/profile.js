@@ -29,6 +29,23 @@ export function createProfile(stage) {
     route = null;
   }
 
+  function publish(active, end, complete) {
+    const { destination, started, ticks, gaps, work, callbacks, initialVisibility, initiallyFocused } = active;
+    stage.dataset.profile = JSON.stringify({
+      startup, longTasksAvailable,
+      route: {
+        destination, complete, initialVisibility, initiallyFocused,
+        longTasks: taskStats(started, end), frameWorkP95Ms: round(percentile95(work)),
+        callbackP95Ms: round(percentile95(callbacks)),
+        gaps: gaps.map(({ now, gap, visibility, focused, callbackGap }) => ({
+          ms: round(gap), callbackMs: round(callbackGap ?? 0), visibility, focused,
+          timerTicks: ticks.filter(t => t > now - gap && t < now).length,
+          ...taskStats(now - gap, now),
+        })),
+      },
+    });
+  }
+
   return {
     phase(name, start) {
       const measure = performance.measure(`showroom:${name}`, { start, end: performance.now() });
@@ -44,34 +61,29 @@ export function createProfile(stage) {
     begin(destination) {
       cancel();
       const started = performance.mark('showroom:journey-start').startTime;
-      route = { destination, started, ticks: [], gaps: [], work: [], initialVisibility: document.visibilityState };
+      route = {
+        destination, started, ticks: [], gaps: [], work: [], callbacks: [],
+        initialVisibility: document.visibilityState, initiallyFocused: document.hasFocus(),
+      };
       const active = route;
       timer = setInterval(() => active.ticks.push(performance.now()), 75);
     },
-    frame(now, gap, started) {
+    frame(now, gap, started, callbackGap) {
       if (!route) return;
       route.work.push(performance.now() - started);
-      if (gap >= STALL_MS) route.gaps.push({ now, gap, visibility: document.visibilityState, focused: document.hasFocus() });
+      if (callbackGap !== null) route.callbacks.push(callbackGap);
+      if (gap >= STALL_MS && route.gaps.length < 12) {
+        route.gaps.push({ now, gap, callbackGap, visibility: document.visibilityState, focused: document.hasFocus() });
+        publish(route, performance.now(), false);
+      }
     },
     finish() {
       if (!route) return;
       const end = performance.mark('showroom:journey-end').startTime;
-      const { destination, started, ticks, gaps, work, initialVisibility } = route;
+      const active = route;
       cancel();
-      performance.measure('showroom:journey', { start: started, end });
-      setTimeout(() => {
-        stage.dataset.profile = JSON.stringify({
-          startup, longTasksAvailable,
-          route: {
-            destination, initialVisibility, longTasks: taskStats(started, end), frameWorkP95Ms: round(percentile95(work)),
-            gaps: gaps.map(({ now, gap, visibility, focused }) => ({
-              ms: round(gap), visibility, focused,
-              timerTicks: ticks.filter(t => t > now - gap && t < now).length,
-              ...taskStats(now - gap, now),
-            })),
-          },
-        });
-      }, 0);
+      performance.measure('showroom:journey', { start: active.started, end });
+      setTimeout(() => publish(active, end, true), 0);
     },
     cancel,
     dispose() {

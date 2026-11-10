@@ -1,12 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { cameraStep, percentile95, routeDuration, routeProgress, summarizeTravel } from '../src/motion.js';
+import { cameraStep, percentile95, routeDuration, routeProgress, summarizeTravel, walkingStep } from '../src/motion.js';
 
 test('camera time advances normally on smooth frames and bounds delayed steps', () => {
   assert.equal(cameraStep(16.7), 16.7);
   assert.equal(cameraStep(32), 32);
-  assert.equal(cameraStep(70), 1000 / 24);
+  assert.equal(cameraStep(50), 50);
+  assert.equal(cameraStep(70), 50);
   assert.equal(cameraStep(1017), 1000 / 60);
+  assert.equal(walkingStep(50), 1000 / 24);
   assert.equal(cameraStep(0), 0);
   assert.equal(routeDuration(10), 3420);
 });

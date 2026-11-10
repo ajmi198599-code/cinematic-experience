@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { buildConcourse, buildFixtures, buildShowroom, buildStorefront } from './building.js';
 import { batchStatic, kit, palette } from './materials.js';
 import { buildProducts } from './products.js';
-import { cameraStep, routeDuration, routeProgress, STALL_MS, summarizeTravel } from './motion.js';
+import { cameraStep, routeDuration, routeProgress, STALL_MS, summarizeTravel, walkingStep } from './motion.js';
 import { createProfile } from './profile.js';
 import { DISPLAYS, ENTRY_MARKER, EYE_HEIGHT, VIEWS, inspectionView, isClearSegment, planRoute, sampleRoute } from './world.js';
 
@@ -125,6 +125,7 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
   let frame = 0;
   let frameCount = 0;
   let previousTime = null;
+  let previousCallback = 0;
   let travel = null;
   let pointer = null;
   let failed = false;
@@ -244,15 +245,17 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     if (paused()) return;
     const frameStarted = profile ? performance.now() : 0;
     const gap = previousTime === null ? null : now - previousTime;
+    const callbackGap = gap === null ? null : frameStarted - previousCallback;
     previousTime = now;
-    const dt = cameraStep(gap) / 1000;
+    previousCallback = frameStarted;
     const active = travel;
     let arrived = false;
     if (active) {
       if (active.renders === 0) active.initialWait = Math.max(0, now - active.started);
       if (gap !== null && active.renders) active.intervals.push(gap);
+      if (gap >= STALL_MS && ++active.stalls === 2) callbacks.onDelay();
       active.renders++;
-      active.clock = Math.min(active.duration, active.clock + (gap === null ? 0 : dt * 1000));
+      active.clock = Math.min(active.duration, active.clock + (gap === null ? 0 : cameraStep(gap)));
       const t = routeProgress(active.clock / active.duration);
       const [x, z] = active.route.at(t, routePoint);
       camera.position.set(x, lerp(active.y, active.view.position[1], t), z);
@@ -263,6 +266,7 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
       arrived = active.clock >= active.duration;
       if (arrived) travel = null;
     } else if (held.size || transitioningToEye) {
+      const dt = walkingStep(gap) / 1000;
       const directions = [...held.values()];
       const lateral = Number(directions.includes('right')) - Number(directions.includes('left'));
       const forward = Number(directions.includes('forward')) - Number(directions.includes('back'));
@@ -285,7 +289,7 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     const cost = render(now, !moving);
     if (active) {
       active.renderCosts.push(cost);
-      profile?.frame(now, gap, frameStarted);
+      profile?.frame(now, gap, frameStarted, callbackGap);
       if (!arrived && gap !== null && gap < STALL_MS) {
         slowFrames = gap >= 39 || cost > 13 ? slowFrames + 1 : Math.max(0, slowFrames - 1);
         if (slowFrames >= 8 && nextQuality === quality && quality > 0.58) nextQuality *= 0.78;
@@ -332,7 +336,7 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     }
     travel = {
       route, destination, view, intervals: [], renderCosts: [], started: performance.now(),
-      clock: 0, renders: 0, pauses: 0, duration: routeDuration(route.length),
+      clock: 0, renders: 0, pauses: 0, stalls: 0, duration: routeDuration(route.length),
       y: camera.position.y, yaw, pitch, fov: lens,
       turn: angleDelta(yaw, angles.yaw), targetPitch: angles.pitch,
     };

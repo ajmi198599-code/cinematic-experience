@@ -3,10 +3,14 @@ export const STALL_MS = 250;
 const RAMP = 0.22;
 const rampProgress = t => (t - RAMP * Math.sin(Math.PI * t / RAMP) / Math.PI) / (2 * (1 - RAMP));
 
-// A stalled frame resumes with a normal step. Ordinary delays can use one 24 fps step.
+// A stalled frame resumes with a normal step. The flatter path ramp bounds ordinary steps.
 export function cameraStep(interval) {
   if (interval >= STALL_MS) return NOMINAL_FRAME_MS;
-  return Math.min(1000 / 24, Math.max(0, interval ?? NOMINAL_FRAME_MS));
+  return Math.min(50, Math.max(0, interval ?? NOMINAL_FRAME_MS));
+}
+
+export function walkingStep(interval) {
+  return Math.min(1000 / 24, cameraStep(interval));
 }
 
 // Integrate a smooth acceleration ramp into a constant-speed middle section.

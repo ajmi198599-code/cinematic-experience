@@ -19,6 +19,7 @@ const initial = { kind: 'concourse' };
 let language = 'en';
 let current = initial;
 let journey = null;
+let journeyDelayed = false;
 let scene;
 let sceneStatus = 'loading';
 let lastFrame = null;
@@ -178,6 +179,7 @@ function destinationView(destination) {
 
 function travelText(destination) {
   const t = words();
+  if (journeyDelayed) return t.slowTravel;
   if (destination.kind === 'showroom') return t.entering;
   if (destination.kind === 'concourse') return t.returning;
   if (current.kind === 'inspect' && current.id === destination.id) return t.adjusting;
@@ -275,6 +277,7 @@ function finish(destination, timing) {
   if (current.id !== destination.id) $('quick-details').open = false;
   current = destination;
   journey = null;
+  journeyDelayed = false;
   if (timing) {
     stage.dataset.travelMs = String(timing.ms);
     stage.dataset.travelFrames = String(timing.frames);
@@ -314,6 +317,7 @@ function navigate(destination, source) {
     return;
   }
   journey = destination;
+  journeyDelayed = false;
   updateUI();
   $('live-status').textContent = travelText(destination);
   if (!scene.go(nextView, destination)) {
@@ -459,8 +463,15 @@ async function initialize() {
       onArrive: finish,
       onManual(kind) {
         journey = null;
+        journeyDelayed = false;
         current = { kind };
         updateUI();
+      },
+      onDelay() {
+        if (!journey) return;
+        journeyDelayed = true;
+        $('travel-note').textContent = words().slowTravel;
+        $('live-status').textContent = words().slowTravel;
       },
       onPick(id) {
         if (current.kind === 'showroom') navigate({ kind: 'inspect', id, angle: 1 });
