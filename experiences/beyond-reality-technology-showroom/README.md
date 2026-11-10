@@ -30,6 +30,7 @@ Select the doorway or **Enter showroom**. In the view, drag to look and use the 
 | [Specification](docs/SPECIFICATION.md) | Architecture, design direction and acceptance criteria |
 | [Sprint 01 verification](docs/VERIFICATION.md) | Baseline browser and performance evidence |
 | [Sprint 02 review](docs/SPRINT_02.md) | Build repair, responsive checks and before-and-after evidence |
+| [Sprint 03 review](docs/SPRINT_03.md) | Phoenix visual refinements, frame-delivery diagnosis and release verification |
 
 ## Deploy
 

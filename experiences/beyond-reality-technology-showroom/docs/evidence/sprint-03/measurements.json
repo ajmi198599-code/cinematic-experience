@@ -1,0 +1,429 @@
+{
+  "method": "Three completed entries per preview and viewport in one connected Chrome tab, using the doorway pointer action. Native cadence and submission cadence are independent. GPU acceleration unverified.",
+  "baseline": "https://beyond-reality-technology-showroom-1yuz2s358.vercel.app/",
+  "release": "https://beyond-reality-technology-showroom-1yzr69oi5.vercel.app/",
+  "releaseCommit": "9f531fa5c66c7e972c46afc243d2b91fd7e25295",
+  "desktop1440x900": {
+    "sprint02": [
+      {
+        "start": {
+          "pose": "0.570,1.660,9.420",
+          "triangles": 19594,
+          "draws": 59
+        },
+        "end": {
+          "pose": "0.000,1.660,-1.110",
+          "visible": "visible",
+          "travelMs": 5011,
+          "travelFrames": 97,
+          "travelP95": 50,
+          "travelMax": 1017,
+          "travelStalls": 1,
+          "travelRenderP95": 3.5,
+          "travelCameraMs": 3581,
+          "bufferPixels": 419490,
+          "bufferChanges": 1,
+          "triangles": 11238,
+          "draws": 36
+        }
+      },
+      {
+        "start": {
+          "pose": "0.570,1.660,9.420",
+          "triangles": 19594,
+          "draws": 59
+        },
+        "end": {
+          "pose": "0.000,1.660,-1.110",
+          "visible": "visible",
+          "travelMs": 4978,
+          "travelFrames": 102,
+          "travelP95": 50,
+          "travelMax": 1017,
+          "travelStalls": 1,
+          "travelRenderP95": 0.5,
+          "travelCameraMs": 3581,
+          "bufferPixels": 419490,
+          "bufferChanges": 1,
+          "triangles": 11238,
+          "draws": 36
+        }
+      },
+      {
+        "start": {
+          "pose": "0.570,1.660,9.420",
+          "triangles": 19594,
+          "draws": 59
+        },
+        "end": {
+          "pose": "0.000,1.660,-1.110",
+          "visible": "visible",
+          "travelMs": 3598,
+          "travelFrames": 216,
+          "travelP95": 17,
+          "travelMax": 17,
+          "travelStalls": 0,
+          "travelRenderP95": 0.3,
+          "travelCameraMs": 3581,
+          "bufferPixels": 419490,
+          "bufferChanges": 1,
+          "triangles": 11238,
+          "draws": 36
+        }
+      }
+    ],
+    "sprint03": [
+      {
+        "start": {
+          "pose": "0.570,1.660,9.420",
+          "triangles": 19494,
+          "draws": 58
+        },
+        "end": {
+          "pose": "0.000,1.660,-1.110",
+          "visible": "visible",
+          "travelMs": 3594,
+          "travelFrames": 212,
+          "travelP95": 23,
+          "travelNativeP95": 17,
+          "travelMax": 33,
+          "travelNativeMax": 33,
+          "travelStalls": 0,
+          "travelTimerFrames": 0,
+          "travelRenderP95": 0.9,
+          "travelCameraMs": 3581,
+          "bufferPixels": 359541,
+          "bufferChanges": 1,
+          "triangles": 11138,
+          "draws": 35
+        }
+      },
+      {
+        "start": {
+          "pose": "0.570,1.660,9.420",
+          "triangles": 19494,
+          "draws": 58
+        },
+        "end": {
+          "pose": "0.000,1.660,-1.110",
+          "visible": "visible",
+          "travelMs": 3602,
+          "travelFrames": 213,
+          "travelP95": 22,
+          "travelNativeP95": 17,
+          "travelMax": 26,
+          "travelNativeMax": 33,
+          "travelStalls": 0,
+          "travelTimerFrames": 0,
+          "travelRenderP95": 0.7,
+          "travelCameraMs": 3581,
+          "bufferPixels": 359541,
+          "bufferChanges": 1,
+          "triangles": 11138,
+          "draws": 35
+        }
+      },
+      {
+        "start": {
+          "pose": "0.570,1.660,9.420",
+          "triangles": 19494,
+          "draws": 58
+        },
+        "end": {
+          "pose": "0.000,1.660,-1.110",
+          "visible": "visible",
+          "travelMs": 3599,
+          "travelFrames": 201,
+          "travelP95": 25,
+          "travelNativeP95": 33,
+          "travelMax": 44,
+          "travelNativeMax": 50,
+          "travelStalls": 0,
+          "travelTimerFrames": 0,
+          "travelRenderP95": 0.8,
+          "travelCameraMs": 3581,
+          "bufferPixels": 359541,
+          "bufferChanges": 1,
+          "triangles": 11138,
+          "draws": 35
+        }
+      }
+    ]
+  },
+  "mobile390x844": {
+    "sprint02": [
+      {
+        "start": {
+          "pose": "0.570,1.660,9.420",
+          "triangles": 16904,
+          "draws": 56
+        },
+        "end": {
+          "pose": "0.000,1.660,-1.110",
+          "visible": "visible",
+          "travelMs": 4997,
+          "travelFrames": 97,
+          "travelP95": 50,
+          "travelMax": 1000,
+          "travelStalls": 1,
+          "travelRenderP95": 0.5,
+          "travelCameraMs": 3581,
+          "bufferPixels": 159991,
+          "bufferChanges": 2,
+          "triangles": 11234,
+          "draws": 34
+        }
+      },
+      {
+        "start": {
+          "pose": "0.570,1.660,9.420",
+          "triangles": 16904,
+          "draws": 56
+        },
+        "end": {
+          "pose": "0.000,1.660,-1.110",
+          "visible": "visible",
+          "travelMs": 5013,
+          "travelFrames": 97,
+          "travelP95": 50,
+          "travelMax": 1017,
+          "travelStalls": 1,
+          "travelRenderP95": 3.2,
+          "travelCameraMs": 3581,
+          "bufferPixels": 159991,
+          "bufferChanges": 2,
+          "triangles": 11234,
+          "draws": 34
+        }
+      },
+      {
+        "start": {
+          "pose": "0.570,1.660,9.420",
+          "triangles": 16904,
+          "draws": 56
+        },
+        "end": {
+          "pose": "0.000,1.660,-1.110",
+          "visible": "visible",
+          "travelMs": 4978,
+          "travelFrames": 97,
+          "travelP95": 50,
+          "travelMax": 1017,
+          "travelStalls": 1,
+          "travelRenderP95": 0.5,
+          "travelCameraMs": 3581,
+          "bufferPixels": 159991,
+          "bufferChanges": 2,
+          "triangles": 11234,
+          "draws": 34
+        }
+      }
+    ],
+    "sprint03": [
+      {
+        "start": {
+          "pose": "0.570,1.660,9.420",
+          "triangles": 16804,
+          "draws": 55
+        },
+        "end": {
+          "pose": "0.000,1.660,-1.110",
+          "visible": "visible",
+          "travelMs": 3597,
+          "travelFrames": 212,
+          "travelP95": 22,
+          "travelNativeP95": 17,
+          "travelMax": 34,
+          "travelNativeMax": 33,
+          "travelStalls": 0,
+          "travelTimerFrames": 0,
+          "travelRenderP95": 0.9,
+          "travelCameraMs": 3581,
+          "bufferPixels": 144905,
+          "bufferChanges": 2,
+          "triangles": 11134,
+          "draws": 33
+        }
+      },
+      {
+        "start": {
+          "pose": "0.570,1.660,9.420",
+          "triangles": 16804,
+          "draws": 55
+        },
+        "end": {
+          "pose": "0.000,1.660,-1.110",
+          "visible": "visible",
+          "travelMs": 3604,
+          "travelFrames": 213,
+          "travelP95": 22,
+          "travelNativeP95": 17,
+          "travelMax": 31,
+          "travelNativeMax": 33,
+          "travelStalls": 0,
+          "travelTimerFrames": 0,
+          "travelRenderP95": 7.2,
+          "travelCameraMs": 3581,
+          "bufferPixels": 144905,
+          "bufferChanges": 2,
+          "triangles": 11134,
+          "draws": 33
+        }
+      },
+      {
+        "start": {
+          "pose": "0.570,1.660,9.420",
+          "triangles": 16804,
+          "draws": 55
+        },
+        "end": {
+          "pose": "0.000,1.660,-1.110",
+          "visible": "visible",
+          "travelMs": 3595,
+          "travelFrames": 212,
+          "travelP95": 22,
+          "travelNativeP95": 17,
+          "travelMax": 33,
+          "travelNativeMax": 33,
+          "travelStalls": 0,
+          "travelTimerFrames": 0,
+          "travelRenderP95": 5.1,
+          "travelCameraMs": 3581,
+          "bufferPixels": 144905,
+          "bufferChanges": 2,
+          "triangles": 11134,
+          "draws": 33
+        }
+      }
+    ]
+  },
+  "releaseProfile": {
+    "startup": {
+      "graphics": "reported",
+      "pixels": 359541,
+      "draws": 58,
+      "triangles": 19494,
+      "phases": {
+        "webgl-context": 9.9,
+        "reflection-and-textures": 90.4,
+        "concourse-geometry": 43,
+        "showroom-geometry": 30.8,
+        "product-geometry": 36.3,
+        "shader-precompile": 35,
+        "view-warmup": 62,
+        "first-visible-render": 22.2
+      },
+      "longTasks": {
+        "count": 2,
+        "maxMs": 103
+      }
+    },
+    "longTasksAvailable": true,
+    "route": {
+      "destination": "showroom",
+      "complete": true,
+      "initialVisibility": "visible",
+      "initiallyFocused": true,
+      "longTasks": {
+        "count": 0,
+        "maxMs": 0
+      },
+      "frameWorkP95Ms": 1.1,
+      "callbackP95Ms": 21.2,
+      "gaps": []
+    }
+  },
+  "beforeRecovery": {
+    "commit": "e0dec19263caebe7d1af7a759bb252c4fb9f47ec",
+    "startup": {
+      "graphics": "reported",
+      "pixels": 359541,
+      "draws": 58,
+      "triangles": 19494,
+      "phases": {
+        "webgl-context": 12.4,
+        "reflection-and-textures": 76.3,
+        "concourse-geometry": 42.8,
+        "showroom-geometry": 32,
+        "product-geometry": 28.3,
+        "shader-precompile": 34.8,
+        "view-warmup": 92.2,
+        "first-visible-render": 30.8
+      },
+      "longTasks": {
+        "count": 1,
+        "maxMs": 91
+      }
+    },
+    "longTasksAvailable": true,
+    "route": {
+      "destination": "showroom",
+      "complete": false,
+      "initialVisibility": "visible",
+      "initiallyFocused": true,
+      "longTasks": {
+        "count": 0,
+        "maxMs": 0
+      },
+      "frameWorkP95Ms": 18.9,
+      "callbackP95Ms": 1018.5,
+      "gaps": [
+        {
+          "ms": 1016.4,
+          "callbackMs": 1015,
+          "visibility": "visible",
+          "focused": true,
+          "timerTicks": 13,
+          "count": 0,
+          "maxMs": 0
+        },
+        {
+          "ms": 1016.6,
+          "callbackMs": 1016.9,
+          "visibility": "visible",
+          "focused": true,
+          "timerTicks": 13,
+          "count": 0,
+          "maxMs": 0
+        },
+        {
+          "ms": 1016.6,
+          "callbackMs": 1016.6,
+          "visibility": "visible",
+          "focused": true,
+          "timerTicks": 14,
+          "count": 0,
+          "maxMs": 0
+        },
+        {
+          "ms": 1016.6,
+          "callbackMs": 1016.4,
+          "visibility": "visible",
+          "focused": true,
+          "timerTicks": 14,
+          "count": 0,
+          "maxMs": 0
+        },
+        {
+          "ms": 1016.5,
+          "callbackMs": 1018.5,
+          "visibility": "visible",
+          "focused": true,
+          "timerTicks": 13,
+          "count": 0,
+          "maxMs": 0
+        },
+        {
+          "ms": 1016.5,
+          "callbackMs": 1013.9,
+          "visibility": "visible",
+          "focused": true,
+          "timerTicks": 14,
+          "count": 0,
+          "maxMs": 0
+        }
+      ]
+    },
+    "stoppedBySkip": true
+  }
+}
