@@ -301,15 +301,15 @@ dialog::backdrop { background: #131e17a3; }
   .index { margin-top: 3px; }
 }
 @media (max-width: 520px) {
-  .header-inner { min-height: 58px; }
+  .header-inner { min-height: 58px; gap: 4px 8px; flex-wrap: wrap; padding-block: 6px; }
   .stage { scroll-margin-top: 63px; }
   .stage[data-scene="fallback"] { height: 230px; }
   .brand { gap: 6px; }
-  .brand-mark { width: 30px; height: 30px; }
-  .brand strong { font-size: 12px; }
+  .brand-mark { width: 24px; height: 24px; }
+  .brand strong { font: 760 11px/1.32 system-ui, sans-serif; letter-spacing: 0.06em; }
   .brand span { font-size: 8px; }
   .header-actions { gap: 5px; }
-  .header-actions .quiet-button { padding-inline: 8px; }
+  .header-actions .quiet-button { padding-inline: 6px; }
   .edition, .basket-label, .help-button span { display: none; }
   .basket-button { gap: 4px; }
   .scene-bar, .scene-footer { inset-inline: 9px; }
@@ -337,7 +337,8 @@ dialog::backdrop { background: #131e17a3; }
   .basket-object .object-icon-frame { display: none; }
 }
 @media (max-width: 365px) {
+  .brand { gap: 4px; }
+  .brand-mark { width: 22px; height: 22px; }
   .walk-hint { font-size: 10px; padding-inline: 5px; }
   .walk-hint .icon { display: none; }
-  .header-actions .quiet-button { padding-inline: 6px; }
 }
