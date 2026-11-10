@@ -33,6 +33,7 @@ test('the performance report separates raw stalls from active frame intervals', 
     ms: 1113, frames: 5, p95: 1017, activeP95: 33, max: 1017, stalls: 1, pauses: 0,
     cameraMs: 110, renderP95: 7.8, initialWait: 30,
     nativeP95: 1017, nativeMax: 1017, timerFrames: 0,
+    nativeFrames: 5, nativeInitialWait: 30,
   });
   assert.equal(percentile95([]), 0);
 });
@@ -45,4 +46,16 @@ test('timer recovery retains separate native frame cadence', () => {
   assert.equal(report.p95, 33);
   assert.equal(report.nativeP95, 1016);
   assert.equal(report.timerFrames, 4);
+});
+
+test('a route with no native callback reports the cadence as unobserved', () => {
+  const report = summarizeTravel({
+    started: 0, intervals: [32, 32], renderCosts: [0.7],
+    nativeIntervals: [], nativeFrames: 0, nativeInitialWait: null,
+    timerFrames: 3, clock: 64, renders: 3, pauses: 0,
+  }, 190);
+  assert.equal(report.nativeP95, null);
+  assert.equal(report.nativeMax, null);
+  assert.equal(report.nativeInitialWait, null);
+  assert.equal(report.timerFrames, 3);
 });

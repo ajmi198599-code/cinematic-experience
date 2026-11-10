@@ -1,10 +1,12 @@
 import { percentile95, STALL_MS } from './motion.js';
+import { createGpuProfile } from './gpu-profile.js';
 
 const round = value => Math.round(value * 10) / 10;
 
-export function createProfile(stage) {
+export function createProfile(stage, context) {
   if (new URLSearchParams(location.search).get('profile') !== '1') return null;
   const phases = {};
+  const gpu = createGpuProfile(context);
   const tasks = [];
   const longTasksAvailable = globalThis.PerformanceObserver?.supportedEntryTypes?.includes('longtask') ?? false;
   const consume = entries => {
@@ -17,6 +19,11 @@ export function createProfile(stage) {
   let startup = {};
   let route;
   let timer;
+  let deferred;
+  let startupTask;
+  let paused = false;
+  let disposed = false;
+  let revision = 0;
 
   function taskStats(start, end) {
     if (observer) consume(observer.takeRecords());
@@ -26,20 +33,34 @@ export function createProfile(stage) {
 
   function cancel() {
     clearInterval(timer);
+    clearTimeout(deferred);
+    revision++;
     route = null;
   }
 
+  function heartbeat() {
+    clearInterval(timer);
+    if (!route || paused) return;
+    const active = route;
+    timer = setInterval(() => {
+      if (route !== active) return;
+      active.ticks.push(performance.now());
+      if (active.ticks.length > 160) active.ticks.shift();
+    }, 75);
+  }
+
   function publish(active, end, complete) {
-    const { destination, started, ticks, gaps, work, callbacks, initialVisibility, initiallyFocused } = active;
+    const { destination, started, gaps, work, callbacks, initialVisibility, initiallyFocused } = active;
     stage.dataset.profile = JSON.stringify({
       startup, longTasksAvailable,
       route: {
         destination, complete, initialVisibility, initiallyFocused,
         longTasks: taskStats(started, end), frameWorkP95Ms: round(percentile95(work)),
         callbackP95Ms: round(percentile95(callbacks)),
-        gaps: gaps.map(({ now, gap, visibility, focused, source }) => ({
+        gpu: gpu.result(),
+        gaps: gaps.map(({ now, gap, visibility, focused, source, timerTicks }) => ({
           ms: round(gap), source, visibility, focused,
-          timerTicks: ticks.filter(t => t > now - gap && t < now).length,
+          timerTicks, heartbeatWindowLimited: gap > 12000,
           ...taskStats(now - gap, now),
         })),
       },
@@ -48,7 +69,10 @@ export function createProfile(stage) {
 
   function recordGap(now, gap, source) {
     if (!route || gap < STALL_MS || gap === null || route.gaps.length >= 12) return;
-    route.gaps.push({ now, gap, source, visibility: document.visibilityState, focused: document.hasFocus() });
+    route.gaps.push({
+      now, gap, source, visibility: document.visibilityState, focused: document.hasFocus(),
+      timerTicks: route.ticks.filter(t => t > now - gap && t < now).length,
+    });
     publish(route, performance.now(), false);
   }
 
@@ -59,21 +83,25 @@ export function createProfile(stage) {
     },
     ready(details) {
       const end = performance.now();
-      setTimeout(() => {
-        startup = { ...details, phases, longTasks: taskStats(boot, end) };
-        stage.dataset.profile = JSON.stringify({ startup, longTasksAvailable });
+      startupTask = setTimeout(() => {
+        if (disposed) return;
+        startup = { ...details, phases, gpu: gpu.result(), longTasks: taskStats(boot, end) };
+        if (route) publish(route, performance.now(), false);
+        else stage.dataset.profile = JSON.stringify({ startup, longTasksAvailable });
       }, 0);
     },
     begin(destination) {
       cancel();
+      gpu.reset();
       const started = performance.mark('showroom:journey-start').startTime;
       route = {
         destination, started, ticks: [], gaps: [], work: [], callbacks: [],
         initialVisibility: document.visibilityState, initiallyFocused: document.hasFocus(),
       };
-      const active = route;
-      timer = setInterval(() => active.ticks.push(performance.now()), 75);
+      heartbeat();
     },
+    beforeRender() { if (route) gpu.begin(); },
+    afterRender() { if (route) gpu.end(); },
     frame(now, gap) {
       if (!route) return;
       route.work.push(performance.now() - now);
@@ -87,14 +115,25 @@ export function createProfile(stage) {
       if (!route) return;
       const end = performance.mark('showroom:journey-end').startTime;
       const active = route;
-      cancel();
+      const currentRevision = revision;
+      clearInterval(timer);
+      route = null;
       performance.measure('showroom:journey', { start: active.started, end });
-      setTimeout(() => publish(active, end, true), 0);
+      deferred = setTimeout(() => {
+        if (!disposed && revision === currentRevision) publish(active, end, true);
+      }, 0);
     },
     cancel,
+    setPaused(value) {
+      paused = value;
+      heartbeat();
+    },
     dispose() {
+      disposed = true;
+      clearTimeout(startupTask);
       cancel();
       observer?.disconnect();
+      gpu.dispose();
     },
   };
 }

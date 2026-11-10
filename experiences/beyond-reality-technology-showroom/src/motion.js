@@ -32,7 +32,7 @@ export function percentile95(samples) {
 
 export function summarizeTravel({
   started, intervals, renderCosts, initialWait, pauses, clock, renders,
-  nativeIntervals = intervals, timerFrames = 0,
+  nativeIntervals = intervals, timerFrames = 0, nativeFrames = renders, nativeInitialWait = initialWait,
 }, now) {
   const stalls = intervals.filter(ms => ms >= STALL_MS).length;
   const active = intervals.filter(ms => ms < STALL_MS);
@@ -47,8 +47,10 @@ export function summarizeTravel({
     cameraMs: Math.round(clock),
     renderP95: Math.round(percentile95(renderCosts) * 10) / 10,
     initialWait: Math.round(initialWait ?? 0),
-    nativeP95: Math.round(percentile95(nativeIntervals)),
-    nativeMax: Math.round(Math.max(0, ...nativeIntervals)),
+    nativeP95: nativeIntervals.length ? Math.round(percentile95(nativeIntervals)) : null,
+    nativeMax: nativeIntervals.length ? Math.round(Math.max(...nativeIntervals)) : null,
     timerFrames,
+    nativeFrames,
+    nativeInitialWait: nativeInitialWait === null ? null : Math.round(nativeInitialWait ?? 0),
   };
 }

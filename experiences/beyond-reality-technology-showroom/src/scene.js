@@ -4,6 +4,7 @@ import { batchStatic, kit, palette } from './materials.js';
 import { buildProducts } from './products.js';
 import { cameraStep, routeDuration, routeProgress, STALL_MS, summarizeTravel, walkingStep } from './motion.js';
 import { createProfile } from './profile.js';
+import { createFrameLoop } from './frame-loop.js';
 import { DISPLAYS, ENTRY_MARKER, EYE_HEIGHT, VIEWS, inspectionView, isClearSegment, planRoute, sampleRoute } from './world.js';
 
 const clamp = THREE.MathUtils.clamp;
@@ -11,8 +12,6 @@ const lerp = THREE.MathUtils.lerp;
 const halfTurn = Math.PI;
 const angleDelta = (from, to) => THREE.MathUtils.euclideanModulo(to - from + halfTurn, 2 * halfTurn) - halfTurn;
 const xz = ({ x, z }) => [x, z];
-const FRAME_WATCHDOG_MS = 125;
-const RECOVERY_FRAME_MS = 32;
 const yieldWork = () => typeof scheduler !== 'undefined' && scheduler.yield
   ? scheduler.yield() : new Promise(resolve => setTimeout(resolve, 0));
 
@@ -67,8 +66,16 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.08;
-  const profile = createProfile(viewport);
   const context = renderer.getContext();
+  const profile = createProfile(viewport, context);
+  const simulatedFrames = Boolean(profile) && new URLSearchParams(location.search).get('frames') === 'slow';
+  const frameClock = simulatedFrames ? {
+    now: () => performance.now(),
+    requestFrame: callback => setTimeout(() => callback(performance.now()), 1000),
+    cancelFrame: id => clearTimeout(id),
+    setTimer: (callback, delay) => setTimeout(callback, delay),
+    clearTimer: id => clearTimeout(id),
+  } : undefined;
   const debug = context.getExtension('WEBGL_debug_renderer_info');
   const graphics = debug ? context.getParameter(debug.UNMASKED_RENDERER_WEBGL) : '';
   const software = /swiftshader|llvmpipe|software/i.test(graphics);
@@ -124,11 +131,8 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
   let lastPublish = -Infinity;
   let width = viewport.clientWidth;
   let height = viewport.clientHeight;
-  let frame = 0;
-  let frameTimer = 0;
   let frameCount = 0;
   let previousTime = null;
-  let previousNative = null;
   let travel = null;
   let pointer = null;
   let failed = false;
@@ -153,56 +157,34 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     ['entry', ENTRY_MARKER],
     ...DISPLAYS.map(({ id, x, z, markerY }) => [id, [x, markerY, z + 0.24]]),
   ]);
+  const frameLoop = createFrameLoop({
+    draw,
+    canDraw: () => !failed && !paused(),
+    canRecover: () => Boolean(travel) && document.hasFocus(),
+    onNative(timestamp, gap) {
+      if (!travel) return;
+      travel.nativeFrames++;
+      if (travel.nativeFrames === 1) {
+        travel.nativeInitialWait = Math.max(0, performance.now() - travel.started);
+        profile?.nativeFrame(performance.now(), travel.nativeInitialWait);
+      }
+      if (gap !== null) {
+        travel.nativeIntervals.push(gap);
+        profile?.nativeFrame(performance.now(), gap);
+      }
+    },
+  }, frameClock);
 
   function paused() {
     return document.hidden || modalOpen;
   }
 
   function requestDraw() {
-    if (failed || paused()) return;
-    if (!frame) frame = requestAnimationFrame(nativeFrame);
-    if (travel && !frameTimer && document.hasFocus()) {
-      // Keep the native request pending while the visible tour recovers.
-      frameTimer = setTimeout(recoveryFrame, travel.recovering ? RECOVERY_FRAME_MS : FRAME_WATCHDOG_MS);
-    }
+    frameLoop.request();
   }
 
   function cancelDraw() {
-    cancelAnimationFrame(frame);
-    clearTimeout(frameTimer);
-    frame = frameTimer = 0;
-  }
-
-  function nativeFrame(timestamp) {
-    frame = 0;
-    clearTimeout(frameTimer);
-    frameTimer = 0;
-    if (failed || paused()) return;
-    const now = performance.now();
-    if (travel) {
-      const gap = previousNative === null ? null : timestamp - previousNative;
-      previousNative = timestamp;
-      if (gap !== null) {
-        travel.nativeIntervals.push(gap);
-        profile?.nativeFrame(now, gap);
-        travel.healthyFrames = gap <= 65 ? travel.healthyFrames + 1 : 0;
-        if (travel.healthyFrames >= 4) travel.recovering = false;
-      }
-      if (travel.recovering && previousTime !== null && now - previousTime < 12) {
-        requestDraw();
-        return;
-      }
-    }
-    draw(now);
-  }
-
-  function recoveryFrame() {
-    frameTimer = 0;
-    if (!travel || failed || paused() || !document.hasFocus()) return;
-    if (!travel.recovering) travel.healthyFrames = 0;
-    travel.recovering = true;
-    travel.timerFrames++;
-    draw(performance.now());
+    frameLoop.stop();
   }
 
   function updateLens(force = false) {
@@ -262,7 +244,9 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
       model.distant.visible = visible && !model.near;
     }
     const before = performance.now();
+    if (!warming) profile?.beforeRender();
     renderer.render(scene, camera);
+    if (!warming) profile?.afterRender();
     const cost = performance.now() - before;
     if (warming) return cost;
     frameCount++;
@@ -286,13 +270,14 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     return cost;
   }
 
-  function draw(now) {
+  function draw(now, source) {
     if (paused()) return;
     const gap = previousTime === null ? null : now - previousTime;
     previousTime = now;
     const active = travel;
     let arrived = false;
     if (active) {
+      if (source === 'timer') active.timerFrames++;
       if (active.renders === 0) active.initialWait = Math.max(0, now - active.started);
       if (gap !== null && active.renders) active.intervals.push(gap);
       if (gap >= STALL_MS && ++active.stalls === 2) callbacks.onDelay();
@@ -333,8 +318,11 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
       active.renderCosts.push(cost);
       profile?.frame(now, gap);
       if (!arrived && gap !== null && gap < STALL_MS) {
-        slowFrames = gap >= 39 || cost > 13 ? slowFrames + 1 : Math.max(0, slowFrames - 1);
-        if (slowFrames >= 8 && nextQuality === quality && quality > 0.58) nextQuality *= 0.78;
+        // Callback delays alone do not show that the drawing buffer is too costly.
+        slowFrames = cost > 13 ? slowFrames + 1 : Math.max(0, slowFrames - 1);
+        if (slowFrames >= 8 && nextQuality === quality && quality > 0.64) {
+          nextQuality = Math.max(0.64, quality * 0.85);
+        }
       }
       if (arrived) {
         profile?.finish();
@@ -363,6 +351,7 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     callbacks.onArrive(destination, {
       ms: 0, frames: 1, p95: 0, activeP95: 0, max: 0, stalls: 0, pauses: 0, cameraMs: 0, renderP95: 0, initialWait: 0,
       nativeP95: 0, nativeMax: 0, timerFrames: 0,
+      nativeFrames: 0, nativeInitialWait: 0,
     });
   }
 
@@ -375,7 +364,6 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     held.clear();
     cancelDraw();
     previousTime = null;
-    previousNative = null;
     slowFrames = 0;
     if (reducedMotion) {
       complete(view, destination);
@@ -384,7 +372,7 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     travel = {
       route, destination, view, intervals: [], nativeIntervals: [], renderCosts: [], started: performance.now(),
       clock: 0, renders: 0, pauses: 0, stalls: 0, duration: routeDuration(route.length),
-      timerFrames: 0, healthyFrames: 0, recovering: false,
+      timerFrames: 0, nativeFrames: 0, nativeInitialWait: null,
       y: camera.position.y, yaw, pitch, fov: lens,
       turn: angleDelta(yaw, angles.yaw), targetPitch: angles.pitch,
     };
@@ -396,6 +384,7 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
   function resumeWalking() {
     travel = null;
     profile?.cancel();
+    frameLoop.refresh();
     transitioningToEye = true;
     callbacks.onManual(camera.position.z < 0 ? 'showroom' : 'concourse');
     requestDraw();
@@ -417,16 +406,21 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
   }
   function syncPause() {
     if (paused()) {
-      if ((frame || frameTimer) && travel) travel.pauses++;
+      if (frameLoop.pending && travel) travel.pauses++;
       cancelDraw();
-      previousTime = previousNative = null;
+      previousTime = null;
       resetInput();
     } else {
       requestDraw();
     }
+    profile?.setPaused(paused());
   }
   const { signal } = listeners;
-  window.addEventListener('blur', resetInput, { signal });
+  window.addEventListener('blur', () => {
+    resetInput();
+    frameLoop.refresh();
+  }, { signal });
+  window.addEventListener('focus', () => frameLoop.refresh(), { signal });
   document.addEventListener('visibilitychange', syncPause, { signal });
   const observer = new ResizeObserver(([entry]) => {
     if (failed) return;
@@ -520,7 +514,15 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
   setView(VIEWS.concourse);
   render(performance.now(), true);
   profile?.phase('first-visible-render', phase);
-  profile?.ready({ graphics: graphicsMode, pixels: bufferPixels, draws: renderer.info.render.calls, triangles: renderer.info.render.triangles });
+  profile?.ready({
+    frameSource: simulatedFrames ? 'simulated-1hz' : 'browser-raf',
+    graphics: graphicsMode, renderer: graphics || context.getParameter(context.RENDERER),
+    vendor: debug ? context.getParameter(debug.UNMASKED_VENDOR_WEBGL) : context.getParameter(context.VENDOR),
+    webgl: context.getParameter(context.VERSION), userAgent: navigator.userAgent,
+    devicePixelRatio, hardwareConcurrency: navigator.hardwareConcurrency,
+    viewport: [window.innerWidth, window.innerHeight], stage: [width, height],
+    pixels: bufferPixels, draws: renderer.info.render.calls, triangles: renderer.info.render.triangles,
+  });
   observer.observe(viewport);
   return {
     go,

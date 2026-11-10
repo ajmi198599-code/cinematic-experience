@@ -4,9 +4,9 @@ export const EYE_HEIGHT = 1.66;
 export const TABLE_HEIGHT = 1.01;
 
 export const DISPLAYS = [
-  { id: 'headphones', x: -2.26, z: -6.25, width: 1.65, depth: 1.02, modelZ: 0.13, focusY: 1.29, markerY: 1.67, distance: 1.10, fov: 39 },
-  { id: 'watch', x: 0, z: -8.37, width: 1.55, depth: 1.04, modelZ: 0.22, focusY: 1.17, markerY: 1.55, distance: 0.88, fov: 24 },
-  { id: 'camera', x: 2.26, z: -6.25, width: 1.65, depth: 1.02, modelZ: 0.16, focusY: 1.17, markerY: 1.58, distance: 0.99, fov: 34 },
+  { id: 'headphones', x: -2.26, z: -6.25, width: 1.65, depth: 1.02, modelZ: 0.13, modelScale: 0.9, focusY: 1.24, rise: 0.20, markerY: 1.67, distance: 1.10, fov: 31 },
+  { id: 'watch', x: 0, z: -8.37, width: 1.55, depth: 1.04, modelZ: 0.22, modelScale: 0.7, focusY: 1.12, rise: 0.10, markerY: 1.55, distance: 0.88, fov: 13.5 },
+  { id: 'camera', x: 2.26, z: -6.25, width: 1.65, depth: 1.02, modelZ: 0.16, modelScale: 0.72, focusY: 1.105, rise: 0.13, markerY: 1.58, distance: 0.99, fov: 19.5 },
 ];
 
 export const PLANTERS = [
@@ -34,7 +34,7 @@ export function inspectionView(id, angleIndex = 1) {
   return {
     position: [
       display.x + Math.sin(angle) * display.distance,
-      display.focusY + (id === 'headphones' ? 0.29 : 0.21),
+      display.focusY + display.rise,
       z + Math.cos(angle) * display.distance,
     ],
     look: [display.x, display.focusY, z],

@@ -52,7 +52,7 @@ function grain(seed, base, weave = false) {
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
         const i = (y * width + x) * 4;
-        const variation = (random() - 0.5) * 21 + (weave ? (x % 4 < 2 ? 6 : -6) + (y % 4 < 2 ? 3 : -3) : 0);
+        const variation = (random() - 0.5) * 8 + (weave ? (x % 4 < 2 ? 2 : -2) + (y % 4 < 2 ? 1 : -1) : 0);
         pixels.data[i] = base[0] + variation;
         pixels.data[i + 1] = base[1] + variation;
         pixels.data[i + 2] = base[2] + variation;
@@ -85,10 +85,10 @@ function makeTools(k, parent) {
 
 function headphones(k, parent, m) {
   const { box, softBox, disk, ring, sign } = makeTools(k, parent);
-  const cushion = finish(0xffffff, 0.86, 0, { map: grain(13, [70, 54, 43]) });
+  const cushion = finish(0xffffff, 0.78, 0, { map: grain(13, [66, 52, 43]) });
   const cloth = finish(0xffffff, 0.96, 0, { map: grain(17, [44, 43, 38], true) });
   const blackPlastic = finish(0x28312e, 0.49, 0.1);
-  const graphite = finish(0x575e5b, 0.31, 0.74);
+  const graphite = finish(0x626763, 0.38, 0.78);
   const champagne = finish(0xad9478, 0.32, 0.7);
   softBox(m.pineDark, [0.34, 0.036, 0.23], 0.017, [0, 0.018, 0]);
   disk(m.dark, 0.015, 0.340, [0, 0.204, -0.061]);
@@ -102,6 +102,14 @@ function headphones(k, parent, m) {
     [-0.101, 0.305, 0.009], [-0.078, 0.350, 0.014], [0, 0.376, 0.017],
     [0.078, 0.350, 0.014], [0.101, 0.305, 0.009],
   ]), 0.060, 0.023, 'z', true);
+  const seam = finish(0x83705a, 0.9);
+  for (const z of [-0.009, 0.043]) {
+    const path = curve([
+      [-0.097, 0.309, z], [-0.074, 0.352, z], [0, 0.378, z],
+      [0.074, 0.352, z], [0.097, 0.309, z],
+    ]);
+    k.mesh(new THREE.TubeGeometry(path, 20, 0.0007, 4, false), seam, [0, 0, 0], { parent });
+  }
 
   const padGeometry = new THREE.LatheGeometry([
     [0.034, -0.009], [0.051, -0.011], [0.057, -0.006], [0.058, 0.005],
@@ -131,7 +139,8 @@ function headphones(k, parent, m) {
 }
 
 function watchDial() {
-  return texture(256, 256, (ctx) => {
+  return texture(512, 512, (ctx) => {
+    ctx.scale(2, 2);
     const face = ctx.createRadialGradient(107, 80, 12, 128, 128, 153);
     face.addColorStop(0, '#526456');
     face.addColorStop(1, '#0e1715');
@@ -165,24 +174,6 @@ function watchDial() {
     ctx.font = '700 11px Arial';
     ctx.textAlign = 'center';
     ctx.fillText('18', 78, 4);
-    ctx.strokeStyle = '#e4dbbf';
-    ctx.lineWidth = 5;
-    ctx.lineCap = 'round';
-    ctx.beginPath();
-    ctx.moveTo(-43, -33);
-    ctx.lineTo(0, 0);
-    ctx.lineTo(63, -42);
-    ctx.stroke();
-    ctx.strokeStyle = '#b68d5d';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(10, -13);
-    ctx.lineTo(-41, 71);
-    ctx.stroke();
-    ctx.fillStyle = '#e4dbbf';
-    ctx.beginPath();
-    ctx.arc(0, 0, 5, 0, 2 * Math.PI);
-    ctx.fill();
     ctx.restore();
     ctx.textAlign = 'center';
     ctx.font = '700 19px Arial';
@@ -198,6 +189,10 @@ function watch(k, parent, m) {
   const casing = finish(0xaeb4b3, 0.24, 0.81);
   const edge = finish(0x8e775d, 0.33, 0.65);
   const dial = new THREE.MeshStandardMaterial({ map: watchDial(), roughness: 0.43, metalness: 0.05 });
+  const hands = finish(0xe0d8bb, 0.27, 0.76);
+  const crystal = finish(0xf0f5ef, 0.1, 0.05, {
+    transparent: true, opacity: 0.1, depthWrite: false, envMapIntensity: 0.65,
+  });
   softBox(m.pineDark, [0.24, 0.033, 0.20], 0.016, [0, 0.0165, 0.005]);
   softBox(m.dark, [0.043, 0.071, 0.059], 0.015, [0, 0.065, -0.020]);
   softBox(m.fabric, [0.050, 0.136, 0.075], 0.024, [0, 0.133, -0.028]);
@@ -217,10 +212,67 @@ function watch(k, parent, m) {
   }
   // A flat UV disc keeps the artwork legible independent of the sidewall UVs.
   k.mesh(new THREE.CircleGeometry(0.029, 48), dial, [0, 0.160, 0.0394], { parent });
+  for (let i = 0; i < 12; i++) {
+    if (i === 3) continue;
+    const angle = i * Math.PI / 6;
+    const marker = box(casing, [0.0011, 0.0034, 0.0006], [
+      Math.sin(angle) * 0.0245, 0.160 + Math.cos(angle) * 0.0245, 0.040,
+    ]);
+    marker.rotation.z = -angle;
+  }
+  for (const [material, length, width, angle, z] of [
+    [hands, 0.015, 0.0018, -0.91, 0.041],
+    [hands, 0.022, 0.0012, 0.98, 0.0416],
+    [edge, 0.024, 0.00045, -2.64, 0.0422],
+  ]) {
+    const hand = box(material, [width, length, 0.0005], [
+      Math.sin(angle) * length / 2, 0.160 + Math.cos(angle) * length / 2, z,
+    ]);
+    hand.rotation.z = -angle;
+  }
+  disk(edge, 0.0017, 0.001, [0, 0.160, 0.0428], 'z', 16);
+  k.mesh(new THREE.CircleGeometry(0.0289, 48), crystal, [0, 0.160, 0.0435], { parent });
   disk(casing, 0.0056, 0.006, [0.033, 0.159, 0.032], 'x', 16);
   ring(edge, 0.0048, 0.0008, [0.036, 0.159, 0.032], 'x');
   disk(m.dark, 0.0035, 0.0015, [0.037, 0.159, 0.032], 'x', 16);
   k.shadow(0, 0.002, 0, 0.36, 0.30, parent);
+}
+
+function lensIris() {
+  return texture(256, 256, ctx => {
+    const depth = ctx.createRadialGradient(113, 110, 6, 128, 128, 126);
+    depth.addColorStop(0, '#0e191b');
+    depth.addColorStop(0.43, '#1a2928');
+    depth.addColorStop(0.72, '#31423d');
+    depth.addColorStop(1, '#080d0e');
+    ctx.fillStyle = depth;
+    ctx.fillRect(0, 0, 256, 256);
+    for (const radius of [61, 84, 103, 119]) {
+      ctx.strokeStyle = radius < 100 ? '#52605b' : '#7c8074';
+      ctx.lineWidth = radius < 100 ? 1.6 : 1;
+      ctx.beginPath();
+      ctx.arc(128, 128, radius, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+    ctx.save();
+    ctx.translate(128, 128);
+    for (let i = 0; i < 7; i++) {
+      ctx.rotate(Math.PI * 2 / 7);
+      ctx.fillStyle = i % 2 ? '#27342f' : '#34413a';
+      ctx.beginPath();
+      ctx.moveTo(0, -46);
+      ctx.lineTo(39, -20);
+      ctx.lineTo(16, 15);
+      ctx.lineTo(-9, 10);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.fillStyle = '#050b0c';
+    ctx.beginPath();
+    ctx.arc(0, 0, 17, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  });
 }
 
 function camera(k, parent, m) {
@@ -228,7 +280,10 @@ function camera(k, parent, m) {
   const alloy = finish(0x4d504b, 0.34, 0.69);
   const black = finish(0x212526, 0.65, 0.22);
   const rubber = finish(0xffffff, 0.91, 0, { map: grain(53, [55, 55, 48], true) });
-  const glass = finish(0x48605a, 0.13, 0.51, { envMapIntensity: 1.26 });
+  const glass = finish(0xd8e7e1, 0.11, 0.1, {
+    transparent: true, opacity: 0.19, depthWrite: false, envMapIntensity: 0.85,
+  });
+  const optics = finish(0xffffff, 0.46, 0.13, { map: lensIris() });
   const screen = finish(0x1f2c30, 0.22, 0.22);
   softBox(m.pineDark, [0.37, 0.033, 0.29], 0.014, [0, 0.0165, 0.016]);
   softBox(m.dark, [0.126, 0.032, 0.074], 0.012, [0, 0.046, -0.006]);
@@ -252,13 +307,21 @@ function camera(k, parent, m) {
     ridge.rotation.z = -angle;
   }
   ring(black, 0.0386, 0.0018, [-0.018, 0.119, 0.101], 'z');
-  const optic = k.mesh(new THREE.SphereGeometry(1, 28, 12), glass, [-0.018, 0.119, 0.099], { parent });
-  optic.scale.set(0.038, 0.038, 0.007);
+  k.mesh(new THREE.CircleGeometry(0.038, 48), optics, [-0.018, 0.119, 0.1005], { parent });
+  const cap = new THREE.LatheGeometry([
+    [0, 0.006], [0.012, 0.0055], [0.025, 0.0038], [0.033, 0.0016], [0.038, 0],
+  ].map(point => new THREE.Vector2(...point)), 40);
+  const optic = k.mesh(cap, glass, [-0.018, 0.119, 0.102], { parent });
+  optic.rotation.x = Math.PI / 2;
   for (const [x, radius] of [[0.083, 0.025], [-0.087, 0.018]]) {
     disk(black, radius, 0.014, [x, 0.197, -0.010], 'y', 36);
     disk(alloy, radius * 0.83, 0.003, [x, 0.206, -0.010]);
   }
   disk(m.bronze, 0.009, 0.003, [0.093, 0.202, 0.024], 'y', 20);
+  disk(alloy, 0.006, 0.005, [0.054, 0.095, 0.036], 'z', 16);
+  for (const x of [-0.104, 0.105]) {
+    disk(alloy, 0.0026, 0.002, [x, 0.172, 0.036], 'z', 12);
+  }
   softBox(m.black, [0.047, 0.024, 0.010], 0.005, [-0.023, 0.195, -0.042]);
   softBox(screen, [0.112, 0.073, 0.005], 0.005, [-0.025, 0.118, -0.053]);
   for (const y of [0.101, 0.123, 0.145]) disk(black, 0.005, 0.004, [0.052, y, -0.054], 'z', 10);
@@ -297,12 +360,13 @@ function distantModel(id, k, parent, m) {
 }
 
 export function buildProducts(k, materials) {
-  return DISPLAYS.map(({ id, x, z, modelZ }) => {
+  return DISPLAYS.map(({ id, x, z, modelZ, modelScale }) => {
     const groups = [builders[id], (kit, parent, palette) => distantModel(id, kit, parent, palette)];
     const [close, distant] = groups.map(build => {
       const root = new THREE.Group();
       const mount = new THREE.Group();
       mount.position.set(x, TABLE_HEIGHT, z + modelZ);
+      mount.scale.setScalar(modelScale);
       root.add(mount);
       build(k, mount, materials);
       batchStatic(root);
