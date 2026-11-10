@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
-import { CONCOURSE, COLUMNS, DISPLAYS, PLANTERS, ROOM, SERVICE_DESK, SIDE_BENCHES } from './world.js';
+import { CONCOURSE, COLUMNS, DISPLAYS, PLANTERS, ROOM, SERVICE_DESK, SIDE_BENCHES, STORE_PLANTERS } from './world.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
 export function randomFrom(seed) {
@@ -67,12 +67,12 @@ function walnut() {
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
         const i = (y * width + x) * 4;
-        const wave = x + Math.sin(y * 0.006 + x * 0.015) * 1.35 + Math.sin(y * 0.017) * 0.55;
-        const grain = Math.sin(wave * 0.66) * 5 + Math.sin(wave * 2.68) * 3
-          + Math.cos(wave * 0.081) * 8 + (random() - 0.5) * 9;
-        image.data[i] = 131 + grain;
-        image.data[i + 1] = 96 + grain * 0.89;
-        image.data[i + 2] = 69 + grain * 0.71;
+        const wave = x + Math.sin(y * 0.008 + x * 0.031) * 2.4 + Math.sin(y * 0.018 + x * 0.013) * 0.9;
+        const grain = Math.sin(wave * 0.68) * 3.5 + Math.sin(wave * 2.68) * 2.3
+          + Math.cos(wave * 0.077 + Math.sin(y * 0.014)) * 6 + (random() - 0.5) * 6;
+        image.data[i] = 133 + grain;
+        image.data[i + 1] = 99 + grain * 0.89;
+        image.data[i + 2] = 75 + grain * 0.71;
         image.data[i + 3] = 255;
       }
     }
@@ -94,9 +94,9 @@ function floorLightMap(interior) {
     const px = x => (x / (halfWidth * 2) + 0.5) * width;
     const py = z => (z - nearZ) / depth * height;
     const illumination = ctx.createLinearGradient(0, 0, width * 0.8, height);
-    illumination.addColorStop(0, interior ? '#ded9ce' : '#f9f5ec');
-    illumination.addColorStop(0.52, '#fffdf7');
-    illumination.addColorStop(1, interior ? '#f8f6f1' : '#ece6d9');
+    illumination.addColorStop(0, interior ? '#d5d1c7' : '#eee9e0');
+    illumination.addColorStop(0.48, interior ? '#f2eee5' : '#fbfaf6');
+    illumination.addColorStop(1, interior ? '#f7f4ed' : '#e8e3d9');
     ctx.fillStyle = illumination;
     ctx.fillRect(0, 0, width, height);
 
@@ -119,8 +119,20 @@ function floorLightMap(interior) {
       ctx.restore();
     }
 
+    if (interior) {
+      for (const { x, z } of DISPLAYS) {
+        const cx = px(x);
+        const cy = py(z + 0.22);
+        const wash = ctx.createRadialGradient(cx, cy, 5, cx, cy, 82);
+        wash.addColorStop(0, 'rgba(255,251,233,.59)');
+        wash.addColorStop(1, 'rgba(255,251,233,0)');
+        ctx.fillStyle = wash;
+        ctx.fillRect(cx - 82, cy - 82, 164, 164);
+      }
+    }
+
     const furniture = interior
-      ? [...DISPLAYS, ...SIDE_BENCHES, SERVICE_DESK, ...[-4.64, 4.64].map(x => ({ x, z: -10.10, width: 0.69, depth: 0.69 }))]
+      ? [...DISPLAYS, ...SIDE_BENCHES, SERVICE_DESK, ...STORE_PLANTERS]
       : [...PLANTERS, ...COLUMNS];
     for (const { x, z, width: w, depth: d } of furniture) {
       ctx.save();
@@ -142,7 +154,8 @@ function floorLightMap(interior) {
 export function palette() {
   const atriumTile = mineral([206, 194, 172], 271, true);
   const storeTile = mineral([217, 208, 191], 883, true);
-  const limestone = mineral([208, 196, 175], 31);
+  const limestone = mineral([210, 202, 184], 31);
+  const countertop = mineral([232, 225, 210], 484);
   const wood = walnut();
   for (const map of [atriumTile, storeTile, limestone, wood]) {
     map.wrapS = map.wrapT = THREE.RepeatWrapping;
@@ -171,12 +184,24 @@ export function palette() {
     }),
     bronze: baked(0x9b7e59),
     desk: baked(0xb8aa90),
-    table: baked(0xe7dfd0),
+    table: baked(0xffffff, { map: countertop }),
     fabric: baked(0x756b5a),
     soil: baked(0x51473a),
     leaf: baked(0xa2af8a, { side: THREE.DoubleSide, vertexColors: false }),
     bark: baked(0x70563e),
-    glass: new THREE.MeshBasicMaterial({ color: 0xa9cbc2, transparent: true, opacity: 0.088, depthWrite: false, side: THREE.DoubleSide }),
+    glass: new THREE.MeshBasicMaterial({
+      map: texture(128, 128, (ctx, width, height) => {
+        const glass = ctx.createLinearGradient(0, 0, width, height * 0.28);
+        glass.addColorStop(0, 'rgba(186,210,201,.15)');
+        glass.addColorStop(0.26, 'rgba(240,247,244,.31)');
+        glass.addColorStop(0.40, 'rgba(181,205,197,.12)');
+        glass.addColorStop(0.76, 'rgba(235,245,242,.25)');
+        glass.addColorStop(1, 'rgba(179,201,190,.15)');
+        ctx.fillStyle = glass;
+        ctx.fillRect(0, 0, width, height);
+      }),
+      transparent: true, opacity: 0.52, depthWrite: false, side: THREE.DoubleSide,
+    }),
     skylight: new THREE.MeshBasicMaterial({ color: 0xe5edf2, toneMapped: false }),
     lamp: new THREE.MeshBasicMaterial({ color: 0xffeac4, toneMapped: false }),
   };

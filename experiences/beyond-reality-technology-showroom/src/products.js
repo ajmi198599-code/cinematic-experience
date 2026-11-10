@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { finish, texture } from './materials.js';
+import { batchStatic, finish, texture } from './materials.js';
 import { DISPLAYS, TABLE_HEIGHT } from './world.js';
 
 const radians = degrees => degrees * Math.PI / 180;
@@ -62,9 +62,9 @@ function makeTools(k, parent) {
 
 function headphones(k, parent, m) {
   const { box, softBox, disk, ring, sign } = makeTools(k, parent);
-  const cushion = finish(0x3d3228, 0.92);
+  const cushion = finish(0x493c31, 0.89);
   const blackPlastic = finish(0x262e2b, 0.49, 0.15);
-  const graphite = finish(0x424947, 0.41, 0.72);
+  const graphite = finish(0x4c524e, 0.34, 0.72);
   const champagne = finish(0x9b8872, 0.36, 0.66);
   softBox(m.pineDark, [0.34, 0.036, 0.23], 0.017, [0, 0.018, 0]);
   disk(m.dark, 0.015, 0.340, [0, 0.204, -0.061]);
@@ -83,6 +83,8 @@ function headphones(k, parent, m) {
     const x = side * 0.126;
     const body = disk(graphite, 0.057, 0.026, [x, 0.199, 0.002], 'x');
     body.scale.set(1.16, 1, 0.96);
+    const trim = ring(champagne, 0.048, 0.0016, [x + side * 0.014, 0.199, 0.002], 'x');
+    trim.scale.set(0.96, 1.13, 1);
     const back = disk(blackPlastic, 0.047, 0.004, [x + side * 0.014, 0.199, 0.002], 'x');
     back.scale.set(1.14, 1, 0.97);
     const cup = disk(cushion, 0.056, 0.024, [x - side * 0.022, 0.199, 0.002], 'x');
@@ -103,7 +105,7 @@ function headphones(k, parent, m) {
 function watchDial() {
   return texture(256, 256, (ctx) => {
     const face = ctx.createRadialGradient(107, 80, 12, 128, 128, 153);
-    face.addColorStop(0, '#333d36');
+    face.addColorStop(0, '#526456');
     face.addColorStop(1, '#0e1715');
     ctx.fillStyle = face;
     ctx.fillRect(0, 0, 256, 256);
@@ -148,7 +150,8 @@ function watchDial() {
 function watch(k, parent, m) {
   const { softBox, box, disk, ring } = makeTools(k, parent);
   const strap = finish(0x6d6554, 0.82);
-  const casing = finish(0x9e9e8f, 0.29, 0.75);
+  const casing = finish(0xb5afa1, 0.24, 0.74);
+  const edge = finish(0x83715a, 0.32, 0.65);
   const dial = new THREE.MeshStandardMaterial({ map: watchDial(), roughness: 0.43, metalness: 0.05 });
   softBox(m.pineDark, [0.24, 0.033, 0.20], 0.016, [0, 0.0165, 0.005]);
   softBox(m.dark, [0.043, 0.071, 0.059], 0.015, [0, 0.065, -0.020]);
@@ -160,6 +163,12 @@ function watch(k, parent, m) {
   box(casing, [0.038, 0.009, 0.012], [0, 0.088, -0.051]);
   disk(casing, 0.034, 0.014, [0, 0.160, 0.031], 'z');
   ring(casing, 0.0313, 0.0033, [0, 0.160, 0.039], 'z');
+  ring(edge, 0.0290, 0.0006, [0, 0.160, 0.041], 'z');
+  for (const y of [0.125, 0.194]) {
+    for (const x of [-0.014, 0.014]) {
+      softBox(casing, [0.005, 0.012, 0.014], 0.002, [x, y, 0.026]);
+    }
+  }
   // A flat UV disc keeps the artwork legible independent of the sidewall UVs.
   k.mesh(new THREE.CircleGeometry(0.029, 48), dial, [0, 0.160, 0.0394], { parent });
   disk(casing, 0.0056, 0.007, [0.035, 0.159, 0.032], 'x', 16);
@@ -173,7 +182,7 @@ function camera(k, parent, m) {
   const black = finish(0x212526, 0.65, 0.22);
   const rubber = finish(0x333632, 0.94);
   const glass = new THREE.MeshPhysicalMaterial({
-    color: 0x32413c, roughness: 0.13, metalness: 0.60, clearcoat: 1, clearcoatRoughness: 0.13,
+    color: 0x334640, roughness: 0.16, metalness: 0.46, clearcoat: 1, clearcoatRoughness: 0.11,
   });
   softBox(m.pineDark, [0.37, 0.033, 0.29], 0.014, [0, 0.0165, 0.016]);
   softBox(m.dark, [0.126, 0.032, 0.074], 0.012, [0, 0.046, -0.006]);
@@ -189,9 +198,17 @@ function camera(k, parent, m) {
   disk(rubber, 0.056, 0.031, [-0.018, 0.119, 0.078], 'z', 64);
   ring(alloy, 0.0535, 0.0020, [-0.018, 0.119, 0.094], 'z');
   disk(m.black, 0.0478, 0.005, [-0.018, 0.119, 0.094], 'z');
-  ring(m.bronze, 0.042, 0.0023, [-0.018, 0.119, 0.098], 'z');
+  ring(m.bronze, 0.045, 0.0011, [-0.018, 0.119, 0.098], 'z');
+  ring(alloy, 0.0405, 0.0016, [-0.018, 0.119, 0.099], 'z');
+  for (let i = 0; i < 28; i++) {
+    const angle = i * Math.PI / 14;
+    const ridge = box(alloy, [0.0024, 0.0019, 0.020], [
+      -0.018 + Math.sin(angle) * 0.0556, 0.119 + Math.cos(angle) * 0.0556, 0.079,
+    ]);
+    ridge.rotation.z = -angle;
+  }
   const optic = k.mesh(new THREE.SphereGeometry(1, 32, 16), glass, [-0.018, 0.119, 0.097], { parent });
-  optic.scale.set(0.039, 0.039, 0.008);
+  optic.scale.set(0.038, 0.038, 0.0055);
   for (const [x, radius] of [[0.083, 0.025], [-0.087, 0.018]]) {
     disk(black, radius, 0.014, [x, 0.197, -0.010], 'y', 36);
     disk(alloy, radius * 0.83, 0.003, [x, 0.206, -0.010]);
@@ -205,11 +222,47 @@ function camera(k, parent, m) {
 
 const builders = { headphones, watch, camera };
 
-export function buildProducts(root, k, materials) {
-  for (const { id, x, z, modelZ } of DISPLAYS) {
-    const group = new THREE.Group();
-    group.position.set(x, TABLE_HEIGHT, z + modelZ);
-    root.add(group);
-    builders[id](k, group, materials);
+function distantModel(id, k, parent, m) {
+  const { box, disk } = makeTools(k, parent);
+  if (id === 'headphones') {
+    box(m.pineDark, [0.34, 0.036, 0.23], [0, 0.018, 0]);
+    disk(m.dark, 0.015, 0.34, [0, 0.204, -0.061], 'y', 8);
+    band(k, parent, m.dark, curve([
+      [-0.127, 0.209, 0.003], [-0.106, 0.340, 0.011], [0, 0.393, 0.017],
+      [0.106, 0.340, 0.011], [0.127, 0.209, 0.003],
+    ]), 0.061, 0.023, 'z');
+    for (const side of [-1, 1]) {
+      const cup = disk(m.black, 0.056, 0.043, [side * 0.125, 0.199, 0.002], 'x', 12);
+      cup.scale.x = 1.15;
+    }
+  } else if (id === 'watch') {
+    box(m.pineDark, [0.24, 0.033, 0.20], [0, 0.0165, 0.005]);
+    box(m.dark, [0.035, 0.15, 0.062], [0, 0.108, -0.019]);
+    disk(m.bronze, 0.034, 0.015, [0, 0.160, 0.031], 'z', 12);
+    disk(m.pineDark, 0.028, 0.002, [0, 0.160, 0.040], 'z', 12);
+  } else {
+    box(m.pineDark, [0.37, 0.033, 0.29], [0, 0.0165, 0.016]);
+    box(m.dark, [0.24, 0.14, 0.085], [0, 0.121, -0.009]);
+    box(m.black, [0.092, 0.028, 0.050], [-0.021, 0.198, -0.010]);
+    disk(m.black, 0.054, 0.061, [-0.018, 0.119, 0.066], 'z', 12);
+    disk(m.bronze, 0.045, 0.003, [-0.018, 0.119, 0.097], 'z', 12);
+    disk(m.pineDark, 0.039, 0.003, [-0.018, 0.119, 0.099], 'z', 12);
   }
+}
+
+export function buildProducts(k, materials) {
+  return DISPLAYS.map(({ id, x, z, modelZ }) => {
+    const groups = [builders[id], (kit, parent, palette) => distantModel(id, kit, parent, palette)];
+    const [close, distant] = groups.map(build => {
+      const root = new THREE.Group();
+      const mount = new THREE.Group();
+      mount.position.set(x, TABLE_HEIGHT, z + modelZ);
+      root.add(mount);
+      build(k, mount, materials);
+      batchStatic(root);
+      return root;
+    });
+    const bounds = new THREE.Box3().setFromObject(close).union(new THREE.Box3().setFromObject(distant));
+    return { x, z: z + modelZ, close, distant, bounds, near: false };
+  });
 }

@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { buildConcourse, buildFixtures, buildShowroom, buildStorefront } from './building.js';
 import { batchStatic, kit, palette } from './materials.js';
 import { buildProducts } from './products.js';
+import { cameraStep, routeDuration, STALL_MS, summarizeTravel } from './motion.js';
 import { DISPLAYS, ENTRY_MARKER, EYE_HEIGHT, VIEWS, isClearSegment, planRoute, sampleRoute } from './world.js';
 
 const clamp = THREE.MathUtils.clamp;
@@ -38,7 +39,7 @@ function reflectionRoom(renderer) {
     studio.add(panel);
   }
   const generator = new THREE.PMREMGenerator(renderer);
-  const target = generator.fromScene(studio, 0.04, 0.1, 25, { size: 128 });
+  const target = generator.fromScene(studio, 0.04, 0.1, 25, { size: 64 });
   studio.traverse(object => object.material?.dispose());
   geometry.dispose();
   generator.dispose();
@@ -56,7 +57,7 @@ function lightProducts(scene) {
 
 export async function createShowroom(canvas, viewport, callbacks, reducedMotion) {
   const renderer = new THREE.WebGLRenderer({
-    canvas, antialias: false, alpha: false, powerPreference: 'high-performance',
+    canvas, antialias: false, alpha: false, powerPreference: 'default',
   });
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -72,34 +73,50 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
   scene.environment = environment.texture;
   scene.environmentIntensity = 0.61;
   lightProducts(scene);
-  const root = new THREE.Group();
-  const k = kit(root);
   const materials = palette();
-  buildConcourse(root, k, materials);
-  buildStorefront(k, materials);
-  buildShowroom(root, k, materials);
-  buildFixtures(k, materials);
-  buildProducts(root, k, materials);
-  batchStatic(root);
-  scene.add(root);
+  const concourse = new THREE.Group();
+  const interior = new THREE.Group();
+  const outside = kit(concourse);
+  const inside = kit(interior);
+  buildConcourse(concourse, outside, materials);
+  buildStorefront(outside, materials);
+  buildShowroom(interior, inside, materials);
+  buildFixtures(inside, materials);
+  batchStatic(concourse);
+  batchStatic(interior);
+  const zones = [concourse, interior].map(group => ({ group, bounds: new THREE.Box3().setFromObject(group) }));
+  const models = buildProducts(inside, materials);
+  scene.add(concourse, interior);
+  for (const { close, distant } of models) scene.add(close, distant);
+  scene.updateMatrixWorld(true);
+  scene.matrixWorldAutoUpdate = false;
 
   const camera = new THREE.PerspectiveCamera(VIEWS.concourse.fov, 1, 0.032, 45);
   camera.rotation.order = 'YXZ';
   camera.position.set(...VIEWS.concourse.position);
   let { yaw, pitch } = viewAngles(VIEWS.concourse);
   let lens = VIEWS.concourse.fov;
-  let size = [0, 0, 0];
+  let bufferDirty = false;
+  let bufferPixels = 0;
+  let bufferChanges = 0;
+  let quality = 1;
+  let slowFrames = 0;
+  let lastPublish = -Infinity;
   let width = viewport.clientWidth;
   let height = viewport.clientHeight;
   let frame = 0;
   let frameCount = 0;
-  let previousTime = 0;
+  let previousTime = null;
   let travel = null;
   let pointer = null;
   let failed = false;
+  let modalOpen = false;
   let transitioningToEye = false;
   const held = new Map();
   const ray = new THREE.Raycaster();
+  const frustum = new THREE.Frustum();
+  const viewProjection = new THREE.Matrix4();
+  const listeners = new AbortController();
   const planePointer = new THREE.Vector2();
   const projection = new THREE.Vector3();
   const hitPoint = new THREE.Vector3();
@@ -114,8 +131,12 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     ...DISPLAYS.map(({ id, x, z, markerY }) => [id, [x, markerY, z + 0.24]]),
   ]);
 
+  function paused() {
+    return document.hidden || modalOpen;
+  }
+
   function requestDraw() {
-    if (!frame && !failed) frame = requestAnimationFrame(draw);
+    if (!frame && !failed && !paused()) frame = requestAnimationFrame(draw);
   }
 
   function updateLens() {
@@ -124,15 +145,14 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     camera.updateProjectionMatrix();
   }
 
-  function resize(moving = false) {
+  function resize() {
     if (!width || !height) return;
-    const budget = moving ? (software ? 180000 : 390000) : 1050000;
-    const dpr = devicePixelRatio * (moving ? 1 : 1.18);
-    const pixelRatio = Math.min(dpr, width < 620 ? 1.55 : 1.42, Math.sqrt(budget / (width * height)));
-    if (size[0] === width && size[1] === height && size[2] === pixelRatio) return;
-    size = [width, height, pixelRatio];
-    renderer.setPixelRatio(pixelRatio);
-    renderer.setSize(width, height, false);
+    const budget = software ? 180000 : width < 620 ? 255000 : 420000;
+    const ratio = Math.min(devicePixelRatio * 1.14, 1.65, Math.sqrt(budget * quality / (width * height)));
+    renderer.setDrawingBufferSize(width, height, ratio);
+    bufferDirty = false;
+    bufferPixels = canvas.width * canvas.height;
+    bufferChanges++;
     camera.aspect = width / height;
     updateLens();
   }
@@ -159,44 +179,66 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     if (isClearSegment(xz(camera.position), [camera.position.x, to[1]])) camera.position.z = to[1];
   }
 
-  function render() {
-    resize(Boolean(travel || held.size));
+  function render(now, publish) {
+    if (bufferDirty) resize();
     camera.rotation.set(pitch, yaw, 0, 'YXZ');
-    renderer.render(scene, camera);
-    const anchors = {};
-    for (const [id, point] of Object.entries(markers)) {
-      projection.set(...point).project(camera);
-      const x = 0.5 + projection.x * 0.5;
-      const y = 0.5 - projection.y * 0.5;
-      if (projection.z > -1 && projection.z < 1 && x > 0.085 && x < 0.915 && y > 0.12 && y < 0.78) anchors[id] = [x, y];
-    }
+    camera.updateMatrixWorld(true);
+    frustum.setFromProjectionMatrix(viewProjection.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));
+    for (const { group, bounds } of zones) group.visible = frustum.intersectsBox(bounds);
     const { x, y, z } = camera.position;
-    callbacks.onFrame({
-      x, y, z, yaw, pitch, anchors, moving: Boolean(travel), frameCount: ++frameCount,
-      draws: renderer.info.render.calls, triangles: renderer.info.render.triangles, software,
-    });
+    for (const model of models) {
+      const distance = (x - model.x) ** 2 + (z - model.z) ** 2;
+      const visible = frustum.intersectsBox(model.bounds);
+      model.near = distance < (model.near ? 5.8 : 4.8);
+      model.close.visible = visible && model.near;
+      model.distant.visible = visible && !model.near;
+    }
+    const before = performance.now();
+    renderer.render(scene, camera);
+    const cost = performance.now() - before;
+    frameCount++;
+    if (publish || now - lastPublish >= 70) {
+      lastPublish = now;
+      const anchors = {};
+      if (!travel) {
+        const margin = Math.max(0.063, 24 / width);
+        for (const [id, point] of Object.entries(markers)) {
+          projection.set(...point).project(camera);
+          const u = 0.5 + projection.x * 0.5;
+          const v = 0.5 - projection.y * 0.5;
+          if (projection.z > -1 && projection.z < 1 && u > margin && u < 1 - margin && v > 0.12 && v < 0.75) anchors[id] = [u, v];
+        }
+      }
+      callbacks.onFrame({
+        x, y, z, yaw, pitch, anchors, frameCount, bufferPixels, bufferChanges,
+        draws: renderer.info.render.calls, triangles: renderer.info.render.triangles, software,
+      });
+    }
+    return cost;
   }
 
   function draw(now) {
     frame = 0;
-    const dt = Math.min(0.05, (now - previousTime) / 1000 || 0.016);
+    if (paused()) return;
+    const gap = previousTime === null ? null : now - previousTime;
     previousTime = now;
-    let arrival = null;
-    if (travel) {
-      const progress = clamp((now - travel.started) / travel.duration, 0, 1);
-      if (travel.lastFrame) travel.intervals.push(now - travel.lastFrame);
-      travel.lastFrame = now;
-      const t = eased(progress);
-      const [x, z] = travel.route.at(t);
-      camera.position.set(x, lerp(travel.y, travel.view.position[1], t), z);
-      yaw = travel.yaw + travel.turn * t;
-      pitch = lerp(travel.pitch, travel.targetPitch, t);
-      lens = lerp(travel.fov, travel.view.fov, t);
+    const dt = cameraStep(gap) / 1000;
+    const active = travel;
+    let arrived = false;
+    if (active) {
+      if (active.renders === 0) active.initialWait = Math.max(0, now - active.started);
+      if (gap !== null && active.renders) active.intervals.push(gap);
+      active.renders++;
+      active.clock = Math.min(active.duration, active.clock + (gap === null ? 0 : dt * 1000));
+      const t = eased(active.clock / active.duration);
+      const [x, z] = active.route.at(t);
+      camera.position.set(x, lerp(active.y, active.view.position[1], t), z);
+      yaw = active.yaw + active.turn * t;
+      pitch = lerp(active.pitch, active.targetPitch, t);
+      lens = lerp(active.fov, active.view.fov, t);
       updateLens();
-      if (progress >= 1) {
-        arrival = travel;
-        travel = null;
-      }
+      arrived = active.clock >= active.duration;
+      if (arrived) travel = null;
     } else if (held.size || transitioningToEye) {
       const directions = [...held.values()];
       const lateral = Number(directions.includes('right')) - Number(directions.includes('left'));
@@ -215,34 +257,51 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
         updateLens();
       }
     }
-    render();
-    if (arrival) {
-      const intervals = arrival.intervals.sort((a, b) => a - b);
-      callbacks.onArrive(arrival.destination, {
-        ms: Math.round(now - arrival.started), frames: intervals.length + 1,
-        p95: Math.round(intervals[Math.floor((intervals.length - 1) * 0.95)] ?? 0),
-      });
+
+    const moving = Boolean(travel || held.size || transitioningToEye);
+    const cost = render(now, !moving);
+    if (active) {
+      active.renderCosts.push(cost);
+      if (!arrived && gap !== null && gap < STALL_MS) {
+        slowFrames = gap >= 39 || cost > 13 ? slowFrames + 1 : Math.max(0, slowFrames - 1);
+        if (slowFrames >= 6 && quality > 0.53) {
+          quality *= 0.74;
+          slowFrames = 0;
+          bufferDirty = true;
+        }
+      }
+      if (arrived) callbacks.onArrive(active.destination, summarizeTravel(active, performance.now()));
     }
-    if (travel || held.size || transitioningToEye) requestDraw();
+    if (moving) requestDraw();
+    else previousTime = null;
+  }
+
+  function complete(view, destination) {
+    travel = null;
+    previousTime = null;
+    setView(view);
+    render(performance.now(), true);
+    callbacks.onArrive(destination, {
+      ms: 0, frames: 1, p95: 0, activeP95: 0, max: 0, stalls: 0, pauses: 0, cameraMs: 0, renderP95: 0, initialWait: 0,
+    });
   }
 
   function go(view, destination) {
     const routePoints = planRoute(xz(camera.position), [view.position[0], view.position[2]]);
-    if (!routePoints) return false;
+    if (!routePoints || failed) return false;
     const route = sampleRoute(routePoints);
     const angles = viewAngles(view);
     transitioningToEye = false;
     held.clear();
+    previousTime = null;
+    slowFrames = 0;
     if (reducedMotion) {
-      travel = null;
-      setView(view);
-      render();
-      callbacks.onArrive(destination, { ms: 0, frames: 1, p95: 0 });
+      complete(view, destination);
       return true;
     }
     travel = {
-      route, destination, view, intervals: [], started: performance.now(),
-      duration: clamp(470 + route.length * 295, 540, 3950),
+      route, destination, view, intervals: [], renderCosts: [], started: performance.now(),
+      clock: 0, renders: 0, pauses: 0, duration: routeDuration(route.length),
       y: camera.position.y, yaw, pitch, fov: lens,
       turn: angleDelta(yaw, angles.yaw), targetPitch: angles.pitch,
     };
@@ -258,7 +317,7 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
   }
 
   function press(direction, token, repeat = false) {
-    if (failed || held.has(token)) return;
+    if (failed || paused() || held.has(token)) return;
     resumeWalking();
     advance(0.14, Number(direction === 'right') - Number(direction === 'left'), Number(direction === 'forward') - Number(direction === 'back'));
     if (repeat) held.set(token, direction);
@@ -271,21 +330,37 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     }
     pointer = null;
   }
-  window.addEventListener('blur', resetInput);
-  document.addEventListener('visibilitychange', resetInput);
+  function syncPause() {
+    if (paused()) {
+      if (frame && travel) travel.pauses++;
+      cancelAnimationFrame(frame);
+      frame = 0;
+      previousTime = null;
+      resetInput();
+    } else {
+      requestDraw();
+    }
+  }
+  const { signal } = listeners;
+  window.addEventListener('blur', resetInput, { signal });
+  document.addEventListener('visibilitychange', syncPause, { signal });
   const observer = new ResizeObserver(([entry]) => {
     if (failed) return;
-    width = Math.round(entry.contentRect.width);
-    height = Math.round(entry.contentRect.height);
+    const nextWidth = Math.round(entry.contentRect.width);
+    const nextHeight = Math.round(entry.contentRect.height);
+    if (width === nextWidth && height === nextHeight) return;
+    width = nextWidth;
+    height = nextHeight;
+    bufferDirty = true;
     requestDraw();
   });
 
   canvas.addEventListener('pointerdown', event => {
-    if (!event.isPrimary || event.button !== 0) return;
+    if (!event.isPrimary || event.button !== 0 || paused()) return;
     viewport.focus({ preventScroll: true });
-    pointer = { id: event.pointerId, x: event.clientX, y: event.clientY, distance: 0 };
+    pointer = { id: event.pointerId, x: event.clientX, y: event.clientY, startX: event.clientX, startY: event.clientY, distance: 0, orbit: callbacks.isInspecting() };
     canvas.setPointerCapture(event.pointerId);
-  });
+  }, { signal });
   canvas.addEventListener('pointermove', event => {
     if (pointer?.id !== event.pointerId) return;
     const dx = event.clientX - pointer.x;
@@ -294,16 +369,22 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     pointer.y = event.clientY;
     const previous = pointer.distance;
     pointer.distance += Math.hypot(dx, dy);
-    if (pointer.distance < 5 || !callbacks.canLook()) return;
+    if (pointer.distance < 5 || pointer.orbit) return;
     if (previous < 5) resumeWalking();
     yaw += dx * 0.0039;
     pitch = clamp(pitch + dy * 0.0039, -0.82, 0.76);
     requestDraw();
-  });
+  }, { signal });
   canvas.addEventListener('pointerup', event => {
     if (pointer?.id !== event.pointerId) return;
-    const tap = pointer.distance < 5;
+    const { distance: gesture, orbit, startX, startY } = pointer;
     pointer = null;
+    const swipe = event.clientX - startX;
+    if (orbit && Math.abs(swipe) >= 30 && Math.abs(swipe) > Math.abs(event.clientY - startY)) {
+      callbacks.onOrbit(swipe < 0 ? 1 : -1);
+      return;
+    }
+    const tap = gesture < 5;
     if (!tap || travel || camera.position.z >= -0.43) return;
     const box = canvas.getBoundingClientRect();
     planePointer.set(((event.clientX - box.left) / box.width) * 2 - 1, 1 - ((event.clientY - box.top) / box.height) * 2);
@@ -320,22 +401,23 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
       }
     }
     if (chosen) callbacks.onPick(chosen);
-  });
-  canvas.addEventListener('pointercancel', () => { pointer = null; });
-  canvas.addEventListener('lostpointercapture', () => { pointer = null; });
+  }, { signal });
+  canvas.addEventListener('pointercancel', () => { pointer = null; }, { signal });
+  canvas.addEventListener('lostpointercapture', () => { pointer = null; }, { signal });
   canvas.addEventListener('webglcontextlost', event => {
     event.preventDefault();
     failed = true;
     cancelAnimationFrame(frame);
     observer.disconnect();
+    listeners.abort();
     resetInput();
     callbacks.onUnavailable();
-  }, { once: true });
+  }, { once: true, signal });
 
   resize();
   await renderer.compileAsync(scene, camera);
   if (failed) throw new Error('The 3D context was lost during setup.');
-  render();
+  render(performance.now(), true);
   observer.observe(viewport);
   return {
     go,
@@ -343,9 +425,16 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     release(token) {
       if (held.delete(token)) requestDraw();
     },
+    skipJourney() {
+      if (travel) complete(travel.view, travel.destination);
+    },
+    setModalOpen(value) {
+      modalOpen = value;
+      syncPause();
+    },
     setReducedMotion(value) {
       reducedMotion = value;
-      if (value && travel) go(travel.view, travel.destination);
+      if (value && travel) complete(travel.view, travel.destination);
     },
   };
 }
