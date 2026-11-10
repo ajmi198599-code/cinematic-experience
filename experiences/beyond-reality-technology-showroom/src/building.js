@@ -111,12 +111,12 @@ export function buildStorefront(k, m) {
   for (let x = -5.91; x < 6; x += 0.218) {
     k.box(m.oak, [0.179, 1.16, 0.055], [x, 3.63, 0.17]);
   }
-  k.softBox(m.pineDark, [5.95, 0.89, 0.16], 0.026, [0, 3.62, 0.235]);
-  k.box(m.bronze, [5.95, 0.014, 0.016], [0, 3.175, 0.322]);
+  k.softBox(m.pineDark, [5.66, 0.77, 0.16], 0.026, [0, 3.63, 0.235]);
+  k.box(m.bronze, [5.57, 0.012, 0.016], [0, 3.246, 0.322]);
   k.sign([
-    { value: 'T E C H N O L O G Y', y: 0.37, size: 53, spacing: 5 },
-    { value: 'S H O W R O O M   /   0 1', y: 0.72, size: 22, spacing: 4, color: '#d6c2a3' },
-  ], 5.58, 0.78, [0, 3.63, 0.32], { resolution: 1024 });
+    { value: 'TECHNOLOGY', y: 0.39, size: 59, spacing: 15, weight: 500 },
+    { value: 'SHOWROOM  /  01', y: 0.74, size: 23, spacing: 8, color: '#d7c4a7' },
+  ], 5.35, 0.65, [0, 3.65, 0.32], { resolution: 1024 });
   k.box(m.dark, [12.01, 0.10, 0.42], [0, 3.00, -0.02]);
   k.box(m.lamp, [4.22, 0.019, 0.035], [0, 2.944, 0.063]);
   k.box(m.bronze, [opening * 2, 0.005, 0.092], [0, 0.003, 0]);
@@ -138,11 +138,12 @@ export function buildShowroom(root, k, m) {
   k.box(m.ceiling, [12.28, 0.18, depth + 0.15], [0, height + 0.081, -depth / 2]);
   k.box(m.pine, [12.28, height, 0.25], [0, height / 2, -depth - 0.10]);
   for (const side of [-1, 1]) {
-    k.box(side < 0 ? m.stone : m.ivory, [0.21, height, depth + 0.1], [side * (halfWidth + 0.075), height / 2, -depth / 2]);
+    k.box(m.stone, [0.21, height, depth + 0.1], [side * (halfWidth + 0.075), height / 2, -depth / 2]);
     k.box(m.dark, [0.073, 0.105, depth], [side * (halfWidth - 0.028), 0.057, -depth / 2]);
     for (const z of [-1.2, -3.62, -6.04, -8.46, -10.88]) {
       k.box(m.desk, [0.017, 4.05, 0.013], [side * (halfWidth - 0.038), 2.10, z]);
     }
+    k.box(m.desk, [0.019, 0.010, depth], [side * (halfWidth - 0.039), 2.94, -depth / 2]);
     k.box(m.pineDark, [0.63, 0.09, 9.94], [side * 5.64, 4.17, -5.65]);
     k.box(m.lamp, [0.044, 0.026, 9.84], [side * 5.38, 4.113, -5.65]);
     k.box(m.oak, [2.8, 3.92, 0.145], [side * 4.58, 2.0, -11.315]);
@@ -198,8 +199,9 @@ const fixtureText = {
 export function buildFixtures(k, m) {
   for (const item of DISPLAYS) {
     const { id, x, z, width, depth } = item;
-    k.softBox(m.black, [width - 0.24, 0.097, depth - 0.24], 0.036, [x, 0.052, z]);
-    k.softBox(m.darkOak, [width - 0.14, 0.81, depth - 0.13], 0.053, [x, 0.502, z]);
+    k.softBox(m.black, [width - 0.29, 0.103, depth - 0.25], 0.031, [x, 0.055, z]);
+    k.softBox(m.darkOak, [width - 0.13, 0.81, depth - 0.13], 0.047, [x, 0.502, z]);
+    k.box(m.dark, [0.009, 0.71, 0.012], [x, 0.502, z + (depth - 0.13) / 2]);
     k.softBox(m.dark, [width - 0.10, 0.035, depth - 0.09], 0.010, [x, 0.925, z]);
     k.softBox(m.table, [width, 0.067, depth], 0.021, [x, TABLE_HEIGHT - 0.0335, z]);
     k.box(m.bronze, [width - 0.20, 0.009, 0.014], [x, 0.944, z + depth * 0.46]);

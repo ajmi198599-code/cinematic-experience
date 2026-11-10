@@ -31,12 +31,14 @@ function mineral(rgb, seed, floor = false) {
   return texture(256, 256, (ctx, width, height) => {
     const pixels = ctx.createImageData(width, height);
     for (let y = 0; y < height; y++) {
+      const vein = Math.sin(y * 0.066) * 2.5 + Math.sin(y * 0.19) * 0.65;
       for (let x = 0; x < width; x++) {
         const i = (y * width + x) * 4;
-        const mottling = Math.sin(x * 0.12 + Math.sin(y * 0.038) * 3) * 2
-          + Math.cos((x + y) * 0.054) * 2.2;
-        const noise = (random() - 0.5) * 13 + mottling;
-        rgb.forEach((channel, c) => { pixels.data[i + c] = channel + noise; });
+        const mottling = Math.sin(x * 0.089 + y * 0.027) * 2.3 + Math.cos((x + y) * 0.052) * 1.8;
+        const noise = (random() - 0.5) * (floor ? 9 : 7) + mottling + vein;
+        pixels.data[i] = rgb[0] + noise;
+        pixels.data[i + 1] = rgb[1] + noise;
+        pixels.data[i + 2] = rgb[2] + noise;
         pixels.data[i + 3] = 255;
       }
     }
@@ -44,9 +46,13 @@ function mineral(rgb, seed, floor = false) {
     for (let i = 0; i < (floor ? 820 : 330); i++) {
       const x = random() * width;
       const y = random() * height;
-      ctx.fillStyle = random() > 0.54 ? 'rgba(73,57,47,.21)' : 'rgba(252,247,229,.28)';
+      ctx.fillStyle = random() > 0.54 ? 'rgba(76,66,54,.24)' : 'rgba(250,244,227,.43)';
       ctx.beginPath();
-      ctx.ellipse(x, y, random() * (floor ? 1.2 : 0.65), random() * 0.8, random() * 6.3, 0, Math.PI * 2);
+      const size = random() * (floor ? 1.55 : 0.55);
+      ctx.moveTo(x - size, y);
+      ctx.lineTo(x + size * 0.1, y - size * 0.55);
+      ctx.lineTo(x + size * 0.86, y + size * 0.36);
+      ctx.lineTo(x - size * 0.24, y + size * 0.69);
       ctx.fill();
     }
     if (floor) {
@@ -67,12 +73,12 @@ function walnut() {
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
         const i = (y * width + x) * 4;
-        const wave = x + Math.sin(y * 0.008 + x * 0.031) * 2.4 + Math.sin(y * 0.018 + x * 0.013) * 0.9;
-        const grain = Math.sin(wave * 0.68) * 3.5 + Math.sin(wave * 2.68) * 2.3
-          + Math.cos(wave * 0.077 + Math.sin(y * 0.014)) * 6 + (random() - 0.5) * 6;
-        image.data[i] = 133 + grain;
-        image.data[i + 1] = 99 + grain * 0.89;
-        image.data[i + 2] = 75 + grain * 0.71;
+        const wave = x + Math.sin(y * 0.011 + x * 0.025) * 3.2 + Math.sin(y * 0.022 + x * 0.017) * 1.4;
+        const grain = Math.sin(wave * 0.71) * 4.5 + Math.sin(wave * 2.51) * 2.1
+          + Math.cos(wave * 0.082 + Math.sin(y * 0.013)) * 8 + (random() - 0.5) * 4;
+        image.data[i] = 128 + grain;
+        image.data[i + 1] = 91 + grain * 0.83;
+        image.data[i + 2] = 67 + grain * 0.68;
         image.data[i + 3] = 255;
       }
     }
@@ -94,9 +100,9 @@ function floorLightMap(interior) {
     const px = x => (x / (halfWidth * 2) + 0.5) * width;
     const py = z => (z - nearZ) / depth * height;
     const illumination = ctx.createLinearGradient(0, 0, width * 0.8, height);
-    illumination.addColorStop(0, interior ? '#d5d1c7' : '#eee9e0');
-    illumination.addColorStop(0.48, interior ? '#f2eee5' : '#fbfaf6');
-    illumination.addColorStop(1, interior ? '#f7f4ed' : '#e8e3d9');
+    illumination.addColorStop(0, interior ? '#c5c3ba' : '#ebe6dd');
+    illumination.addColorStop(0.48, interior ? '#e4e1d8' : '#fcfaf5');
+    illumination.addColorStop(1, interior ? '#f5f1e8' : '#e5e0d6');
     ctx.fillStyle = illumination;
     ctx.fillRect(0, 0, width, height);
 
@@ -123,11 +129,12 @@ function floorLightMap(interior) {
       for (const { x, z } of DISPLAYS) {
         const cx = px(x);
         const cy = py(z + 0.22);
-        const wash = ctx.createRadialGradient(cx, cy, 5, cx, cy, 82);
-        wash.addColorStop(0, 'rgba(255,251,233,.59)');
-        wash.addColorStop(1, 'rgba(255,251,233,0)');
+        const wash = ctx.createRadialGradient(cx, cy, 3, cx, cy, 69);
+        wash.addColorStop(0, 'rgba(255,246,226,.61)');
+        wash.addColorStop(0.5, 'rgba(252,244,223,.23)');
+        wash.addColorStop(1, 'rgba(255,246,226,0)');
         ctx.fillStyle = wash;
-        ctx.fillRect(cx - 82, cy - 82, 164, 164);
+        ctx.fillRect(cx - 69, cy - 69, 138, 138);
       }
     }
 
@@ -139,8 +146,9 @@ function floorLightMap(interior) {
       ctx.translate(px(x + 0.10), py(z - 0.05));
       ctx.scale(width * w / (halfWidth * 2) * 0.94, height * d / depth * 0.95);
       const shade = ctx.createRadialGradient(0, 0, 0.08, 0, 0, 1);
-      shade.addColorStop(0, 'rgba(38,31,24,.55)');
-      shade.addColorStop(0.53, 'rgba(38,31,24,.34)');
+      shade.addColorStop(0, 'rgba(34,28,22,.65)');
+      shade.addColorStop(0.46, 'rgba(34,28,22,.51)');
+      shade.addColorStop(0.73, 'rgba(38,31,24,.19)');
       shade.addColorStop(1, 'rgba(38,31,24,0)');
       ctx.fillStyle = shade;
       ctx.fillRect(-1, -1, 2, 2);
@@ -152,10 +160,10 @@ function floorLightMap(interior) {
 }
 
 export function palette() {
-  const atriumTile = mineral([206, 194, 172], 271, true);
-  const storeTile = mineral([217, 208, 191], 883, true);
-  const limestone = mineral([210, 202, 184], 31);
-  const countertop = mineral([232, 225, 210], 484);
+  const atriumTile = mineral([208, 198, 182], 271, true);
+  const storeTile = mineral([217, 209, 195], 883, true);
+  const limestone = mineral([218, 210, 192], 31);
+  const countertop = mineral([232, 225, 211], 484);
   const wood = walnut();
   for (const map of [atriumTile, storeTile, limestone, wood]) {
     map.wrapS = map.wrapT = THREE.RepeatWrapping;
@@ -164,7 +172,6 @@ export function palette() {
     concourse: baked(0xffffff, { map: atriumTile, lightMap: floorLightMap(false), lightMapIntensity: Math.PI }),
     store: baked(0xffffff, { map: storeTile, lightMap: floorLightMap(true), lightMapIntensity: Math.PI }),
     stone: baked(0xffffff, { map: limestone }),
-    ivory: baked(0xe1d4be),
     ceiling: baked(0xc7bcac),
     oak: baked(0xffffff, { map: wood }),
     darkOak: baked(0xd0bdab, { map: wood }),
@@ -192,15 +199,16 @@ export function palette() {
     glass: new THREE.MeshBasicMaterial({
       map: texture(128, 128, (ctx, width, height) => {
         const glass = ctx.createLinearGradient(0, 0, width, height * 0.28);
-        glass.addColorStop(0, 'rgba(186,210,201,.15)');
-        glass.addColorStop(0.26, 'rgba(240,247,244,.31)');
-        glass.addColorStop(0.40, 'rgba(181,205,197,.12)');
-        glass.addColorStop(0.76, 'rgba(235,245,242,.25)');
-        glass.addColorStop(1, 'rgba(179,201,190,.15)');
+        glass.addColorStop(0, 'rgba(167,198,191,.16)');
+        glass.addColorStop(0.24, 'rgba(228,241,237,.24)');
+        glass.addColorStop(0.30, 'rgba(244,249,247,.54)');
+        glass.addColorStop(0.335, 'rgba(222,239,233,.19)');
+        glass.addColorStop(0.73, 'rgba(229,242,237,.27)');
+        glass.addColorStop(1, 'rgba(174,199,190,.14)');
         ctx.fillStyle = glass;
         ctx.fillRect(0, 0, width, height);
       }),
-      transparent: true, opacity: 0.52, depthWrite: false, side: THREE.DoubleSide,
+      transparent: true, opacity: 0.46, depthWrite: false, side: THREE.DoubleSide,
     }),
     skylight: new THREE.MeshBasicMaterial({ color: 0xe5edf2, toneMapped: false }),
     lamp: new THREE.MeshBasicMaterial({ color: 0xffeac4, toneMapped: false }),
@@ -319,8 +327,9 @@ export function batchStatic(root) {
   });
   for (const [material, objects] of batches) {
     if (objects.length < 2 && !material.userData.baked) continue;
+    const keepIndices = objects.every(object => object.geometry.index);
     const pieces = objects.map(object => {
-      const source = object.geometry.index ? object.geometry.toNonIndexed() : object.geometry.clone();
+      const source = object.geometry.index && !keepIndices ? object.geometry.toNonIndexed() : object.geometry.clone();
       source.applyMatrix4(object.matrixWorld);
       if (material.userData.baked) bakeSurfaceLight(source);
       return source;

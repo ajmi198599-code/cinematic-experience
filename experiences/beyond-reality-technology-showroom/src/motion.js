@@ -1,9 +1,19 @@
 const NOMINAL_FRAME_MS = 1000 / 60;
 export const STALL_MS = 250;
+const RAMP = 0.22;
+const rampProgress = t => (t - RAMP * Math.sin(Math.PI * t / RAMP) / Math.PI) / (2 * (1 - RAMP));
 
-// A delayed frame can move the camera by at most one 24 fps step.
+// A stalled frame resumes with a normal step. Ordinary delays can use one 24 fps step.
 export function cameraStep(interval) {
+  if (interval >= STALL_MS) return NOMINAL_FRAME_MS;
   return Math.min(1000 / 24, Math.max(0, interval ?? NOMINAL_FRAME_MS));
+}
+
+// Integrate a smooth acceleration ramp into a constant-speed middle section.
+export function routeProgress(fraction) {
+  if (fraction < RAMP) return rampProgress(Math.max(0, fraction));
+  if (fraction > 1 - RAMP) return 1 - rampProgress(Math.max(0, 1 - fraction));
+  return (fraction - RAMP / 2) / (1 - RAMP);
 }
 
 export function routeDuration(metres) {

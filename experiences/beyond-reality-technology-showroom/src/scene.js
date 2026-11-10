@@ -2,15 +2,17 @@ import * as THREE from 'three';
 import { buildConcourse, buildFixtures, buildShowroom, buildStorefront } from './building.js';
 import { batchStatic, kit, palette } from './materials.js';
 import { buildProducts } from './products.js';
-import { cameraStep, routeDuration, STALL_MS, summarizeTravel } from './motion.js';
-import { DISPLAYS, ENTRY_MARKER, EYE_HEIGHT, VIEWS, isClearSegment, planRoute, sampleRoute } from './world.js';
+import { cameraStep, routeDuration, routeProgress, STALL_MS, summarizeTravel } from './motion.js';
+import { createProfile } from './profile.js';
+import { DISPLAYS, ENTRY_MARKER, EYE_HEIGHT, VIEWS, inspectionView, isClearSegment, planRoute, sampleRoute } from './world.js';
 
 const clamp = THREE.MathUtils.clamp;
 const lerp = THREE.MathUtils.lerp;
 const halfTurn = Math.PI;
 const angleDelta = (from, to) => THREE.MathUtils.euclideanModulo(to - from + halfTurn, 2 * halfTurn) - halfTurn;
-const eased = t => (1 - Math.cos(Math.PI * t)) * 0.5;
 const xz = ({ x, z }) => [x, z];
+const yieldWork = () => typeof scheduler !== 'undefined' && scheduler.yield
+  ? scheduler.yield() : new Promise(resolve => setTimeout(resolve, 0));
 
 function viewAngles({ position, look }) {
   const dx = look[0] - position[0];
@@ -47,49 +49,64 @@ function reflectionRoom(renderer) {
 }
 
 function lightProducts(scene) {
-  scene.add(new THREE.HemisphereLight(0xfff6e7, 0xa6a69a, 1.62));
-  const sunlight = new THREE.DirectionalLight(0xfff2dc, 2.0);
-  sunlight.position.set(-3.6, 13.4, 7.8);
-  const softbox = new THREE.DirectionalLight(0xe6e7db, 0.81);
-  softbox.position.set(3.5, 4.5, -6.5);
+  scene.add(new THREE.HemisphereLight(0xf1f4ee, 0xb1a18d, 1.22));
+  const sunlight = new THREE.DirectionalLight(0xffebd0, 2.2);
+  sunlight.position.set(-3.9, 9.4, 3.8);
+  const softbox = new THREE.DirectionalLight(0xe0ecf0, 0.75);
+  softbox.position.set(4.4, 5.2, -5.8);
   scene.add(sunlight, softbox);
 }
 
 export async function createShowroom(canvas, viewport, callbacks, reducedMotion) {
+  let phase = performance.now();
   const renderer = new THREE.WebGLRenderer({
     canvas, antialias: false, alpha: false, powerPreference: 'default',
   });
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.03;
+  renderer.toneMappingExposure = 1.08;
+  const profile = createProfile(viewport);
   const context = renderer.getContext();
   const debug = context.getExtension('WEBGL_debug_renderer_info');
   const graphics = debug ? context.getParameter(debug.UNMASKED_RENDERER_WEBGL) : '';
   const software = /swiftshader|llvmpipe|software/i.test(graphics);
+  const graphicsMode = !graphics ? 'unverified' : software ? 'software' : 'reported';
+  profile?.phase('webgl-context', phase);
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0xc8bdac);
+  phase = performance.now();
   const environment = reflectionRoom(renderer);
   scene.environment = environment.texture;
-  scene.environmentIntensity = 0.61;
+  scene.environmentIntensity = 0.74;
   lightProducts(scene);
   const materials = palette();
+  profile?.phase('reflection-and-textures', phase);
+  await yieldWork();
+  phase = performance.now();
   const concourse = new THREE.Group();
   const interior = new THREE.Group();
   const outside = kit(concourse);
   const inside = kit(interior);
   buildConcourse(concourse, outside, materials);
   buildStorefront(outside, materials);
+  batchStatic(concourse);
+  profile?.phase('concourse-geometry', phase);
+  await yieldWork();
+  phase = performance.now();
   buildShowroom(interior, inside, materials);
   buildFixtures(inside, materials);
-  batchStatic(concourse);
   batchStatic(interior);
   const zones = [concourse, interior].map(group => ({ group, bounds: new THREE.Box3().setFromObject(group) }));
+  profile?.phase('showroom-geometry', phase);
+  await yieldWork();
+  phase = performance.now();
   const models = buildProducts(inside, materials);
   scene.add(concourse, interior);
   for (const { close, distant } of models) scene.add(close, distant);
   scene.updateMatrixWorld(true);
   scene.matrixWorldAutoUpdate = false;
+  profile?.phase('product-geometry', phase);
 
   const camera = new THREE.PerspectiveCamera(VIEWS.concourse.fov, 1, 0.032, 45);
   camera.rotation.order = 'YXZ';
@@ -100,6 +117,7 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
   let bufferPixels = 0;
   let bufferChanges = 0;
   let quality = 1;
+  let nextQuality = quality;
   let slowFrames = 0;
   let lastPublish = -Infinity;
   let width = viewport.clientWidth;
@@ -120,6 +138,7 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
   const planePointer = new THREE.Vector2();
   const projection = new THREE.Vector3();
   const hitPoint = new THREE.Vector3();
+  const routePoint = [0, 0];
   const pickBounds = DISPLAYS.map(({ id, x, z, width, depth, markerY }) => ({
     id, bounds: new THREE.Box3(
       new THREE.Vector3(x - width / 2, 0, z - depth / 2),
@@ -139,22 +158,24 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     if (!frame && !failed && !paused()) frame = requestAnimationFrame(draw);
   }
 
-  function updateLens() {
+  function updateLens(force = false) {
     const narrow = clamp((1.18 - camera.aspect) * 49, 0, 17);
-    camera.fov = lens + narrow * clamp((lens - 39) / 18, 0, 1);
+    const fov = lens + narrow * clamp((lens - 39) / 18, 0, 1);
+    if (!force && camera.fov === fov) return;
+    camera.fov = fov;
     camera.updateProjectionMatrix();
   }
 
   function resize() {
     if (!width || !height) return;
-    const budget = software ? 180000 : width < 620 ? 255000 : 420000;
+    const budget = software ? 145000 : width < 620 ? 230000 : graphics ? 360000 : 300000;
     const ratio = Math.min(devicePixelRatio * 1.14, 1.65, Math.sqrt(budget * quality / (width * height)));
     renderer.setDrawingBufferSize(width, height, ratio);
     bufferDirty = false;
     bufferPixels = canvas.width * canvas.height;
     bufferChanges++;
     camera.aspect = width / height;
-    updateLens();
+    updateLens(true);
   }
 
   function setView(view) {
@@ -179,7 +200,7 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     if (isClearSegment(xz(camera.position), [camera.position.x, to[1]])) camera.position.z = to[1];
   }
 
-  function render(now, publish) {
+  function render(now, publish, warming = false) {
     if (bufferDirty) resize();
     camera.rotation.set(pitch, yaw, 0, 'YXZ');
     camera.updateMatrixWorld(true);
@@ -196,6 +217,7 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     const before = performance.now();
     renderer.render(scene, camera);
     const cost = performance.now() - before;
+    if (warming) return cost;
     frameCount++;
     if (publish || now - lastPublish >= 70) {
       lastPublish = now;
@@ -211,7 +233,7 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
       }
       callbacks.onFrame({
         x, y, z, yaw, pitch, anchors, frameCount, bufferPixels, bufferChanges,
-        draws: renderer.info.render.calls, triangles: renderer.info.render.triangles, software,
+        draws: renderer.info.render.calls, triangles: renderer.info.render.triangles, graphics: graphicsMode,
       });
     }
     return cost;
@@ -220,6 +242,7 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
   function draw(now) {
     frame = 0;
     if (paused()) return;
+    const frameStarted = profile ? performance.now() : 0;
     const gap = previousTime === null ? null : now - previousTime;
     previousTime = now;
     const dt = cameraStep(gap) / 1000;
@@ -230,8 +253,8 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
       if (gap !== null && active.renders) active.intervals.push(gap);
       active.renders++;
       active.clock = Math.min(active.duration, active.clock + (gap === null ? 0 : dt * 1000));
-      const t = eased(active.clock / active.duration);
-      const [x, z] = active.route.at(t);
+      const t = routeProgress(active.clock / active.duration);
+      const [x, z] = active.route.at(t, routePoint);
       camera.position.set(x, lerp(active.y, active.view.position[1], t), z);
       yaw = active.yaw + active.turn * t;
       pitch = lerp(active.pitch, active.targetPitch, t);
@@ -262,22 +285,30 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     const cost = render(now, !moving);
     if (active) {
       active.renderCosts.push(cost);
+      profile?.frame(now, gap, frameStarted);
       if (!arrived && gap !== null && gap < STALL_MS) {
         slowFrames = gap >= 39 || cost > 13 ? slowFrames + 1 : Math.max(0, slowFrames - 1);
-        if (slowFrames >= 6 && quality > 0.53) {
-          quality *= 0.74;
-          slowFrames = 0;
-          bufferDirty = true;
-        }
+        if (slowFrames >= 8 && nextQuality === quality && quality > 0.58) nextQuality *= 0.78;
       }
-      if (arrived) callbacks.onArrive(active.destination, summarizeTravel(active, performance.now()));
+      if (arrived) {
+        profile?.finish();
+        callbacks.onArrive(active.destination, summarizeTravel(active, performance.now()));
+      }
     }
     if (moving) requestDraw();
-    else previousTime = null;
+    else {
+      previousTime = null;
+      if (nextQuality !== quality) {
+        quality = nextQuality;
+        bufferDirty = true;
+        requestDraw();
+      }
+    }
   }
 
   function complete(view, destination) {
     travel = null;
+    profile?.cancel();
     previousTime = null;
     setView(view);
     render(performance.now(), true);
@@ -305,12 +336,14 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
       y: camera.position.y, yaw, pitch, fov: lens,
       turn: angleDelta(yaw, angles.yaw), targetPitch: angles.pitch,
     };
+    profile?.begin(destination.id ?? destination.kind);
     requestDraw();
     return true;
   }
 
   function resumeWalking() {
     travel = null;
+    profile?.cancel();
     transitioningToEye = true;
     callbacks.onManual(camera.position.z < 0 ? 'showroom' : 'concourse');
     requestDraw();
@@ -411,13 +444,32 @@ export async function createShowroom(canvas, viewport, callbacks, reducedMotion)
     observer.disconnect();
     listeners.abort();
     resetInput();
+    profile?.dispose();
     callbacks.onUnavailable();
   }, { once: true, signal });
 
   resize();
+  phase = performance.now();
   await renderer.compileAsync(scene, camera);
-  if (failed) throw new Error('The 3D context was lost during setup.');
+  profile?.phase('shader-precompile', phase);
+  phase = performance.now();
+  // Submit visible buffers and textures at each stop before visitors reach them.
+  renderer.setScissorTest(true);
+  renderer.setScissor(0, 0, 4, 4);
+  for (const view of [VIEWS.showroom, ...DISPLAYS.map(({ id }) => inspectionView(id))]) {
+    if (failed || context.isContextLost()) throw new Error('The 3D context was lost during setup.');
+    setView(view);
+    render(0, false, true);
+    await yieldWork();
+  }
+  renderer.setScissorTest(false);
+  if (failed || context.isContextLost()) throw new Error('The 3D context was lost during setup.');
+  profile?.phase('view-warmup', phase);
+  phase = performance.now();
+  setView(VIEWS.concourse);
   render(performance.now(), true);
+  profile?.phase('first-visible-render', phase);
+  profile?.ready({ graphics: graphicsMode, pixels: bufferPixels, draws: renderer.info.render.calls, triangles: renderer.info.render.triangles });
   observer.observe(viewport);
   return {
     go,

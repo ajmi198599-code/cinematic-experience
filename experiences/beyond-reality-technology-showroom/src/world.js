@@ -171,13 +171,21 @@ export function sampleRoute(points) {
   const length = lengths.reduce((sum, part) => sum + part, 0);
   return {
     length,
-    at(fraction) {
+    at(fraction, target = []) {
       let offset = Math.max(0, Math.min(1, fraction)) * length;
       for (let i = 0; i < lengths.length; i++) {
-        if (offset <= lengths[i] && lengths[i] > 0) return mix(points[i], points[i + 1], offset / lengths[i]);
+        if (offset <= lengths[i] && lengths[i] > 0) {
+          const [x, z] = points[i];
+          const [nextX, nextZ] = points[i + 1];
+          const t = offset / lengths[i];
+          target[0] = x + (nextX - x) * t;
+          target[1] = z + (nextZ - z) * t;
+          return target;
+        }
         offset -= lengths[i];
       }
-      return points.at(-1);
+      [target[0], target[1]] = points.at(-1);
+      return target;
     },
   };
 }

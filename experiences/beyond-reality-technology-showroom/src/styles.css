@@ -138,6 +138,7 @@ h1 em { font: italic 500 1.02em/1 Georgia, serif; letter-spacing: -0.062em; colo
 .entry-hotspot .icon { width: 18px; height: 18px; }
 .object-hotspot { font: 700 12px var(--mono); border-radius: 100%; }
 .object-hotspot::after { content: ""; position: absolute; height: 12px; width: 1px; background: #fbefda; top: 100%; }
+.object-hotspot:hover, .object-hotspot:focus-visible { border-color: #ffe6b8; }
 .scene-footer { inset-block-end: 15px; align-items: end; }
 .walk-hint { min-height: 34px; min-width: 0; }
 .walk-hint .icon { width: 16px; height: 16px; }
@@ -280,19 +281,24 @@ dialog::backdrop { background: #131e17a3; }
   .shell, .header-inner { width: calc(100% - 26px); }
   .header { position: sticky; inset-block-start: 0; z-index: 5; }
   .layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: "stage" "actions" "index" "rail"; gap: 9px; }
-  .intro { padding-block: 14px 12px; }
+  .intro { padding-block: 10px 10px; }
   .stage { scroll-margin-top: 69px; }
   .quick-actions { display: block; grid-area: actions; min-width: 0; }
   .quick-actions .outline-button { margin: 0; }
-  .quick-actions .angle-list { margin: 0 0 6px; }
+  .quick-actions .angle-list { margin: 5px 0 0; }
   .quick-actions .angle-list button { background: var(--card); }
   .quick-actions .angle-list button[aria-pressed="true"] { background: var(--green); }
   .quick-inspect-actions { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px; }
   .quick-inspect-actions .add-button { margin: 0; }
+  .quick-details { margin-top: 5px; border: 1px solid var(--line); border-radius: 6px; background: var(--card); }
+  .quick-details summary { padding: 12px; min-height: 44px; cursor: pointer; font-size: 13px; font-weight: 650; }
+  .quick-details .rail-copy { padding-inline: 12px; }
+  .quick-details .features { margin: 8px 12px 12px; }
+  .layout:has(.stage[data-location="inspect"]) .rail { display: none; }
   .rail #shop-card button, .rail #inside-actions, .rail #inspection-actions button, .rail #angle-section { display: none; }
   .rail .shop-card-title { margin-block-end: 0; }
   h1 { font-size: clamp(35px, 7.8vw, 54px); }
-  .stage { height: clamp(280px, 42svh, 440px); }
+  .stage { height: clamp(268px, 38svh, 400px); }
   .rail { flex-direction: row; align-items: stretch; padding: 14px; gap: 13px; }
   .rail-content { flex: 1; min-width: 0; }
   .plan { align-self: end; flex: 0 0 min(42%, 230px); border-top: 0; border-inline-start: 1px solid var(--line); padding: 0; padding-inline-start: 11px; }

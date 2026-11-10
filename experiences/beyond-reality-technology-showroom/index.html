@@ -93,22 +93,27 @@
         <button type="button" id="quick-enter" class="primary-button" data-go="showroom"><span data-i18n="enter">Enter showroom</span><svg class="icon direction-icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
         <button type="button" id="quick-exit" class="outline-button" data-go="concourse" hidden><svg class="icon direction-icon" aria-hidden="true"><use href="#icon-back"/></svg><span data-i18n="concourseReturn">Back to concourse</span></button>
         <div id="quick-inspect" hidden>
+          <div class="quick-inspect-actions">
+            <button type="button" class="outline-button" data-go="showroom" data-label="roomReturn"><svg class="icon direction-icon" aria-hidden="true"><use href="#icon-back"/></svg><span data-i18n="back">Back</span></button>
+            <button type="button" class="primary-button add-button" data-add><span data-i18n="addBasket">Add to demo basket</span><svg class="icon" aria-hidden="true"><use href="#icon-plus"/></svg></button>
+          </div>
           <div id="quick-angles" class="angle-list" role="group" data-label="viewingAngle">
             <button type="button" data-angle="0" data-label="angleLeft" data-i18n="left">Left</button>
             <button type="button" data-angle="1" data-label="angleFront" data-i18n="front">Front</button>
             <button type="button" data-angle="2" data-label="angleRight" data-i18n="right">Right</button>
           </div>
-          <div class="quick-inspect-actions">
-            <button type="button" class="outline-button" data-go="showroom" data-label="roomReturn"><svg class="icon direction-icon" aria-hidden="true"><use href="#icon-back"/></svg><span data-i18n="back">Back</span></button>
-            <button type="button" class="primary-button add-button" data-add><span data-i18n="addBasket">Add to demo basket</span><svg class="icon" aria-hidden="true"><use href="#icon-plus"/></svg></button>
-          </div>
+          <details id="quick-details" class="quick-details">
+            <summary data-i18n="productDetails">Product details</summary>
+            <p id="quick-description" class="rail-copy"></p>
+            <ul id="quick-features" class="features"></ul>
+          </details>
         </div>
       </div>
 
       <section id="object-index" class="index" aria-labelledby="index-title" tabindex="-1">
         <div class="index-heading">
           <h2 class="eyebrow" id="index-title" data-i18n="objectIndex">DISPLAYS</h2>
-          <span data-i18n="selectDisplay">3 concept objects</span>
+          <span id="discovery-hint">3 concept products</span>
         </div>
         <div class="index-list" id="index-list"></div>
       </section>

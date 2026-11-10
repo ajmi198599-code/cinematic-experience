@@ -24,6 +24,7 @@ let sceneStatus = 'loading';
 let lastFrame = null;
 let motionPreference = null;
 let feedbackTimer;
+let detailsKey = '';
 
 const indexButtons = new Map();
 const markers = new Map();
@@ -216,6 +217,7 @@ function updateUI() {
   stage.dataset.angle = item ? String(angle) : '';
   stage.dataset.scene = sceneStatus;
   $('scene-mode').textContent = t[sceneStatus];
+  $('discovery-hint').textContent = kind === 'concourse' ? t.selectDisplay : kind === 'inspect' ? t.switchDisplay : t.chooseDisplay;
   $('placeholder-title').textContent = sceneStatus === 'fallback' ? item?.name[language] ?? t.fallbackTitle : t.preparing;
   $('placeholder-icon').setAttribute('href', `#icon-${sceneStatus === 'fallback' && id ? id : 'mark'}`);
   $('placeholder-copy').textContent = t.fallbackCopy;
@@ -240,13 +242,20 @@ function updateUI() {
   if (item) {
     $('rail-label').textContent = `${item.number} / ${item.code[language]}`;
     $('rail-title').textContent = item.name[language];
-    $('rail-copy').textContent = item.description[language];
-    $('features').replaceChildren(...item.features[language].map(text => {
-      const li = document.createElement('li');
-      li.textContent = text;
-      return li;
-    }));
+    const key = `${id}:${language}`;
+    if (detailsKey !== key) {
+      detailsKey = key;
+      $('rail-copy').textContent = $('quick-description').textContent = item.description[language];
+      for (const list of [$('features'), $('quick-features')]) {
+        list.replaceChildren(...item.features[language].map(text => {
+          const li = document.createElement('li');
+          li.textContent = text;
+          return li;
+        }));
+      }
+    }
   } else {
+    detailsKey = '';
     const outside = kind === 'concourse';
     $('rail-label').textContent = outside ? t.floorDirectory : t.insideLabel;
     $('rail-title').textContent = outside ? t.chooseShop : t.insideTitle;
@@ -263,6 +272,7 @@ function updateUI() {
 }
 
 function finish(destination, timing) {
+  if (current.id !== destination.id) $('quick-details').open = false;
   current = destination;
   journey = null;
   if (timing) {
@@ -290,8 +300,9 @@ function navigate(destination, source) {
   const nextView = destinationView(destination);
   $('basket-feedback').hidden = true;
   if (source && sceneStatus === 'ready') {
-    const viewport = stage.getBoundingClientRect();
-    if (viewport.top < -45 || viewport.bottom > window.innerHeight + 55) {
+    const view = stage.getBoundingClientRect();
+    const headerEdge = document.querySelector('.header').getBoundingClientRect().bottom;
+    if (view.top < Math.max(0, headerEdge - 2) || view.bottom > window.innerHeight + 55) {
       stage.scrollIntoView({ block: 'start', behavior: reduced() ? 'instant' : 'smooth' });
     }
   }
@@ -314,7 +325,7 @@ function navigate(destination, source) {
 
 function updatePose(data) {
   lastFrame = data;
-  const { x, y, z, yaw, pitch, frameCount, draws, triangles, bufferPixels, bufferChanges, software } = data;
+  const { x, y, z, yaw, pitch, frameCount, draws, triangles, bufferPixels, bufferChanges, graphics } = data;
   stage.dataset.camera = [x, y, z].map(value => value.toFixed(3)).join(',');
   stage.dataset.yaw = yaw.toFixed(3);
   stage.dataset.pitch = pitch.toFixed(3);
@@ -323,7 +334,7 @@ function updatePose(data) {
   stage.dataset.triangles = String(triangles);
   stage.dataset.bufferPixels = String(bufferPixels);
   stage.dataset.bufferChanges = String(bufferChanges);
-  stage.dataset.graphics = software ? 'software' : 'standard';
+  stage.dataset.graphics = graphics;
   drawMap(data);
   if (!journey && current.kind !== 'inspect') {
     if (z < -0.43 && current.kind === 'concourse') finish({ kind: 'showroom' });
@@ -332,9 +343,10 @@ function updatePose(data) {
   updateHotspots();
 }
 
-function enableFallback() {
+function enableFallback(reason) {
   if (sceneStatus === 'fallback') return;
   sceneStatus = 'fallback';
+  stage.dataset.fallbackReason = reason;
   scene = null;
   lastFrame = null;
   finish(journey ?? current);
@@ -433,12 +445,15 @@ drawMap({ x: VIEWS.concourse.position[0], z: VIEWS.concourse.position[2] });
 translate();
 
 async function initialize() {
-  if (new URLSearchParams(window.location.search).get('view') === 'catalogue') {
-    enableFallback();
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('view') === 'catalogue') {
+    enableFallback('catalogue');
     return;
   }
   try {
     const { createShowroom } = await import('./scene.js');
+    // The opt-in profile can reproduce a failed WebGL context on any browser.
+    if (params.get('profile') === '1' && params.get('webgl') === 'unavailable') $('room').getContext('2d');
     scene = await createShowroom($('room'), stage, {
       onFrame: updatePose,
       onArrive: finish,
@@ -454,7 +469,7 @@ async function initialize() {
       onOrbit(step) {
         setAngle(Math.min(2, Math.max(0, (journey?.angle ?? current.angle) + step)));
       },
-      onUnavailable: enableFallback,
+      onUnavailable: () => enableFallback('context-lost'),
     }, reduced());
     sceneStatus = 'ready';
     const ready = performance.mark('showroom-ready');
@@ -464,7 +479,7 @@ async function initialize() {
     if (current.kind !== 'concourse') navigate(current);
     else updateUI();
   } catch {
-    enableFallback();
+    enableFallback('renderer-unavailable');
   }
 }
 initialize();

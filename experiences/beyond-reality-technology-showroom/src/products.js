@@ -1,33 +1,38 @@
 import * as THREE from 'three';
-import { batchStatic, finish, texture } from './materials.js';
+import { batchStatic, finish, randomFrom, texture } from './materials.js';
 import { DISPLAYS, TABLE_HEIGHT } from './world.js';
 
 const radians = degrees => degrees * Math.PI / 180;
 const flat = [-Math.PI / 2, 0, 0];
 
-function band(k, parent, material, path, width, thickness, depthAxis) {
+function band(k, parent, material, path, width, thickness, depthAxis, rounded = false, steps = 24) {
   const positions = [];
   const indices = [];
   const uv = [];
-  for (let i = 0; i <= 32; i++) {
-    const t = i / 32;
+  const corners = rounded
+    ? [[-0.7, -1], [0.7, -1], [1, -0.55], [1, 0.55], [0.7, 1], [-0.7, 1], [-1, 0.55], [-1, -0.55]]
+    : [[-1, -1], [1, -1], [1, 1], [-1, 1]];
+  const sides = corners.length;
+  const across = depthAxis === 'z' ? new THREE.Vector3(0, 0, 1) : new THREE.Vector3(1, 0, 0);
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps;
     const point = path.getPoint(t);
     const tangent = path.getTangent(t);
-    const across = depthAxis === 'z' ? new THREE.Vector3(0, 0, 1) : new THREE.Vector3(1, 0, 0);
     const normal = tangent.clone().cross(across).normalize();
-    for (const [w, h] of [[-1, -1], [1, -1], [1, 1], [-1, 1]]) {
+    for (const [w, h] of corners) {
       const p = point.clone().addScaledVector(across, w * width / 2).addScaledVector(normal, h * thickness / 2);
       positions.push(...p.toArray());
       uv.push(t, w / 2 + 0.5);
     }
     if (i === 0) continue;
-    for (let side = 0; side < 4; side++) {
-      const a = (i - 1) * 4 + side;
-      const b = (i - 1) * 4 + (side + 1) % 4;
-      indices.push(a, b, a + 4, b, b + 4, a + 4);
+    for (let side = 0; side < sides; side++) {
+      const a = (i - 1) * sides + side;
+      const b = (i - 1) * sides + (side + 1) % sides;
+      indices.push(a, b, a + sides, b, b + sides, a + sides);
     }
   }
-  indices.push(0, 3, 2, 0, 2, 1, 128, 129, 130, 128, 130, 131);
+  const end = sides * steps;
+  for (let i = 1; i < sides - 1; i++) indices.push(0, i + 1, i, end, end + i, end + i + 1);
   const shape = new THREE.BufferGeometry();
   shape.setIndex(indices);
   shape.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
@@ -38,6 +43,24 @@ function band(k, parent, material, path, width, thickness, depthAxis) {
 
 function curve(points) {
   return new THREE.CatmullRomCurve3(points.map(p => new THREE.Vector3(...p)));
+}
+
+function grain(seed, base, weave = false) {
+  const random = randomFrom(seed);
+  return texture(128, 64, (ctx, width, height) => {
+    const pixels = ctx.createImageData(width, height);
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        const i = (y * width + x) * 4;
+        const variation = (random() - 0.5) * 21 + (weave ? (x % 4 < 2 ? 6 : -6) + (y % 4 < 2 ? 3 : -3) : 0);
+        pixels.data[i] = base[0] + variation;
+        pixels.data[i + 1] = base[1] + variation;
+        pixels.data[i + 2] = base[2] + variation;
+        pixels.data[i + 3] = 255;
+      }
+    }
+    ctx.putImageData(pixels, 0, 0);
+  });
 }
 
 function makeTools(k, parent) {
@@ -62,10 +85,11 @@ function makeTools(k, parent) {
 
 function headphones(k, parent, m) {
   const { box, softBox, disk, ring, sign } = makeTools(k, parent);
-  const cushion = finish(0x493c31, 0.89);
-  const blackPlastic = finish(0x262e2b, 0.49, 0.15);
-  const graphite = finish(0x4c524e, 0.34, 0.72);
-  const champagne = finish(0x9b8872, 0.36, 0.66);
+  const cushion = finish(0xffffff, 0.86, 0, { map: grain(13, [70, 54, 43]) });
+  const cloth = finish(0xffffff, 0.96, 0, { map: grain(17, [44, 43, 38], true) });
+  const blackPlastic = finish(0x28312e, 0.49, 0.1);
+  const graphite = finish(0x575e5b, 0.31, 0.74);
+  const champagne = finish(0xad9478, 0.32, 0.7);
   softBox(m.pineDark, [0.34, 0.036, 0.23], 0.017, [0, 0.018, 0]);
   disk(m.dark, 0.015, 0.340, [0, 0.204, -0.061]);
   softBox(m.dark, [0.132, 0.024, 0.10], 0.011, [0, 0.377, -0.019]);
@@ -73,11 +97,16 @@ function headphones(k, parent, m) {
   band(k, parent, graphite, curve([
     [-0.128, 0.210, 0.001], [-0.124, 0.302, 0.006], [-0.083, 0.371, 0.013],
     [0, 0.394, 0.017], [0.083, 0.371, 0.013], [0.124, 0.302, 0.006], [0.128, 0.210, 0.001],
-  ]), 0.065, 0.014, 'z');
+  ]), 0.066, 0.014, 'z', true);
   band(k, parent, cushion, curve([
     [-0.101, 0.305, 0.009], [-0.078, 0.350, 0.014], [0, 0.376, 0.017],
     [0.078, 0.350, 0.014], [0.101, 0.305, 0.009],
-  ]), 0.057, 0.025, 'z');
+  ]), 0.060, 0.023, 'z', true);
+
+  const padGeometry = new THREE.LatheGeometry([
+    [0.034, -0.009], [0.051, -0.011], [0.057, -0.006], [0.058, 0.005],
+    [0.054, 0.015], [0.047, 0.019], [0.039, 0.015], [0.034, 0.007], [0.034, -0.009],
+  ].map(point => new THREE.Vector2(...point)), 36);
 
   for (const side of [-1, 1]) {
     const x = side * 0.126;
@@ -87,11 +116,10 @@ function headphones(k, parent, m) {
     trim.scale.set(0.96, 1.13, 1);
     const back = disk(blackPlastic, 0.047, 0.004, [x + side * 0.014, 0.199, 0.002], 'x');
     back.scale.set(1.14, 1, 0.97);
-    const cup = disk(cushion, 0.056, 0.024, [x - side * 0.022, 0.199, 0.002], 'x');
-    cup.scale.set(1.13, 1, 0.97);
-    const lip = ring(cushion, 0.045, 0.009, [x - side * 0.036, 0.199, 0.002], 'x');
-    lip.scale.set(1, 1.17, 1);
-    disk(m.black, 0.036, 0.002, [x - side * 0.037, 0.199, 0.002], 'x');
+    const pad = k.mesh(padGeometry, cushion, [x - side * 0.022, 0.199, 0.002], { parent });
+    pad.rotation.z = side * Math.PI / 2;
+    pad.scale.set(1.12, 1, 0.94);
+    disk(cloth, 0.035, 0.003, [x - side * 0.020, 0.199, 0.002], 'x').scale.x = 1.12;
     disk(champagne, 0.018, 0.011, [x + side * 0.010, 0.256, -0.003], 'x');
     const yoke = box(champagne, [0.012, 0.064, 0.025], [side * 0.126, 0.267, 0]);
     yoke.rotation.z = radians(side * 7);
@@ -111,6 +139,15 @@ function watchDial() {
     ctx.fillRect(0, 0, 256, 256);
     ctx.save();
     ctx.translate(128, 128);
+    for (let i = 0; i < 120; i++) {
+      ctx.rotate(Math.PI / 60);
+      ctx.strokeStyle = i % 3 ? 'rgba(231,235,200,.065)' : 'rgba(4,13,11,.13)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(0, -8);
+      ctx.lineTo(0, -120);
+      ctx.stroke();
+    }
     for (let i = 0; i < 60; i++) {
       ctx.rotate(Math.PI / 30);
       ctx.strokeStyle = i % 5 === 4 ? '#eddbb2' : '#7f8b81';
@@ -120,6 +157,14 @@ function watchDial() {
       ctx.lineTo(0, i % 5 === 4 ? -92 : -103);
       ctx.stroke();
     }
+    ctx.fillStyle = '#c7b694';
+    ctx.fillRect(66, -11, 24, 22);
+    ctx.fillStyle = '#212d25';
+    ctx.fillRect(68, -9, 20, 18);
+    ctx.fillStyle = '#eee5d1';
+    ctx.font = '700 11px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('18', 78, 4);
     ctx.strokeStyle = '#e4dbbf';
     ctx.lineWidth = 5;
     ctx.lineCap = 'round';
@@ -149,9 +194,9 @@ function watchDial() {
 
 function watch(k, parent, m) {
   const { softBox, box, disk, ring } = makeTools(k, parent);
-  const strap = finish(0x6d6554, 0.82);
-  const casing = finish(0xb5afa1, 0.24, 0.74);
-  const edge = finish(0x83715a, 0.32, 0.65);
+  const strap = finish(0xffffff, 0.84, 0, { map: grain(35, [99, 91, 75], true) });
+  const casing = finish(0xaeb4b3, 0.24, 0.81);
+  const edge = finish(0x8e775d, 0.33, 0.65);
   const dial = new THREE.MeshStandardMaterial({ map: watchDial(), roughness: 0.43, metalness: 0.05 });
   softBox(m.pineDark, [0.24, 0.033, 0.20], 0.016, [0, 0.0165, 0.005]);
   softBox(m.dark, [0.043, 0.071, 0.059], 0.015, [0, 0.065, -0.020]);
@@ -159,11 +204,12 @@ function watch(k, parent, m) {
   band(k, parent, strap, curve([
     [0, 0.163, 0.029], [0, 0.196, 0.016], [0, 0.208, -0.013], [0, 0.189, -0.063],
     [0, 0.131, -0.075], [0, 0.080, -0.055], [0, 0.075, -0.014], [0, 0.100, 0.018], [0, 0.144, 0.029],
-  ]), 0.034, 0.006, 'x');
-  box(casing, [0.038, 0.009, 0.012], [0, 0.088, -0.051]);
-  disk(casing, 0.034, 0.014, [0, 0.160, 0.031], 'z');
-  ring(casing, 0.0313, 0.0033, [0, 0.160, 0.039], 'z');
-  ring(edge, 0.0290, 0.0006, [0, 0.160, 0.041], 'z');
+  ]), 0.030, 0.006, 'x', true);
+  softBox(casing, [0.036, 0.008, 0.014], 0.003, [0, 0.088, -0.051]);
+  box(edge, [0.032, 0.004, 0.009], [0, 0.098, -0.065]);
+  disk(casing, 0.032, 0.014, [0, 0.160, 0.031], 'z');
+  ring(casing, 0.0302, 0.0024, [0, 0.160, 0.039], 'z');
+  ring(edge, 0.0287, 0.0007, [0, 0.160, 0.041], 'z');
   for (const y of [0.125, 0.194]) {
     for (const x of [-0.014, 0.014]) {
       softBox(casing, [0.005, 0.012, 0.014], 0.002, [x, y, 0.026]);
@@ -171,8 +217,9 @@ function watch(k, parent, m) {
   }
   // A flat UV disc keeps the artwork legible independent of the sidewall UVs.
   k.mesh(new THREE.CircleGeometry(0.029, 48), dial, [0, 0.160, 0.0394], { parent });
-  disk(casing, 0.0056, 0.007, [0.035, 0.159, 0.032], 'x', 16);
-  disk(m.dark, 0.0035, 0.0015, [0.039, 0.159, 0.032], 'x', 16);
+  disk(casing, 0.0056, 0.006, [0.033, 0.159, 0.032], 'x', 16);
+  ring(edge, 0.0048, 0.0008, [0.036, 0.159, 0.032], 'x');
+  disk(m.dark, 0.0035, 0.0015, [0.037, 0.159, 0.032], 'x', 16);
   k.shadow(0, 0.002, 0, 0.36, 0.30, parent);
 }
 
@@ -180,19 +227,16 @@ function camera(k, parent, m) {
   const { softBox, box, disk, ring, sign } = makeTools(k, parent);
   const alloy = finish(0x4d504b, 0.34, 0.69);
   const black = finish(0x212526, 0.65, 0.22);
-  const rubber = finish(0x333632, 0.94);
-  const glass = new THREE.MeshPhysicalMaterial({
-    color: 0x334640, roughness: 0.16, metalness: 0.46, clearcoat: 1, clearcoatRoughness: 0.11,
-  });
+  const rubber = finish(0xffffff, 0.91, 0, { map: grain(53, [55, 55, 48], true) });
+  const glass = finish(0x48605a, 0.13, 0.51, { envMapIntensity: 1.26 });
+  const screen = finish(0x1f2c30, 0.22, 0.22);
   softBox(m.pineDark, [0.37, 0.033, 0.29], 0.014, [0, 0.0165, 0.016]);
   softBox(m.dark, [0.126, 0.032, 0.074], 0.012, [0, 0.046, -0.006]);
   softBox(black, [0.242, 0.137, 0.085], 0.012, [0, 0.119, -0.009]);
   softBox(alloy, [0.239, 0.031, 0.084], 0.010, [0, 0.178, -0.008]);
   softBox(alloy, [0.089, 0.033, 0.051], 0.009, [-0.021, 0.198, -0.010]);
   softBox(rubber, [0.045, 0.107, 0.034], 0.013, [0.096, 0.113, 0.033]);
-  for (let i = 0; i < 8; i++) {
-    box(black, [0.020, 0.0015, 0.002], [0.099, 0.082 + i * 0.010, 0.0507]);
-  }
+  softBox(rubber, [0.049, 0.032, 0.015], 0.006, [0.092, 0.140, -0.049]);
   disk(alloy, 0.060, 0.013, [-0.018, 0.119, 0.036], 'z');
   disk(black, 0.054, 0.058, [-0.018, 0.119, 0.066], 'z');
   disk(rubber, 0.056, 0.031, [-0.018, 0.119, 0.078], 'z', 64);
@@ -207,15 +251,17 @@ function camera(k, parent, m) {
     ]);
     ridge.rotation.z = -angle;
   }
-  const optic = k.mesh(new THREE.SphereGeometry(1, 32, 16), glass, [-0.018, 0.119, 0.097], { parent });
-  optic.scale.set(0.038, 0.038, 0.0055);
+  ring(black, 0.0386, 0.0018, [-0.018, 0.119, 0.101], 'z');
+  const optic = k.mesh(new THREE.SphereGeometry(1, 28, 12), glass, [-0.018, 0.119, 0.099], { parent });
+  optic.scale.set(0.038, 0.038, 0.007);
   for (const [x, radius] of [[0.083, 0.025], [-0.087, 0.018]]) {
     disk(black, radius, 0.014, [x, 0.197, -0.010], 'y', 36);
     disk(alloy, radius * 0.83, 0.003, [x, 0.206, -0.010]);
   }
   disk(m.bronze, 0.009, 0.003, [0.093, 0.202, 0.024], 'y', 20);
   softBox(m.black, [0.047, 0.024, 0.010], 0.005, [-0.023, 0.195, -0.042]);
-  softBox(glass, [0.112, 0.073, 0.005], 0.005, [-0.025, 0.118, -0.053]);
+  softBox(screen, [0.112, 0.073, 0.005], 0.005, [-0.025, 0.118, -0.053]);
+  for (const y of [0.101, 0.123, 0.145]) disk(black, 0.005, 0.004, [0.052, y, -0.054], 'z', 10);
   sign([{ value: 'BR / C01', y: 0.50, size: 42, color: '#e1dac8' }], 0.069, 0.021, [-0.073, 0.176, 0.035], { resolution: 256, canvasHeight: 80 });
   k.shadow(0, 0.002, 0.009, 0.49, 0.39, parent);
 }
@@ -230,7 +276,7 @@ function distantModel(id, k, parent, m) {
     band(k, parent, m.dark, curve([
       [-0.127, 0.209, 0.003], [-0.106, 0.340, 0.011], [0, 0.393, 0.017],
       [0.106, 0.340, 0.011], [0.127, 0.209, 0.003],
-    ]), 0.061, 0.023, 'z');
+    ]), 0.061, 0.023, 'z', false, 12);
     for (const side of [-1, 1]) {
       const cup = disk(m.black, 0.056, 0.043, [side * 0.125, 0.199, 0.002], 'x', 12);
       cup.scale.x = 1.15;
