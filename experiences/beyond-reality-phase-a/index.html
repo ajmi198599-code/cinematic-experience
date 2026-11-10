@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#16211e">
+  <meta name="description" content="BEYOND REALITY — An immersive, considered technology showroom. Phase A design prototype with illustrative merchandise, no real checkout.">
+  <title>BEYOND REALITY — The Signature Showroom</title>
+  <meta property="og:title" content="BEYOND REALITY — The Signature Showroom">
+  <meta property="og:description" content="Step into a carefully considered space. Explore beautifully presented products. Concept showroom, not a live store.">
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link rel="stylesheet" href="./src/styles.css">
+  <script type="module" src="./src/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#showroom">Skip to showroom</a>
+  <div class="site-shell">
+    <header class="site-header" id="top">
+      <a class="identity" href="#top" aria-label="Beyond Reality home">
+        <span class="identity-symbol" aria-hidden="true"><svg viewBox="0 0 36 36" fill="none"><path d="M18 2 34 18 18 34 2 18Z" stroke="currentColor" stroke-width="1.4"/><circle cx="18" cy="18" r="8" stroke="currentColor" stroke-width="1.1"/><circle cx="18" cy="18" r="2" fill="currentColor"/></svg></span>
+        <span class="identity-copy"><strong>BEYOND REALITY</strong><small>THE SIGNATURE SHOWROOM</small></span>
+      </a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a href="#showroom" data-en="The showroom" data-ar="المعرض">The showroom</a>
+        <a href="#collection" data-en="The collection" data-ar="المنتجات">The collection</a>
+        <a href="#story" data-en="Our approach" data-ar="فكرتنا">Our approach</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="language-switch" id="languageSwitch" aria-label="Switch to Arabic">عربي</button>
+        <button type="button" class="basket-switch" id="openBasket" aria-label="Open demo basket">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M4 8h16l-1.2 12H5.2L4 8Z" stroke="currentColor" stroke-width="1.5"/><path d="M8 9V6a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span class="basket-count" id="basketCount" aria-live="polite">0</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="heroHeading">
+        <div class="hero-architecture" role="img" aria-label="Representative photograph of a warm, modern interior"></div>
+        <div class="hero-wash"></div>
+        <div class="hero-body">
+          <div class="hero-overline"><span class="overline-rule"></span><span data-en="A NEW WAY TO DISCOVER" data-ar="طريقة جديدة للاستكشاف">A NEW WAY TO DISCOVER</span></div>
+          <h1 id="heroHeading"><span data-en="Objects in" data-ar="التفاصيل">Objects in</span><em data-en="their element." data-ar="تصنع الفرق.">their element.</em></h1>
+          <p class="hero-description" data-en="Step into a space made for curiosity. Choose a collection, discover the details, and let the right product find you." data-ar="ادخل مساحة صُممت للفضول. اختر مجموعتك، استكشف التفاصيل، وشاهد المنتجات أمامك ببساطة.">Step into a space made for curiosity. Choose a collection, discover the details, and let the right product find you.</p>
+          <div class="hero-actions">
+            <a class="button button-solid" href="#showroom"><span data-en="Enter the showroom" data-ar="ادخل المعرض">Enter the showroom</span><span aria-hidden="true">↗</span></a>
+            <a class="button button-ghost" href="#collection"><span data-en="Browse the collection" data-ar="تصفح المنتجات">Browse the collection</span></a>
+          </div>
+        </div>
+        <div class="hero-side-note" aria-hidden="true">THE GALLERY <span>—</span> VOL. 01</div>
+        <div class="hero-bottom"><span data-en="01 / ARCHITECTURE MEETS CURIOSITY" data-ar="٠١ / مساحة للتجربة والاكتشاف">01 / ARCHITECTURE MEETS CURIOSITY</span><span data-en="SCROLL TO ENTER ↓" data-ar="مرّر للدخول ↓">SCROLL TO ENTER ↓</span></div>
+      </section>
+
+      <section class="introduction" id="story" aria-labelledby="introHeading">
+        <div class="introduction-serial">01 <span>/</span> 03</div>
+        <h2 id="introHeading"><span data-en="Fewer distractions." data-ar="تفاصيل أقل تشتيتاً.">Fewer distractions.</span><em data-en="More discovery." data-ar="تجربة أكثر وضوحاً.">More discovery.</em></h2>
+        <p data-en="We've stripped away the noise. There are no endless menus or complicated controls. The space is here to help you find something worth a closer look." data-ar="أزلنا الزحام البصري. لا قوائم معقدة ولا خطوات طويلة. هذه المساحة تساعدك على اكتشاف ما يستحق نظرة أقرب.">We've stripped away the noise. There are no endless menus or complicated controls. The space is here to help you find something worth a closer look.</p>
+      </section>
+
+      <section class="showroom" id="showroom" aria-labelledby="showroomHeading">
+        <div class="section-heading">
+          <div><p class="section-eyebrow" data-en="02 / THE TECHNOLOGY ATELIER" data-ar="٠٢ / جناح التقنية">02 / THE TECHNOLOGY ATELIER</p><h2 id="showroomHeading"><span data-en="Closer to" data-ar="اقترب من">Closer to</span> <em data-en="what matters." data-ar="التفاصيل.">what matters.</em></h2></div>
+          <p class="section-aside" data-en="Three objects. One considered space. Select an object to bring it into view." data-ar="ثلاثة منتجات في مساحة واحدة. اختر منتجاً ليظهر أمامك.">Three objects. One considered space. Select an object to bring it into view.</p>
+        </div>
+        <div class="showroom-grid">
+          <div class="presentation-space" id="presentationSpace" tabindex="-1" aria-label="Featured product presentation">
+            <div class="presentation-architecture"></div>
+            <div class="presentation-shade"></div>
+            <div class="presentation-riser" aria-hidden="true"></div>
+            <div class="presentation-display" id="productDisplay">
+              <div class="image-fallback" id="imageFallback" aria-hidden="true"><span>BR</span></div>
+              <img id="featuredPhoto" alt="" decoding="async" fetchpriority="high" hidden>
+            </div>
+            <div class="presentation-topline"><span data-en="THE SIGNATURE EDIT" data-ar="المجموعة المختارة">THE SIGNATURE EDIT</span><span id="presentationNumber">01 / 03</span></div>
+            <div class="presentation-caption"><span class="caption-icon" aria-hidden="true">✧</span><span data-en="Representative photography · Demo products" data-ar="صور توضيحية · منتجات تجريبية">Representative photography · Demo products</span></div>
+            <button type="button" class="image-magnify" id="magnifyPhoto" aria-label="Inspect product photo">＋</button>
+          </div>
+          <div class="product-panel">
+            <div class="product-panel-top"><span class="product-kicker" id="productCategory">THE OBJECT / 01</span><span class="status-dot" data-en="CURATED OBJECT" data-ar="منتج مختار">CURATED OBJECT</span></div>
+            <div class="product-content" aria-live="polite" aria-atomic="true">
+              <h3 id="productTitle">Studio Headphones</h3>
+              <p class="product-description" id="productDescription">An invitation to hear the everyday differently.</p>
+              <div class="product-tags" id="productTags"></div>
+              <div class="product-price-row"><span id="productPrice">SAR 349</span><small data-en="Illustrative price" data-ar="سعر توضيحي">Illustrative price</small></div>
+            </div>
+            <div class="product-actions"><button class="button button-dark" type="button" id="addToBasket"><span data-en="Add to demo bag" data-ar="أضف إلى السلة التجريبية">Add to demo bag</span><span aria-hidden="true">＋</span></button><button class="text-button" id="nextObject" type="button"><span data-en="Next object" data-ar="المنتج التالي">Next object</span><span aria-hidden="true">→</span></button></div>
+            <div class="object-selector"><p data-en="EXPLORE THE OBJECTS" data-ar="استكشف المنتجات">EXPLORE THE OBJECTS</p><div class="selector-buttons" id="objectSelector" role="group" aria-label="Choose a featured object"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="editorial-break" aria-labelledby="breakHeading"><div class="break-number">THE EDITION <span>01 — 03</span></div><h2 id="breakHeading" data-en="Good design makes room for curiosity." data-ar="التصميم الجيد يترك مساحة للاكتشاف.">Good design makes room for curiosity.</h2><span class="break-line" aria-hidden="true"></span></section>
+
+      <section class="collection" id="collection" aria-labelledby="collectionHeading">
+        <div class="section-heading collection-heading"><div><p class="section-eyebrow" data-en="03 / THE OBJECTS" data-ar="٠٣ / المنتجات">03 / THE OBJECTS</p><h2 id="collectionHeading"><span data-en="The curated" data-ar="المجموعة">The curated</span> <em data-en="collection." data-ar="المختارة.">collection.</em></h2></div><p class="section-aside" data-en="Browse without entering the guided showroom. One click brings any object into focus." data-ar="تصفح المنتجات مباشرة. نقرة واحدة تعرض المنتج أمامك في المعرض.">Browse without entering the guided showroom. One click brings any object into focus.</p></div>
+        <div class="collection-tools"><label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.6"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.6"/></svg><input id="searchInput" type="search" autocomplete="off" placeholder="Search objects" aria-label="Search objects"><button type="button" id="resetSearch" aria-label="Clear search" hidden>✕</button></label><span id="resultCount" class="result-count" aria-live="polite">03 OBJECTS</span></div>
+        <div class="product-grid" id="collectionGrid"></div>
+        <p class="collection-disclaimer" data-en="CONCEPT ONLY · Photos are representative, not verified images of exact items. Product names, descriptions and SAR prices are illustrative. No purchase, inventory or payment services are active." data-ar="نموذج تجريبي فقط · الصور توضيحية وليست صوراً معتمدة للمنتجات. الأسماء والأوصاف والأسعار بالريال افتراضية. لا تتوفر مشتريات أو مخزون أو مدفوعات فعلية.">CONCEPT ONLY · Photos are representative, not verified images of exact items. Product names, descriptions and SAR prices are illustrative. No purchase, inventory or payment services are active.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer"><div><strong>BEYOND REALITY</strong><span data-en="Thoughtfully imagined. Carefully built." data-ar="رؤية مختلفة، وتنفيذ مدروس.">Thoughtfully imagined. Carefully built.</span></div><div class="footer-right"><a href="#top" data-en="Back to top ↑" data-ar="العودة للأعلى ↑">Back to top ↑</a><span>© 2026 · PHASE A / DESIGN PROTOTYPE</span></div></footer>
+  </div>
+  <div class="overlay-scrim" id="overlayScrim" hidden></div>
+  <aside class="bag-dialog" id="bagDialog" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="bagHeading" hidden tabindex="-1">
+    <div class="bag-top"><div><p class="section-eyebrow" data-en="A CLOSER LOOK" data-ar="تفاصيل مختارة">A CLOSER LOOK</p><h2 id="bagHeading" data-en="Your selection." data-ar="اختياراتك.">Your selection.</h2></div><button type="button" id="closeBasket" class="dialog-close" aria-label="Close basket">✕</button></div>
+    <p class="bag-disclaimer" data-en="A demonstration bag only. Items are illustrative and cannot be purchased." data-ar="سلة للعرض فقط. المنتجات توضيحية وغير متاحة للشراء.">A demonstration bag only. Items are illustrative and cannot be purchased.</p>
+    <div class="bag-items" id="bagItems"></div>
+    <div class="bag-footer"><div class="bag-total"><span data-en="Illustrative total" data-ar="الإجمالي التوضيحي">Illustrative total</span><strong id="bagTotal">SAR 0</strong></div><button class="button button-disabled" type="button" disabled data-en="Checkout unavailable · Demo" data-ar="الدفع غير متاح · عرض تجريبي">Checkout unavailable · Demo</button></div>
+  </aside>
+  <div class="photo-dialog" id="photoDialog" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="photoDialogHeading" hidden tabindex="-1"><div class="photo-dialog-head"><h2 id="photoDialogHeading" data-en="A closer look" data-ar="نظرة أقرب">A closer look</h2><button type="button" id="closePhoto" class="dialog-close" aria-label="Close photo">✕</button></div><img id="photoDialogImage" alt="Representative product photograph" src=""><p data-en="Representative photography only — not a verified image of the exact item." data-ar="صورة توضيحية فقط وليست صورة معتمدة للمنتج الفعلي.">Representative photography only — not a verified image of the exact item.</p></div>
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
