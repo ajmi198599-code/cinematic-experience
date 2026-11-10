@@ -1,0 +1,130 @@
+[
+  {
+    "mobileNativeEntry": {
+      "done": true,
+      "state": {
+        "angle": "",
+        "bufferChanges": "2",
+        "bufferPixels": "144905",
+        "camera": "0.000,1.660,-1.110",
+        "draws": "33",
+        "frames": "91",
+        "graphics": "reported",
+        "height": 844,
+        "journey": "",
+        "location": "showroom",
+        "pitch": "-0.040",
+        "profile": "{\"startup\":{\"frameSource\":\"browser-raf\",\"graphics\":\"reported\",\"renderer\":\"ANGLE (Microsoft, Microsoft Basic Render Driver (0x0000008C) Direct3D11 vs_5_0 ps_5_0, D3D11)\",\"vendor\":\"Google Inc. (Microsoft)\",\"webgl\":\"WebGL 2.0 (OpenGL ES 3.0 Chromium)\",\"userAgent\":\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36\",\"devicePixelRatio\":1,\"hardwareConcurrency\":20,\"viewport\":[1440,900],\"stage\":[1025,549],\"pixels\":359541,\"draws\":58,\"triangles\":19494,\"phases\":{\"webgl-context\":11,\"reflection-and-textures\":47.9,\"concourse-geometry\":35,\"showroom-geometry\":34.5,\"product-geometry\":35.5,\"shader-precompile\":29,\"view-warmup\":41.8,\"first-visible-render\":14.3},\"gpu\":{\"available\":false,\"disjoint\":false,\"samples\":0,\"p95Ms\":null},\"longTasks\":{\"count\":2,\"maxMs\":61}},\"longTasksAvailable\":true,\"route\":{\"destination\":\"showroom\",\"complete\":true,\"initialVisibility\":\"visible\",\"initiallyFocused\":true,\"longTasks\":{\"count\":0,\"maxMs\":0},\"frameWorkP95Ms\":3.2,\"callbackP95Ms\":51.2,\"gpu\":{\"available\":false,\"disjoint\":false,\"samples\":0,\"p95Ms\":null},\"gaps\":[{\"ms\":1000,\"source\":\"native\",\"visibility\":\"visible\",\"focused\":true,\"timerTicks\":13,\"heartbeatWindowLimited\":false,\"count\":0,\"maxMs\":0}]}}",
+        "readyMs": "432",
+        "scene": "ready",
+        "travelActiveP95": "51",
+        "travelCameraMs": "3581",
+        "travelFrames": "87",
+        "travelInitialWait": "12",
+        "travelMax": "134",
+        "travelMs": "3730",
+        "travelNativeFrames": "67",
+        "travelNativeInitialWait": "12",
+        "travelNativeMax": "1000",
+        "travelNativeP95": "50",
+        "travelP95": "51",
+        "travelPauses": "0",
+        "travelRenderP95": "3.2",
+        "travelStalls": "0",
+        "travelTimerFrames": "21",
+        "triangles": "11134",
+        "visibility": "visible",
+        "width": 390,
+        "yaw": "-0.000"
+      }
+    }
+  },
+  {
+    "hotspot": {
+      "height": 44,
+      "width": 44,
+      "x": 187.5,
+      "y": 224.421875
+    }
+  },
+  {
+    "hotspotInspection": {
+      "done": true,
+      "state": {
+        "angle": "1",
+        "bufferChanges": "2",
+        "bufferPixels": "144905",
+        "camera": "0.000,1.220,-7.270",
+        "draws": "29",
+        "frames": "147",
+        "graphics": "reported",
+        "height": 844,
+        "journey": "",
+        "location": "inspect",
+        "pitch": "-0.113",
+        "profile": "{\"startup\":{\"frameSource\":\"browser-raf\",\"graphics\":\"reported\",\"renderer\":\"ANGLE (Microsoft, Microsoft Basic Render Driver (0x0000008C) Direct3D11 vs_5_0 ps_5_0, D3D11)\",\"vendor\":\"Google Inc. (Microsoft)\",\"webgl\":\"WebGL 2.0 (OpenGL ES 3.0 Chromium)\",\"userAgent\":\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36\",\"devicePixelRatio\":1,\"hardwareConcurrency\":20,\"viewport\":[1440,900],\"stage\":[1025,549],\"pixels\":359541,\"draws\":58,\"triangles\":19494,\"phases\":{\"webgl-context\":11,\"reflection-and-textures\":47.9,\"concourse-geometry\":35,\"showroom-geometry\":34.5,\"product-geometry\":35.5,\"shader-precompile\":29,\"view-warmup\":41.8,\"first-visible-render\":14.3},\"gpu\":{\"available\":false,\"disjoint\":false,\"samples\":0,\"p95Ms\":null},\"longTasks\":{\"count\":2,\"maxMs\":61}},\"longTasksAvailable\":true,\"route\":{\"destination\":\"watch\",\"complete\":true,\"initialVisibility\":\"visible\",\"initiallyFocused\":true,\"longTasks\":{\"count\":0,\"maxMs\":0},\"frameWorkP95Ms\":5.8,\"callbackP95Ms\":50.3,\"gpu\":{\"available\":false,\"disjoint\":false,\"samples\":0,\"p95Ms\":null},\"gaps\":[{\"ms\":1016.7,\"source\":\"native\",\"visibility\":\"visible\",\"focused\":true,\"timerTicks\":14,\"heartbeatWindowLimited\":false,\"count\":0,\"maxMs\":0}]}}",
+        "readyMs": "432",
+        "scene": "ready",
+        "travelActiveP95": "50",
+        "travelCameraMs": "2287",
+        "travelFrames": "56",
+        "travelInitialWait": "57",
+        "travelMax": "140",
+        "travelMs": "2466",
+        "travelNativeFrames": "35",
+        "travelNativeInitialWait": "57",
+        "travelNativeMax": "1017",
+        "travelNativeP95": "50",
+        "travelP95": "50",
+        "travelPauses": "0",
+        "travelRenderP95": "2.1",
+        "travelStalls": "0",
+        "travelTimerFrames": "21",
+        "triangles": "13216",
+        "visibility": "visible",
+        "width": 390,
+        "yaw": "-0.000"
+      }
+    }
+  },
+  {
+    "pointerSwipe": {
+      "done": true,
+      "state": {
+        "angle": "2",
+        "bufferChanges": "2",
+        "bufferPixels": "144905",
+        "camera": "0.611,1.220,-7.517",
+        "draws": "38",
+        "frames": "163",
+        "graphics": "reported",
+        "height": 844,
+        "journey": "",
+        "location": "inspect",
+        "pitch": "-0.113",
+        "profile": "{\"startup\":{\"frameSource\":\"browser-raf\",\"graphics\":\"reported\",\"renderer\":\"ANGLE (Microsoft, Microsoft Basic Render Driver (0x0000008C) Direct3D11 vs_5_0 ps_5_0, D3D11)\",\"vendor\":\"Google Inc. (Microsoft)\",\"webgl\":\"WebGL 2.0 (OpenGL ES 3.0 Chromium)\",\"userAgent\":\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36\",\"devicePixelRatio\":1,\"hardwareConcurrency\":20,\"viewport\":[1440,900],\"stage\":[1025,549],\"pixels\":359541,\"draws\":58,\"triangles\":19494,\"phases\":{\"webgl-context\":11,\"reflection-and-textures\":47.9,\"concourse-geometry\":35,\"showroom-geometry\":34.5,\"product-geometry\":35.5,\"shader-precompile\":29,\"view-warmup\":41.8,\"first-visible-render\":14.3},\"gpu\":{\"available\":false,\"disjoint\":false,\"samples\":0,\"p95Ms\":null},\"longTasks\":{\"count\":2,\"maxMs\":61}},\"longTasksAvailable\":true,\"route\":{\"destination\":\"watch\",\"complete\":true,\"initialVisibility\":\"visible\",\"initiallyFocused\":true,\"longTasks\":{\"count\":0,\"maxMs\":0},\"frameWorkP95Ms\":5.9,\"callbackP95Ms\":50.1,\"gpu\":{\"available\":false,\"disjoint\":false,\"samples\":0,\"p95Ms\":null},\"gaps\":[]}}",
+        "readyMs": "432",
+        "scene": "ready",
+        "travelActiveP95": "50",
+        "travelCameraMs": "664",
+        "travelFrames": "16",
+        "travelInitialWait": "132",
+        "travelMax": "50",
+        "travelMs": "834",
+        "travelNativeFrames": "0",
+        "travelNativeInitialWait": "null",
+        "travelNativeMax": "null",
+        "travelNativeP95": "null",
+        "travelP95": "50",
+        "travelPauses": "0",
+        "travelRenderP95": "4.5",
+        "travelStalls": "0",
+        "travelTimerFrames": "16",
+        "triangles": "14838",
+        "visibility": "visible",
+        "width": 390,
+        "yaw": "0.768"
+      }
+    }
+  }
+]

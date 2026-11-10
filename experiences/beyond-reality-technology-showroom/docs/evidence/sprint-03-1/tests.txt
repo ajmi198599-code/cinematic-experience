@@ -1,0 +1,32 @@
+✔ basket quantities persist and merge with changes from another tab (1.479217ms)
+✔ basket sanitizes stored values and enforces product and quantity limits (0.214073ms)
+✔ storage failure preserves a usable session basket (0.213433ms)
+✔ the proposed root filter fails open and skips only scoped showroom previews (87.689842ms)
+✔ repeated requests share one native callback and one watchdog (1.089598ms)
+✔ a stationary draw stops both callback sources and stays idle (0.172972ms)
+✔ healthy native frames keep timer recovery dormant (0.374957ms)
+✔ missing native callbacks recover at 32 ms with one pending native request (0.700249ms)
+✔ an adjacent native callback avoids a duplicate draw and later restores the watchdog (0.175896ms)
+✔ stale callbacks cannot draw or replace a restarted route (0.128514ms)
+✔ focus changes remove and rearm recovery without starting an idle loop (0.116987ms)
+✔ pausing or stopping a tour prevents queued recovery work (0.113722ms)
+✔ unsupported GPU queries remain explicitly unavailable (1.446808ms)
+✔ GPU results are read only after availability and stop after four samples (0.422529ms)
+✔ disjoint results are discarded and pending queries are released (0.162546ms)
+✔ camera time advances normally on smooth frames and bounds delayed steps (0.695903ms)
+✔ guided routes ease in and out with a lower peak speed over the same duration (0.679507ms)
+✔ the performance report separates raw stalls from active frame intervals (1.351994ms)
+✔ timer recovery retains separate native frame cadence (0.493677ms)
+✔ a route with no native callback reports the cadence as unobserved (0.239302ms)
+✔ every camera destination and route clears walls and furniture (29.528938ms)
+✔ glass and display islands block direct movement (0.192331ms)
+✔ visitors at the perimeter can route through the door and around fixtures (12.838343ms)
+✔ rear planters stay outside walkable space and guided lines (0.170328ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 179.392709

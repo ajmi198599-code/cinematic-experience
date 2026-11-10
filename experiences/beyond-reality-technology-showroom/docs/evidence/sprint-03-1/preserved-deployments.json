@@ -1,0 +1,86 @@
+[
+  {
+    "id": "dpl_9wRazWJQdgQEtVY1QYDx2hQSoouq",
+    "state": "READY",
+    "target": null,
+    "url": "beyond-reality-technology-showroom-1yzr69oi5.vercel.app",
+    "project": {
+      "id": "prj_6fNI6rCnDVTNAEEN3kU20f75rRqP",
+      "name": "beyond-reality-technology-showroom",
+      "framework": "vite"
+    },
+    "meta": {
+      "githubCommitRef": "feature/beyond-reality-showroom-sprint-03",
+      "githubCommitSha": "9f531fa5c66c7e972c46afc243d2b91fd7e25295",
+      "githubCommitMessage": "BEYOND REALITY Sprint 03 · Phoenix",
+      "githubRepo": "cinematic-experience",
+      "githubOrg": "ajmi198599-code"
+    }
+  },
+  {
+    "id": "dpl_92QUqfhjVdjzZp1sKSW6dzZAKfy2",
+    "state": "READY",
+    "target": null,
+    "url": "beyond-reality-technology-showroom-1yuz2s358.vercel.app",
+    "project": {
+      "id": "prj_6fNI6rCnDVTNAEEN3kU20f75rRqP",
+      "name": "beyond-reality-technology-showroom",
+      "framework": "vite"
+    },
+    "meta": {
+      "githubCommitRef": "feature/beyond-reality-showroom-sprint-02",
+      "githubCommitSha": "a8c7f1e11ae36ac802ee70f1b472d17a3a1d4a60",
+      "githubCommitMessage": "Sprint 02 Technology Showroom",
+      "githubRepo": "cinematic-experience",
+      "githubOrg": "ajmi198599-code"
+    }
+  },
+  {
+    "id": "dpl_4VeKBfqnAEcxpYBgz9WSnssdPaDh",
+    "state": "READY",
+    "target": null,
+    "url": "beyond-reality-technology-showroom-2ut4ki02z.vercel.app",
+    "project": {
+      "id": "prj_6fNI6rCnDVTNAEEN3kU20f75rRqP",
+      "name": "beyond-reality-technology-showroom",
+      "framework": "vite"
+    },
+    "meta": {}
+  },
+  {
+    "id": "dpl_HnQZQvoUSxdRk9xEVYtH8kDqA7zB",
+    "state": "READY",
+    "target": "production",
+    "url": "beyond-reality-signature-showroom-4m70d6eyv.vercel.app",
+    "project": {
+      "id": "prj_xVATKVFacKEvknMoecVsv3utjB2x",
+      "name": "beyond-reality-signature-showroom",
+      "framework": null
+    },
+    "meta": {
+      "githubCommitRef": "feature/beyond-reality-phase-a-signature-showroom",
+      "githubCommitSha": "Unknown",
+      "githubCommitMessage": "Launch Phase A Signature Technology Atelier",
+      "githubRepo": "cinematic-experience",
+      "githubOrg": "ajmi198599-code"
+    }
+  },
+  {
+    "id": "dpl_7McaL1c33iw3rQghEB7hEGApCbQP",
+    "state": "READY",
+    "target": "production",
+    "url": "files-mentioned-by-the-user-pkac7vo4v-mohammed-ajmis-projects.vercel.app",
+    "project": {
+      "id": "prj_rBqsSLwLhklx2Jw9cG0v1xg5gnSm",
+      "name": "files-mentioned-by-the-user-may",
+      "framework": "vite"
+    },
+    "meta": {
+      "githubCommitRef": "main",
+      "githubCommitSha": "46a0aa96f00e0ef3c57cb5fc027f9f0111e8f693",
+      "githubCommitMessage": "Phase 3.1 cinematic asset integration",
+      "githubRepo": "cinematic-experience",
+      "githubOrg": "ajmi198599-code"
+    }
+  }
+]

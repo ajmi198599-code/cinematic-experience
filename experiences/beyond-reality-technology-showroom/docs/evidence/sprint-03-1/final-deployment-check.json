@@ -1,0 +1,385 @@
+{
+  "projectsAndBranch": [
+    {
+      "result": {
+        "id": "prj_6fNI6rCnDVTNAEEN3kU20f75rRqP",
+        "name": "beyond-reality-technology-showroom",
+        "framework": "vite",
+        "accountId": "team_jfqIapFvnvzWMaobnqMeMD0c",
+        "createdAt": 1794332274989,
+        "updatedAt": 1794339693967,
+        "nodeVersion": "24.x",
+        "live": false,
+        "latestDeployment": {
+          "id": "dpl_5Rj5tZNcuGyGszbY1aFoimjKspDR",
+          "url": "beyond-reality-technology-showroom-nh5j5ik6m.vercel.app",
+          "createdAt": 1794349596496,
+          "readyState": "READY",
+          "target": null
+        },
+        "domains": [
+          "beyond-reality-technology-showroom.vercel.app",
+          "beyond-reality-technology-showroom-mohammed-ajmis-projects.vercel.app"
+        ],
+        "passwordProtection": {
+          "enabled": false,
+          "deploymentType": null
+        },
+        "ssoProtection": {
+          "enabled": false,
+          "deploymentType": null
+        },
+        "trustedIps": {
+          "enabled": false,
+          "deploymentType": null,
+          "addresses": [],
+          "protectionMode": null
+        }
+      }
+    },
+    {
+      "result": {
+        "deployments": {
+          "pagination": {
+            "count": 1,
+            "prev": 1794349406783
+          },
+          "deployments": [
+            {
+              "id": "dpl_HFZjwFe49c4CnUbto413EX6L3nwT",
+              "name": "files-mentioned-by-the-user-may",
+              "url": "files-mentioned-by-the-user-jvmkimc3f-mohammed-ajmis-projects.vercel.app",
+              "created": 1794349406783,
+              "state": "ERROR",
+              "target": null,
+              "creator": {
+                "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+                "username": "ajmi198599-6599"
+              },
+              "meta": {
+                "githubCommitRef": "feature/beyond-reality-showroom-sprint-03-1",
+                "githubCommitSha": "a336e200903f5002ccd1b419e6143df2267a66dd",
+                "githubCommitMessage": "Harden showroom frame scheduling and refine product inspection",
+                "githubRepo": "cinematic-experience",
+                "githubOrg": "ajmi198599-code"
+              },
+              "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/HFZjwFe49c4CnUbto413EX6L3nwT",
+              "isRollbackCandidate": false
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "rootBuildEvents": {
+    "result": {
+      "events": [
+        {
+          "created": 1794349407409,
+          "date": 1794349407409,
+          "type": "stdout",
+          "text": "Running build in Washington, D.C., USA (East) – iad1",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349407410,
+          "date": 1794349407410,
+          "type": "stdout",
+          "text": "Build machine configuration: 2 cores, 8 GB",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349407536,
+          "date": 1794349407536,
+          "type": "stdout",
+          "text": "Cloning github.com/ajmi198599-code/cinematic-experience (Branch: feature/beyond-reality-showroom-sprint-03-1, Commit: a336e20)",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349407538,
+          "date": 1794349407538,
+          "type": "stdout",
+          "text": "Previous build caches not available.",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349415161,
+          "date": 1794349415161,
+          "type": "stdout",
+          "text": "Warning: Failed to fetch one or more git submodules",
+          "level": "warning",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349415162,
+          "date": 1794349415162,
+          "type": "stdout",
+          "text": "Cloning completed: 7.625s",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349416325,
+          "date": 1794349416325,
+          "type": "stdout",
+          "text": "Running \"vercel build\"",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349416337,
+          "date": 1794349416337,
+          "type": "stderr",
+          "text": "Vercel CLI 65.11.0",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349417104,
+          "date": 1794349417104,
+          "type": "stdout",
+          "text": "Installing dependencies...",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349417704,
+          "date": 1794349417704,
+          "type": "stderr",
+          "text": "npm warn Unknown env config \"cache-dir\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.",
+          "level": "warning",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349418198,
+          "date": 1794349418198,
+          "type": "stdout",
+          "text": "",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349418199,
+          "date": 1794349418199,
+          "type": "stdout",
+          "text": "added 2 packages, and removed 3 packages in 950ms",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349418199,
+          "date": 1794349418199,
+          "type": "stdout",
+          "text": "",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349418199,
+          "date": 1794349418199,
+          "type": "stdout",
+          "text": "28 packages are looking for funding",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349418199,
+          "date": 1794349418199,
+          "type": "stdout",
+          "text": "  run `npm fund` for details",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349418200,
+          "date": 1794349418200,
+          "type": "stderr",
+          "text": "npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:",
+          "level": "warning",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349418200,
+          "date": 1794349418200,
+          "type": "stderr",
+          "text": "npm warn install-scripts   esbuild@0.21.5 (postinstall: node install.js)",
+          "level": "warning",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349418200,
+          "date": 1794349418200,
+          "type": "stderr",
+          "text": "npm warn install-scripts",
+          "level": "warning",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349418200,
+          "date": 1794349418200,
+          "type": "stderr",
+          "text": "npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.",
+          "level": "warning",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349418249,
+          "date": 1794349418249,
+          "type": "stdout",
+          "text": "Running \"npm run build\"",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349418386,
+          "date": 1794349418386,
+          "type": "stderr",
+          "text": "npm warn Unknown env config \"cache-dir\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.",
+          "level": "warning",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349418410,
+          "date": 1794349418410,
+          "type": "stdout",
+          "text": "",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349418410,
+          "date": 1794349418410,
+          "type": "stdout",
+          "text": "> obsidian-essence@1.0.0 build",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349418410,
+          "date": 1794349418410,
+          "type": "stdout",
+          "text": "> vite build",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349418410,
+          "date": 1794349418410,
+          "type": "stdout",
+          "text": "",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349418418,
+          "date": 1794349418418,
+          "type": "stderr",
+          "text": "sh: line 1: /vercel/path0/node_modules/.bin/vite: Permission denied",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        },
+        {
+          "created": 1794349418434,
+          "date": 1794349418434,
+          "type": "stderr",
+          "text": "Error: [BUILD_UTILS_SPAWN_126] Command \"npm run build\" exited with 126",
+          "level": "error",
+          "info": {
+            "type": "build",
+            "name": "bld_34dzopm36",
+            "entrypoint": "."
+          }
+        }
+      ]
+    }
+  }
+}

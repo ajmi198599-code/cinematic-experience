@@ -1,0 +1,482 @@
+[
+  {
+    "view": "showroom",
+    "layout": {
+      "cards": [
+        {
+          "bottom": 863.25,
+          "height": 64,
+          "label": "Inspect Studio Headphones",
+          "right": 373.34375,
+          "width": 336.296875,
+          "x": 37.046875,
+          "y": 799.25
+        },
+        {
+          "bottom": 863.25,
+          "height": 64,
+          "label": "Inspect Everyday Watch",
+          "right": 717.640625,
+          "width": 336.296875,
+          "x": 381.34375,
+          "y": 799.25
+        },
+        {
+          "bottom": 863.25,
+          "height": 64,
+          "label": "Inspect Creator Camera",
+          "right": 1061.9375,
+          "width": 336.296875,
+          "x": 725.640625,
+          "y": 799.25
+        }
+      ],
+      "clientWidth": 1425,
+      "dir": "ltr",
+      "header": [
+        {
+          "bottom": 56,
+          "height": 44,
+          "label": "Switch to Arabic",
+          "right": 1116.984375,
+          "width": 54.234375,
+          "x": 1062.75,
+          "y": 12
+        },
+        {
+          "bottom": 56,
+          "height": 44,
+          "label": "Controls",
+          "right": 1223.578125,
+          "width": 99.59375,
+          "x": 1123.984375,
+          "y": 12
+        },
+        {
+          "bottom": 56,
+          "height": 44,
+          "label": "Open demo basket, 14 items",
+          "right": 1387.9375,
+          "width": 157.359375,
+          "x": 1230.578125,
+          "y": 12
+        }
+      ],
+      "height": 900,
+      "lang": "en",
+      "movement": [
+        {
+          "bottom": 745.25,
+          "height": 44,
+          "label": "Walk left",
+          "right": 904.9375,
+          "width": 44,
+          "x": 860.9375,
+          "y": 701.25
+        },
+        {
+          "bottom": 745.25,
+          "height": 44,
+          "label": "Walk forward",
+          "right": 950.9375,
+          "width": 44,
+          "x": 906.9375,
+          "y": 701.25
+        },
+        {
+          "bottom": 745.25,
+          "height": 44,
+          "label": "Walk backward",
+          "right": 996.9375,
+          "width": 44,
+          "x": 952.9375,
+          "y": 701.25
+        },
+        {
+          "bottom": 745.25,
+          "height": 44,
+          "label": "Walk right",
+          "right": 1042.9375,
+          "width": 44,
+          "x": 998.9375,
+          "y": 701.25
+        }
+      ],
+      "quick": [
+        {
+          "bottom": 0,
+          "height": 0,
+          "label": "Back to showroom",
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "bottom": 0,
+          "height": 0,
+          "label": "Add to demo basket",
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "bottom": 0,
+          "height": 0,
+          "label": "Left angle",
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "bottom": 0,
+          "height": 0,
+          "label": "Front angle",
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "bottom": 0,
+          "height": 0,
+          "label": "Right angle",
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "scrollWidth": 1425,
+      "stage": {
+        "bottom": 764.25,
+        "height": 549,
+        "label": "Showroom view",
+        "right": 1061.9375,
+        "width": 1024.890625,
+        "x": 37.046875,
+        "y": 215.25
+      },
+      "width": 1440
+    }
+  },
+  {
+    "width": 1440,
+    "id": "headphones",
+    "state": {
+      "angle": "1",
+      "bufferChanges": "6",
+      "bufferPixels": "359541",
+      "camera": "-2.260,1.440,-5.020",
+      "draws": "31",
+      "frames": "56",
+      "graphics": "reported",
+      "height": 900,
+      "journey": "",
+      "location": "inspect",
+      "pitch": "-0.180",
+      "readyMs": "481",
+      "scene": "ready",
+      "travelActiveP95": "0",
+      "travelCameraMs": "0",
+      "travelFrames": "1",
+      "travelInitialWait": "0",
+      "travelMax": "0",
+      "travelMs": "0",
+      "travelNativeFrames": "0",
+      "travelNativeInitialWait": "0",
+      "travelNativeMax": "0",
+      "travelNativeP95": "0",
+      "travelP95": "0",
+      "travelPauses": "0",
+      "travelRenderP95": "0",
+      "travelStalls": "0",
+      "travelTimerFrames": "0",
+      "triangles": "15170",
+      "visibility": "visible",
+      "width": 1440,
+      "yaw": "0.000"
+    }
+  },
+  {
+    "width": 1440,
+    "id": "watch",
+    "state": {
+      "angle": "1",
+      "bufferChanges": "6",
+      "bufferPixels": "359541",
+      "camera": "0.000,1.220,-7.270",
+      "draws": "29",
+      "frames": "57",
+      "graphics": "reported",
+      "height": 900,
+      "journey": "",
+      "location": "inspect",
+      "pitch": "-0.113",
+      "readyMs": "481",
+      "scene": "ready",
+      "travelActiveP95": "0",
+      "travelCameraMs": "0",
+      "travelFrames": "1",
+      "travelInitialWait": "0",
+      "travelMax": "0",
+      "travelMs": "0",
+      "travelNativeFrames": "0",
+      "travelNativeInitialWait": "0",
+      "travelNativeMax": "0",
+      "travelNativeP95": "0",
+      "travelP95": "0",
+      "travelPauses": "0",
+      "travelRenderP95": "0",
+      "travelStalls": "0",
+      "travelTimerFrames": "0",
+      "triangles": "13216",
+      "visibility": "visible",
+      "width": 1440,
+      "yaw": "0.000"
+    }
+  },
+  {
+    "view": "watch",
+    "layout": {
+      "cards": [
+        {
+          "bottom": 833.25,
+          "height": 64,
+          "label": "Inspect Studio Headphones",
+          "right": 373.34375,
+          "width": 336.296875,
+          "x": 37.046875,
+          "y": 769.25
+        },
+        {
+          "bottom": 833.25,
+          "height": 64,
+          "label": "Inspect Everyday Watch",
+          "right": 717.640625,
+          "width": 336.296875,
+          "x": 381.34375,
+          "y": 769.25
+        },
+        {
+          "bottom": 833.25,
+          "height": 64,
+          "label": "Inspect Creator Camera",
+          "right": 1061.9375,
+          "width": 336.296875,
+          "x": 725.640625,
+          "y": 769.25
+        }
+      ],
+      "clientWidth": 1425,
+      "dir": "ltr",
+      "header": [
+        {
+          "bottom": 26,
+          "height": 44,
+          "label": "Switch to Arabic",
+          "right": 1116.984375,
+          "width": 54.234375,
+          "x": 1062.75,
+          "y": -18
+        },
+        {
+          "bottom": 26,
+          "height": 44,
+          "label": "Controls",
+          "right": 1223.578125,
+          "width": 99.59375,
+          "x": 1123.984375,
+          "y": -18
+        },
+        {
+          "bottom": 26,
+          "height": 44,
+          "label": "Open demo basket, 15 items",
+          "right": 1387.9375,
+          "width": 157.359375,
+          "x": 1230.578125,
+          "y": -18
+        }
+      ],
+      "height": 900,
+      "lang": "en",
+      "movement": [
+        {
+          "bottom": 0,
+          "height": 0,
+          "label": "Walk left",
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "bottom": 0,
+          "height": 0,
+          "label": "Walk forward",
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "bottom": 0,
+          "height": 0,
+          "label": "Walk backward",
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "bottom": 0,
+          "height": 0,
+          "label": "Walk right",
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "quick": [
+        {
+          "bottom": 0,
+          "height": 0,
+          "label": "Back to showroom",
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "bottom": 0,
+          "height": 0,
+          "label": "Add to demo basket",
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "bottom": 0,
+          "height": 0,
+          "label": "Left angle",
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "bottom": 0,
+          "height": 0,
+          "label": "Front angle",
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "bottom": 0,
+          "height": 0,
+          "label": "Right angle",
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "scrollWidth": 1425,
+      "stage": {
+        "bottom": 734.25,
+        "height": 549,
+        "label": "Showroom view",
+        "right": 1061.9375,
+        "width": 1024.890625,
+        "x": 37.046875,
+        "y": 185.25
+      },
+      "width": 1440
+    }
+  },
+  {
+    "width": 1440,
+    "id": "camera",
+    "state": {
+      "angle": "1",
+      "bufferChanges": "6",
+      "bufferPixels": "359541",
+      "camera": "2.260,1.235,-5.100",
+      "draws": "32",
+      "frames": "59",
+      "graphics": "reported",
+      "height": 900,
+      "journey": "",
+      "location": "inspect",
+      "pitch": "-0.131",
+      "readyMs": "481",
+      "scene": "ready",
+      "travelActiveP95": "0",
+      "travelCameraMs": "0",
+      "travelFrames": "1",
+      "travelInitialWait": "0",
+      "travelMax": "0",
+      "travelMs": "0",
+      "travelNativeFrames": "0",
+      "travelNativeInitialWait": "0",
+      "travelNativeMax": "0",
+      "travelNativeP95": "0",
+      "travelP95": "0",
+      "travelPauses": "0",
+      "travelRenderP95": "0",
+      "travelStalls": "0",
+      "travelTimerFrames": "0",
+      "triangles": "16758",
+      "visibility": "visible",
+      "width": 1440,
+      "yaw": "0.000"
+    }
+  },
+  {
+    "width": 1440,
+    "returned": {
+      "angle": "",
+      "bufferChanges": "6",
+      "bufferPixels": "359541",
+      "camera": "0.570,1.660,9.420",
+      "draws": "58",
+      "frames": "61",
+      "graphics": "reported",
+      "height": 900,
+      "journey": "",
+      "location": "concourse",
+      "pitch": "0.031",
+      "readyMs": "481",
+      "scene": "ready",
+      "travelActiveP95": "0",
+      "travelCameraMs": "0",
+      "travelFrames": "1",
+      "travelInitialWait": "0",
+      "travelMax": "0",
+      "travelMs": "0",
+      "travelNativeFrames": "0",
+      "travelNativeInitialWait": "0",
+      "travelNativeMax": "0",
+      "travelNativeP95": "0",
+      "travelP95": "0",
+      "travelPauses": "0",
+      "travelRenderP95": "0",
+      "travelStalls": "0",
+      "travelTimerFrames": "0",
+      "triangles": "19494",
+      "visibility": "visible",
+      "width": 1440,
+      "yaw": "0.043"
+    }
+  },
+  {
+    "logs": []
+  }
+]

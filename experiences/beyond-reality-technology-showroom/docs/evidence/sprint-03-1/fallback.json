@@ -1,0 +1,99 @@
+[
+  {
+    "skipFocus": "object-index",
+    "catalogue": {
+      "angle": "",
+      "fallbackReason": "catalogue",
+      "height": 800,
+      "journey": "",
+      "location": "concourse",
+      "scene": "fallback",
+      "visibility": "visible",
+      "width": 360
+    }
+  },
+  {
+    "id": "headphones",
+    "state": {
+      "angle": "1",
+      "fallbackReason": "catalogue",
+      "height": 800,
+      "journey": "",
+      "location": "inspect",
+      "scene": "fallback",
+      "visibility": "visible",
+      "width": 360
+    },
+    "anglesVisible": false
+  },
+  {
+    "id": "watch",
+    "state": {
+      "angle": "1",
+      "fallbackReason": "catalogue",
+      "height": 800,
+      "journey": "",
+      "location": "inspect",
+      "scene": "fallback",
+      "visibility": "visible",
+      "width": 360
+    },
+    "anglesVisible": false
+  },
+  {
+    "id": "camera",
+    "state": {
+      "angle": "1",
+      "fallbackReason": "catalogue",
+      "height": 800,
+      "journey": "",
+      "location": "inspect",
+      "scene": "fallback",
+      "visibility": "visible",
+      "width": 360
+    },
+    "anglesVisible": false
+  },
+  {
+    "webglFailure": {
+      "angle": "1",
+      "fallbackReason": "renderer-unavailable",
+      "height": 800,
+      "journey": "",
+      "location": "inspect",
+      "scene": "fallback",
+      "visibility": "visible",
+      "width": 360
+    },
+    "snapshot": "- link \"Skip to product index\":\n  - /url: \"#object-index\"\n- banner:\n  - strong: BEYOND REALITY\n  - generic: SPATIAL RETAIL STUDIO\n  - button \"Switch to Arabic\": عربي\n  - button \"Controls\":\n  - button \"Open demo basket, 17 items\":\n    - generic: \"17\"\n- main:\n  - paragraph: THE MALL / GROUND FLOOR\n  - heading \"Technology Showroom\" [level=1]:\n    - text: Technology\n    - emphasis: Showroom\n  - region \"Showroom view\":\n    - generic: Everyday Watch\n    - paragraph: 3D is unavailable here. The shop directory and all three product details are still available.\n    - generic: \"02\"\n    - generic: Everyday Watch\n    - generic: Catalogue mode\n    - generic \"Displays in the showroom\"\n    - paragraph: Select the doorway or a display. Use arrow keys or WASD to walk, and drag the scene to look around.\n  - button \"Back to showroom\":\n    - generic: Back\n  - button \"Add to demo basket\":\n    - generic: Add to demo basket\n  - generic \"Product details\" [active]\n  - paragraph: An understated object that brings a sense of intention to the everyday. An illustrative design concept.\n  - list:\n    - listitem: Round dial\n    - listitem: Metal crown\n    - listitem: Wraparound strap\n  - region \"DISPLAYS\":\n    - heading \"DISPLAYS\" [level=2]\n    - generic: Explore another display\n    - button \"Inspect Studio Headphones\":\n      - generic: 01 / SOUND\n      - generic: Studio Headphones\n    - button \"Inspect Everyday Watch\" [pressed]:\n      - generic: 02 / TIME\n      - generic: Everyday Watch\n    - button \"Inspect Creator Camera\":\n      - generic: 03 / IMAGING\n      - generic: Creator Camera\n- contentinfo:\n  - generic: BEYOND REALITY · SPATIAL STUDY 01\n  - generic: Concept products · Preview experience\n- status: Now viewing Everyday Watch"
+  },
+  {
+    "fallbackBasket": [
+      "\n    Studio Headphones\n    \n      \n      5\n      \n    \n    Remove",
+      "\n    Everyday Watch\n    \n      \n      6\n      \n    \n    Remove",
+      "\n    Creator Camera\n    \n      \n      6\n      \n    \n    Remove"
+    ]
+  },
+  {
+    "expectedFailureLogs": [
+      {
+        "level": "error",
+        "message": "THREE.WebGLRenderer: A WebGL context could not be created. Reason:  Canvas has an existing context of a different type",
+        "timestamp": "2026-11-10T22:51:43.049Z",
+        "url": "https://beyond-reality-technology-showroom-nh5j5ik6m.vercel.app/assets/three-B5EZRku0.js"
+      },
+      {
+        "level": "error",
+        "message": "THREE.WebGLRenderer: A WebGL context could not be created. Reason:  Canvas has an existing context of a different type",
+        "timestamp": "2026-11-10T22:51:43.050Z",
+        "url": "https://beyond-reality-technology-showroom-nh5j5ik6m.vercel.app/assets/three-B5EZRku0.js"
+      },
+      {
+        "level": "error",
+        "message": "THREE.WebGLRenderer: Error creating WebGL context.",
+        "timestamp": "2026-11-10T22:51:43.050Z",
+        "url": "https://beyond-reality-technology-showroom-nh5j5ik6m.vercel.app/assets/three-B5EZRku0.js"
+      }
+    ]
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "path": "assets/index-Bf8VmZ3V.css",
+    "bytes": 18154,
+    "gzipBytes": 5063,
+    "sha256": "a414a418bd0e6602c03c69a03fbc1c83a814562f01943c8368d2ca8dfd071842",
+    "servedMatches": true
+  },
+  {
+    "path": "assets/index-CeyP2sIK.js",
+    "bytes": 31150,
+    "gzipBytes": 12211,
+    "sha256": "5180fd6a9f865b0892a39f75481bcdbf3c6637ba1e6349c872871ad0cce33e53",
+    "servedMatches": true
+  },
+  {
+    "path": "assets/scene-DMdmgPyk.js",
+    "bytes": 39458,
+    "gzipBytes": 16561,
+    "sha256": "6f28cb8395c6ecf59da6a8a60c9c1ff90e242979500b37c477a830db54d99291",
+    "servedMatches": true
+  },
+  {
+    "path": "assets/three-B5EZRku0.js",
+    "bytes": 501280,
+    "gzipBytes": 125201,
+    "sha256": "9d5ac51cfc41a6abd47072d237bc76154ba8c8b7b0a72c9541c8a08f5d6be0d7",
+    "servedMatches": true
+  },
+  {
+    "path": "index.html",
+    "bytes": 15068,
+    "gzipBytes": 4040,
+    "sha256": "83cafc4f8beb67b09035ce9a7563c4edafd94fc7f4eb3df5402e82b53542d6f4",
+    "servedMatches": true
+  },
+  {
+    "path": "mark.svg",
+    "bytes": 268,
+    "gzipBytes": 218,
+    "sha256": "aa8c75924f014f7eb214e38cfbdd2b70682d053d90dfe0a65a29bc030371f357",
+    "servedMatches": true
+  }
+]

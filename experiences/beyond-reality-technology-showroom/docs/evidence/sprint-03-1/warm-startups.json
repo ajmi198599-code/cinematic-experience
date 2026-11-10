@@ -1,0 +1,347 @@
+[
+  {
+    "version": "Sprint 03",
+    "cache": "warm origin; cache not cleared",
+    "run": 1,
+    "state": {
+      "angle": "",
+      "bufferChanges": "1",
+      "bufferPixels": "359541",
+      "camera": "0.570,1.660,9.420",
+      "draws": "58",
+      "frames": "2",
+      "graphics": "reported",
+      "height": 900,
+      "journey": "",
+      "location": "concourse",
+      "pitch": "0.031",
+      "profile": {
+        "startup": {
+          "graphics": "reported",
+          "pixels": 359541,
+          "draws": 58,
+          "triangles": 19494,
+          "phases": {
+            "webgl-context": 10.5,
+            "reflection-and-textures": 108,
+            "concourse-geometry": 71.8,
+            "showroom-geometry": 35.5,
+            "product-geometry": 30.8,
+            "shader-precompile": 23.9,
+            "view-warmup": 45,
+            "first-visible-render": 15.7
+          },
+          "longTasks": {
+            "count": 2,
+            "maxMs": 123
+          }
+        },
+        "longTasksAvailable": true
+      },
+      "readyMs": "900",
+      "scene": "ready",
+      "triangles": "19494",
+      "visibility": "visible",
+      "width": 1440,
+      "yaw": "0.043"
+    }
+  },
+  {
+    "version": "Sprint 03",
+    "cache": "warm origin; cache not cleared",
+    "run": 2,
+    "state": {
+      "angle": "",
+      "bufferChanges": "1",
+      "bufferPixels": "359541",
+      "camera": "0.570,1.660,9.420",
+      "draws": "58",
+      "frames": "2",
+      "graphics": "reported",
+      "height": 900,
+      "journey": "",
+      "location": "concourse",
+      "pitch": "0.031",
+      "profile": {
+        "startup": {
+          "graphics": "reported",
+          "pixels": 359541,
+          "draws": 58,
+          "triangles": 19494,
+          "phases": {
+            "webgl-context": 10.3,
+            "reflection-and-textures": 72,
+            "concourse-geometry": 42.9,
+            "showroom-geometry": 32.1,
+            "product-geometry": 27.3,
+            "shader-precompile": 25,
+            "view-warmup": 32.4,
+            "first-visible-render": 14.9
+          },
+          "longTasks": {
+            "count": 1,
+            "maxMs": 83
+          }
+        },
+        "longTasksAvailable": true
+      },
+      "readyMs": "494",
+      "scene": "ready",
+      "triangles": "19494",
+      "visibility": "visible",
+      "width": 1440,
+      "yaw": "0.043"
+    }
+  },
+  {
+    "version": "Sprint 03",
+    "cache": "warm origin; cache not cleared",
+    "run": 3,
+    "state": {
+      "angle": "",
+      "bufferChanges": "1",
+      "bufferPixels": "359541",
+      "camera": "0.570,1.660,9.420",
+      "draws": "58",
+      "frames": "2",
+      "graphics": "reported",
+      "height": 900,
+      "journey": "",
+      "location": "concourse",
+      "pitch": "0.031",
+      "profile": {
+        "startup": {
+          "graphics": "reported",
+          "pixels": 359541,
+          "draws": 58,
+          "triangles": 19494,
+          "phases": {
+            "webgl-context": 10.5,
+            "reflection-and-textures": 78,
+            "concourse-geometry": 35.5,
+            "showroom-geometry": 32.9,
+            "product-geometry": 34,
+            "shader-precompile": 23.1,
+            "view-warmup": 39.2,
+            "first-visible-render": 14.8
+          },
+          "longTasks": {
+            "count": 2,
+            "maxMs": 90
+          }
+        },
+        "longTasksAvailable": true
+      },
+      "readyMs": "449",
+      "scene": "ready",
+      "triangles": "19494",
+      "visibility": "visible",
+      "width": 1440,
+      "yaw": "0.043"
+    }
+  },
+  {
+    "version": "Sprint 03.1",
+    "cache": "warm origin; cache not cleared",
+    "run": 1,
+    "state": {
+      "angle": "",
+      "bufferChanges": "1",
+      "bufferPixels": "359541",
+      "camera": "0.570,1.660,9.420",
+      "draws": "58",
+      "frames": "2",
+      "graphics": "reported",
+      "height": 900,
+      "journey": "",
+      "location": "concourse",
+      "pitch": "0.031",
+      "profile": {
+        "startup": {
+          "frameSource": "browser-raf",
+          "graphics": "reported",
+          "renderer": "ANGLE (Microsoft, Microsoft Basic Render Driver (0x0000008C) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "vendor": "Google Inc. (Microsoft)",
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+          "devicePixelRatio": 1,
+          "hardwareConcurrency": 20,
+          "viewport": [
+            1440,
+            900
+          ],
+          "stage": [
+            1025,
+            549
+          ],
+          "pixels": 359541,
+          "draws": 58,
+          "triangles": 19494,
+          "phases": {
+            "webgl-context": 11.4,
+            "reflection-and-textures": 94.4,
+            "concourse-geometry": 53.8,
+            "showroom-geometry": 54.5,
+            "product-geometry": 47.1,
+            "shader-precompile": 35.9,
+            "view-warmup": 47.3,
+            "first-visible-render": 16
+          },
+          "gpu": {
+            "available": false,
+            "disjoint": false,
+            "samples": 0,
+            "p95Ms": null
+          },
+          "longTasks": {
+            "count": 4,
+            "maxMs": 111
+          }
+        },
+        "longTasksAvailable": true
+      },
+      "readyMs": "1021",
+      "scene": "ready",
+      "triangles": "19494",
+      "visibility": "visible",
+      "width": 1440,
+      "yaw": "0.043"
+    }
+  },
+  {
+    "version": "Sprint 03.1",
+    "cache": "warm origin; cache not cleared",
+    "run": 2,
+    "state": {
+      "angle": "",
+      "bufferChanges": "1",
+      "bufferPixels": "359541",
+      "camera": "0.570,1.660,9.420",
+      "draws": "58",
+      "frames": "2",
+      "graphics": "reported",
+      "height": 900,
+      "journey": "",
+      "location": "concourse",
+      "pitch": "0.031",
+      "profile": {
+        "startup": {
+          "frameSource": "browser-raf",
+          "graphics": "reported",
+          "renderer": "ANGLE (Microsoft, Microsoft Basic Render Driver (0x0000008C) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "vendor": "Google Inc. (Microsoft)",
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+          "devicePixelRatio": 1,
+          "hardwareConcurrency": 20,
+          "viewport": [
+            1440,
+            900
+          ],
+          "stage": [
+            1025,
+            549
+          ],
+          "pixels": 359541,
+          "draws": 58,
+          "triangles": 19494,
+          "phases": {
+            "webgl-context": 9.2,
+            "reflection-and-textures": 66.6,
+            "concourse-geometry": 35.9,
+            "showroom-geometry": 34.6,
+            "product-geometry": 35.6,
+            "shader-precompile": 27.6,
+            "view-warmup": 42.5,
+            "first-visible-render": 16.1
+          },
+          "gpu": {
+            "available": false,
+            "disjoint": false,
+            "samples": 0,
+            "p95Ms": null
+          },
+          "longTasks": {
+            "count": 3,
+            "maxMs": 78
+          }
+        },
+        "longTasksAvailable": true
+      },
+      "readyMs": "505",
+      "scene": "ready",
+      "triangles": "19494",
+      "visibility": "visible",
+      "width": 1440,
+      "yaw": "0.043"
+    }
+  },
+  {
+    "version": "Sprint 03.1",
+    "cache": "warm origin; cache not cleared",
+    "run": 3,
+    "state": {
+      "angle": "",
+      "bufferChanges": "1",
+      "bufferPixels": "359541",
+      "camera": "0.570,1.660,9.420",
+      "draws": "58",
+      "frames": "2",
+      "graphics": "reported",
+      "height": 900,
+      "journey": "",
+      "location": "concourse",
+      "pitch": "0.031",
+      "profile": {
+        "startup": {
+          "frameSource": "browser-raf",
+          "graphics": "reported",
+          "renderer": "ANGLE (Microsoft, Microsoft Basic Render Driver (0x0000008C) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "vendor": "Google Inc. (Microsoft)",
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+          "devicePixelRatio": 1,
+          "hardwareConcurrency": 20,
+          "viewport": [
+            1440,
+            900
+          ],
+          "stage": [
+            1025,
+            549
+          ],
+          "pixels": 359541,
+          "draws": 58,
+          "triangles": 19494,
+          "phases": {
+            "webgl-context": 11,
+            "reflection-and-textures": 47.9,
+            "concourse-geometry": 35,
+            "showroom-geometry": 34.5,
+            "product-geometry": 35.5,
+            "shader-precompile": 29,
+            "view-warmup": 41.8,
+            "first-visible-render": 14.3
+          },
+          "gpu": {
+            "available": false,
+            "disjoint": false,
+            "samples": 0,
+            "p95Ms": null
+          },
+          "longTasks": {
+            "count": 2,
+            "maxMs": 61
+          }
+        },
+        "longTasksAvailable": true
+      },
+      "readyMs": "432",
+      "scene": "ready",
+      "triangles": "19494",
+      "visibility": "visible",
+      "width": 1440,
+      "yaw": "0.043"
+    }
+  }
+]

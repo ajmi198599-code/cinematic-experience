@@ -1,0 +1,24 @@
+[
+  {
+    "finalReviewState": {
+      "angle": "",
+      "bufferChanges": "1",
+      "bufferPixels": "359940",
+      "camera": "0.570,1.660,9.420",
+      "draws": "58",
+      "frames": "2",
+      "graphics": "reported",
+      "height": 889,
+      "journey": "",
+      "location": "concourse",
+      "pitch": "0.031",
+      "readyMs": "441",
+      "scene": "ready",
+      "triangles": "19494",
+      "visibility": "visible",
+      "width": 1920,
+      "yaw": "0.043"
+    },
+    "newErrors": []
+  }
+]

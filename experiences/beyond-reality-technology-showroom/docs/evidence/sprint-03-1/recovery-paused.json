@@ -1,0 +1,47 @@
+[
+  {
+    "syntheticStartup": {
+      "angle": "",
+      "bufferChanges": "1",
+      "bufferPixels": "359541",
+      "camera": "0.570,1.660,9.420",
+      "draws": "58",
+      "frames": "2",
+      "graphics": "reported",
+      "height": 900,
+      "journey": "",
+      "location": "concourse",
+      "pitch": "0.031",
+      "profile": "{\"startup\":{\"frameSource\":\"simulated-1hz\",\"graphics\":\"reported\",\"renderer\":\"ANGLE (Microsoft, Microsoft Basic Render Driver (0x0000008C) Direct3D11 vs_5_0 ps_5_0, D3D11)\",\"vendor\":\"Google Inc. (Microsoft)\",\"webgl\":\"WebGL 2.0 (OpenGL ES 3.0 Chromium)\",\"userAgent\":\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36\",\"devicePixelRatio\":1,\"hardwareConcurrency\":20,\"viewport\":[1440,900],\"stage\":[1025,549],\"pixels\":359541,\"draws\":58,\"triangles\":19494,\"phases\":{\"webgl-context\":6.3,\"reflection-and-textures\":67.8,\"concourse-geometry\":48,\"showroom-geometry\":46.4,\"product-geometry\":36.4,\"shader-precompile\":29.6,\"view-warmup\":44.2,\"first-visible-render\":15.2},\"gpu\":{\"available\":false,\"disjoint\":false,\"samples\":0,\"p95Ms\":null},\"longTasks\":{\"count\":3,\"maxMs\":80}},\"longTasksAvailable\":true}",
+      "readyMs": "719",
+      "scene": "ready",
+      "triangles": "19494",
+      "visibility": "visible",
+      "width": 1440,
+      "yaw": "0.043"
+    }
+  },
+  {
+    "pausedAt": 1794350020307,
+    "state": {
+      "angle": "",
+      "bufferChanges": "1",
+      "bufferPixels": "359541",
+      "camera": "0.144,1.660,2.381",
+      "draws": "55",
+      "frames": "53",
+      "graphics": "reported",
+      "height": 900,
+      "journey": "showroom",
+      "location": "concourse",
+      "pitch": "-0.016",
+      "profile": "{\"startup\":{\"frameSource\":\"simulated-1hz\",\"graphics\":\"reported\",\"renderer\":\"ANGLE (Microsoft, Microsoft Basic Render Driver (0x0000008C) Direct3D11 vs_5_0 ps_5_0, D3D11)\",\"vendor\":\"Google Inc. (Microsoft)\",\"webgl\":\"WebGL 2.0 (OpenGL ES 3.0 Chromium)\",\"userAgent\":\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36\",\"devicePixelRatio\":1,\"hardwareConcurrency\":20,\"viewport\":[1440,900],\"stage\":[1025,549],\"pixels\":359541,\"draws\":58,\"triangles\":19494,\"phases\":{\"webgl-context\":6.3,\"reflection-and-textures\":67.8,\"concourse-geometry\":48,\"showroom-geometry\":46.4,\"product-geometry\":36.4,\"shader-precompile\":29.6,\"view-warmup\":44.2,\"first-visible-render\":15.2},\"gpu\":{\"available\":false,\"disjoint\":false,\"samples\":0,\"p95Ms\":null},\"longTasks\":{\"count\":3,\"maxMs\":80}},\"longTasksAvailable\":true,\"route\":{\"destination\":\"showroom\",\"complete\":false,\"initialVisibility\":\"visible\",\"initiallyFocused\":true,\"longTasks\":{\"count\":0,\"maxMs\":0},\"frameWorkP95Ms\":2.8,\"callbackP95Ms\":47.5,\"gpu\":{\"available\":false,\"disjoint\":false,\"samples\":0,\"p95Ms\":null},\"gaps\":[{\"ms\":1004.2,\"source\":\"native\",\"visibility\":\"visible\",\"focused\":true,\"timerTicks\":13,\"heartbeatWindowLimited\":false,\"count\":0,\"maxMs\":0},{\"ms\":1012.4,\"source\":\"native\",\"visibility\":\"visible\",\"focused\":true,\"timerTicks\":13,\"heartbeatWindowLimited\":false,\"count\":0,\"maxMs\":0}]}}",
+      "readyMs": "719",
+      "scene": "ready",
+      "triangles": "16804",
+      "visibility": "visible",
+      "width": 1440,
+      "yaw": "0.014"
+    }
+  }
+]

@@ -24,6 +24,7 @@ Select the doorway or **Enter showroom**. In the view, drag to look and use the 
 | `src/building.js` and `src/materials.js` | Storefront, room, furniture, material textures and baked surface lighting |
 | `src/products.js` | Three original concept meshes and display mounts |
 | `src/scene.js` and `src/motion.js` | WebGL renderer, picking, bounded camera steps and frame measurements |
+| `src/frame-loop.js`, `src/profile.js`, `src/gpu-profile.js` | Owned render scheduling, optional timing diagnostics and nonblocking GPU queries |
 | `src/basket.js` | Quantity validation and browser-local persistence |
 | `src/app.js`, `src/catalog.js`, `src/copy.js` | Accessible interface, language, floor plan and shared Phase A catalogue |
 | `tests/` | Doorway clearance, camera timing and basket persistence |
@@ -31,6 +32,7 @@ Select the doorway or **Enter showroom**. In the view, drag to look and use the 
 | [Sprint 01 verification](docs/VERIFICATION.md) | Baseline browser and performance evidence |
 | [Sprint 02 review](docs/SPRINT_02.md) | Build repair, responsive checks and before-and-after evidence |
 | [Sprint 03 review](docs/SPRINT_03.md) | Phoenix visual refinements, frame-delivery diagnosis and release verification |
+| [Sprint 03.1 quality gate](docs/SPRINT_03_1.md) | Exact-baseline measurements, product evidence, scheduler regression checks and remaining hardware gates |
 
 ## Deploy
 

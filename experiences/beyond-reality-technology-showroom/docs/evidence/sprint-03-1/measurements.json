@@ -1,0 +1,397 @@
+{
+  "baseline": {
+    "url": "https://beyond-reality-technology-showroom-1yzr69oi5.vercel.app/",
+    "deployedCommit": "9f531fa5c66c7e972c46afc243d2b91fd7e25295",
+    "branchHead": "2e2cd6230c58657c97e91f9a8976963b4e38926e"
+  },
+  "candidate": {
+    "url": "https://beyond-reality-technology-showroom-nh5j5ik6m.vercel.app/",
+    "deployedCommit": "a336e200903f5002ccd1b419e6143df2267a66dd",
+    "deploymentId": "dpl_5Rj5tZNcuGyGszbY1aFoimjKspDR"
+  },
+  "conditions": {
+    "browser": "Connected Chrome 157.0.0.0",
+    "os": "Windows x64; UA NT 10.0; exact OS version and machine model unavailable",
+    "reportedLogicalProcessors": 20,
+    "devicePixelRatio": 1,
+    "renderer": "ANGLE (Microsoft, Microsoft Basic Render Driver (0x0000008C) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "gpuTimerQueriesAvailable": false,
+    "desktopViewport": [
+      1440,
+      900
+    ],
+    "phoneWidthViewport": [
+      390,
+      844
+    ],
+    "runsPerVersionPerViewport": 3,
+    "sameTab": true,
+    "foreground": "DOM visibility was visible; diagnostic gap samples also reported focused",
+    "cache": "Both origins visited, then consecutive entries. HTTP/driver caches not cleared or controlled.",
+    "resolution": "Same initial drawing buffer per viewport; baseline adapts downward during routes, candidate remains stable.",
+    "physicalDevicesTested": []
+  },
+  "summary": {
+    "before": {
+      "desktop": {
+        "travelNativeP95": {
+          "values": [
+            117.0,
+            67.0,
+            17.0
+          ],
+          "median": 67.0
+        },
+        "travelP95": {
+          "values": [
+            47.0,
+            48.0,
+            19.0
+          ],
+          "median": 47.0
+        },
+        "travelMs": {
+          "values": [
+            3921.0,
+            3901.0,
+            3597.0
+          ],
+          "median": 3901.0
+        },
+        "travelCameraMs": {
+          "values": [
+            3581.0,
+            3581.0,
+            3581.0
+          ],
+          "median": 3581.0
+        },
+        "travelFrames": {
+          "values": [
+            124.0,
+            145.0,
+            205.0
+          ],
+          "median": 145.0
+        },
+        "travelRenderP95": {
+          "values": [
+            4.1,
+            0.7,
+            0.5
+          ],
+          "median": 0.7
+        },
+        "travelNativeMax": {
+          "values": [
+            1017.0,
+            1000.0,
+            50.0
+          ],
+          "median": 1000.0
+        },
+        "travelMax": {
+          "values": [
+            132.0,
+            140.0,
+            50.0
+          ],
+          "median": 132.0
+        },
+        "bufferPixels": {
+          "values": [
+            280188.0,
+            170328.0,
+            170328.0
+          ],
+          "median": 170328.0
+        },
+        "travelTimerFrames": {
+          "values": [
+            35.0,
+            25.0,
+            0.0
+          ],
+          "median": 25.0
+        }
+      },
+      "mobile": {
+        "travelNativeP95": {
+          "values": [
+            1017.0,
+            1017.0,
+            117.0
+          ],
+          "median": 1017.0
+        },
+        "travelP95": {
+          "values": [
+            48.0,
+            48.0,
+            84.0
+          ],
+          "median": 48.0
+        },
+        "travelMs": {
+          "values": [
+            3692.0,
+            3713.0,
+            4186.0
+          ],
+          "median": 3713.0
+        },
+        "travelCameraMs": {
+          "values": [
+            3581.0,
+            3581.0,
+            3581.0
+          ],
+          "median": 3581.0
+        },
+        "travelFrames": {
+          "values": [
+            86.0,
+            87.0,
+            118.0
+          ],
+          "median": 87.0
+        },
+        "travelRenderP95": {
+          "values": [
+            5.7,
+            5.1,
+            6.4
+          ],
+          "median": 5.7
+        },
+        "travelNativeMax": {
+          "values": [
+            1017.0,
+            1017.0,
+            517.0
+          ],
+          "median": 1017.0
+        },
+        "travelMax": {
+          "values": [
+            132.0,
+            49.0,
+            140.0
+          ],
+          "median": 132.0
+        },
+        "bufferPixels": {
+          "values": [
+            144905.0,
+            108704.0,
+            108704.0
+          ],
+          "median": 108704.0
+        },
+        "travelTimerFrames": {
+          "values": [
+            75.0,
+            75.0,
+            49.0
+          ],
+          "median": 75.0
+        }
+      }
+    },
+    "after": {
+      "desktop": {
+        "travelNativeP95": {
+          "values": [
+            50.0,
+            50.0,
+            50.0
+          ],
+          "median": 50.0
+        },
+        "travelP95": {
+          "values": [
+            52.0,
+            51.0,
+            51.0
+          ],
+          "median": 51.0
+        },
+        "travelMs": {
+          "values": [
+            3714.0,
+            3664.0,
+            3646.0
+          ],
+          "median": 3664.0
+        },
+        "travelCameraMs": {
+          "values": [
+            3581.0,
+            3581.0,
+            3581.0
+          ],
+          "median": 3581.0
+        },
+        "travelFrames": {
+          "values": [
+            88.0,
+            88.0,
+            91.0
+          ],
+          "median": 88.0
+        },
+        "travelRenderP95": {
+          "values": [
+            5.1,
+            0.6,
+            0.6
+          ],
+          "median": 0.6
+        },
+        "travelNativeMax": {
+          "values": [
+            1000.0,
+            50.0,
+            67.0
+          ],
+          "median": 67.0
+        },
+        "travelMax": {
+          "values": [
+            142.0,
+            52.0,
+            68.0
+          ],
+          "median": 68.0
+        },
+        "bufferPixels": {
+          "values": [
+            359541.0,
+            359541.0,
+            359541.0
+          ],
+          "median": 359541.0
+        },
+        "travelTimerFrames": {
+          "values": [
+            21.0,
+            0.0,
+            0.0
+          ],
+          "median": 0.0
+        }
+      },
+      "mobile": {
+        "travelNativeP95": {
+          "values": [
+            50.0,
+            17.0,
+            17.0
+          ],
+          "median": 17.0
+        },
+        "travelP95": {
+          "values": [
+            52.0,
+            18.0,
+            18.0
+          ],
+          "median": 18.0
+        },
+        "travelMs": {
+          "values": [
+            3703.0,
+            3597.0,
+            3597.0
+          ],
+          "median": 3597.0
+        },
+        "travelCameraMs": {
+          "values": [
+            3581.0,
+            3581.0,
+            3581.0
+          ],
+          "median": 3581.0
+        },
+        "travelFrames": {
+          "values": [
+            106.0,
+            216.0,
+            216.0
+          ],
+          "median": 216.0
+        },
+        "travelRenderP95": {
+          "values": [
+            2.1,
+            0.5,
+            0.3
+          ],
+          "median": 0.5
+        },
+        "travelNativeMax": {
+          "values": [
+            1017.0,
+            17.0,
+            17.0
+          ],
+          "median": 17.0
+        },
+        "travelMax": {
+          "values": [
+            131.0,
+            19.0,
+            19.0
+          ],
+          "median": 19.0
+        },
+        "bufferPixels": {
+          "values": [
+            144905.0,
+            144905.0,
+            144905.0
+          ],
+          "median": 144905.0
+        },
+        "travelTimerFrames": {
+          "values": [
+            22.0,
+            0.0,
+            0.0
+          ],
+          "median": 0.0
+        }
+      }
+    }
+  },
+  "acceptance": {
+    "hardwareAcceleratedPerformance": "NOT VERIFIED",
+    "physicalIOS": "NOT VERIFIED",
+    "physicalAndroid": "NOT VERIFIED",
+    "controlledColdCacheStartup": "NOT VERIFIED",
+    "gpuExecutionTime": "NOT VERIFIED",
+    "compositorAndGcTrace": "NOT VERIFIED"
+  },
+  "rawFiles": [
+    "before-desktop.json",
+    "before-mobile.json",
+    "after-desktop.json",
+    "after-mobile.json",
+    "profile-native.json",
+    "warm-startups.json",
+    "recovery-paused.json",
+    "recovery-resumed.json",
+    "journey-basket.json",
+    "basket-results.json",
+    "responsive-small.json",
+    "responsive-large.json",
+    "responsive-desktop.json",
+    "mobile-pointer.json",
+    "interruptions.json",
+    "rtl-accessibility.json",
+    "fallback.json",
+    "final-browser.json"
+  ],
+  "interpretation": "Per-run p95 values and their medians; not a pooled p95 or display presentation measurement. Observed changes are not proof of a causal scheduling improvement."
+}

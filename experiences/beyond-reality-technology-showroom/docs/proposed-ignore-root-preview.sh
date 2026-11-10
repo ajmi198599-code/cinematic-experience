@@ -3,10 +3,12 @@
 # Run from the repository root. Vercel interprets exit 0 as skip, exit 1 as build.
 case "${VERCEL_ENV:-}:${VERCEL_GIT_COMMIT_REF:-}" in
   preview:feature/beyond-reality-showroom-sprint-*)
-    if git rev-parse --verify HEAD^ >/dev/null 2>&1; then
-      if git diff --quiet HEAD^ HEAD -- . \
-        ':(top,exclude)experiences/beyond-reality-technology-showroom/**' \
-        ':(top,exclude)experiences/beyond-reality-phase-a/data.json'; then
+    previous=${VERCEL_GIT_PREVIOUS_SHA:-}
+    # Compare every commit since the last successful branch deployment.
+    # Missing or shallow history must build, including first-time branches.
+    if [ -n "$previous" ] && git cat-file -e "$previous^{commit}" 2>/dev/null; then
+      if git diff --quiet "$previous" HEAD -- . \
+        ':(top,exclude)experiences/beyond-reality-technology-showroom/**'; then
         exit 0
       fi
     fi

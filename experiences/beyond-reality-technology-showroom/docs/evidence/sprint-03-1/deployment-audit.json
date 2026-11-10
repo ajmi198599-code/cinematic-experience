@@ -1,0 +1,1312 @@
+{
+  "team": {
+    "name": "Mohammed Ajmi's projects",
+    "slug": "mohammed-ajmis-projects",
+    "id": "team_jfqIapFvnvzWMaobnqMeMD0c",
+    "saml": {}
+  },
+  "rootRecent": {
+    "pagination": {
+      "count": 35,
+      "next": 1794265837929,
+      "prev": 1794346697720
+    },
+    "deployments": [
+      {
+        "id": "dpl_AHj3c1nZmdr6DhBxqq6ZN1KkkSb7",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-mcay826tr-mohammed-ajmis-projects.vercel.app",
+        "created": 1794346697720,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-showroom-sprint-03",
+          "githubCommitSha": "2e2cd6230c58657c97e91f9a8976963b4e38926e",
+          "githubCommitMessage": "Document Phoenix browser verification and visual evidence",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/AHj3c1nZmdr6DhBxqq6ZN1KkkSb7",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_GZKFrDjrK9xB6t8zssi8PcCBs9ma",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-ojd369ilk-mohammed-ajmis-projects.vercel.app",
+        "created": 1794345856936,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-showroom-sprint-03",
+          "githubCommitSha": "9f531fa5c66c7e972c46afc243d2b91fd7e25295",
+          "githubCommitMessage": "Recover guided navigation during native frame starvation",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/GZKFrDjrK9xB6t8zssi8PcCBs9ma",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_CmNihf5ufZoj2stHrazSX1YaoqVz",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-fw2dgs3nt-mohammed-ajmis-projects.vercel.app",
+        "created": 1794345434479,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-showroom-sprint-03",
+          "githubCommitSha": "e0dec19263caebe7d1af7a759bb252c4fb9f47ec",
+          "githubCommitMessage": "Measure stalled frame delivery and keep guided speed bounded",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/CmNihf5ufZoj2stHrazSX1YaoqVz",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_J49wdKzZJNSxPAZ8TTygsF3v7Kg6",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-3ac5sz73r-mohammed-ajmis-projects.vercel.app",
+        "created": 1794344964306,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-showroom-sprint-03",
+          "githubCommitSha": "b8572046943047139adcda8de868dd473afa21b4",
+          "githubCommitMessage": "Warm showroom rendering and refine Phoenix product exploration",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/J49wdKzZJNSxPAZ8TTygsF3v7Kg6",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_GBJFCYPWwNGbqxB8NTmLbpkzvJ87",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-aoykwxgjl-mohammed-ajmis-projects.vercel.app",
+        "created": 1794342166295,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-showroom-sprint-02",
+          "githubCommitSha": "a211f1213d4a7316f4bea39536f1474f887a7dde",
+          "githubCommitMessage": "Record Sprint 02 browser verification and visual evidence",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/GBJFCYPWwNGbqxB8NTmLbpkzvJ87",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_EnF9bzJ7xY3MQY6H1YVL7YiyUuuh",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-6lihzluq7-mohammed-ajmis-projects.vercel.app",
+        "created": 1794341594277,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-showroom-sprint-02",
+          "githubCommitSha": "a8c7f1e11ae36ac802ee70f1b472d17a3a1d4a60",
+          "githubCommitMessage": "Keep mobile showroom header controls visible in RTL",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/EnF9bzJ7xY3MQY6H1YVL7YiyUuuh",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_5rZV1rT4SoQqu24xGKP3yEB8LNMh",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-5gthl3hxa-mohammed-ajmis-projects.vercel.app",
+        "created": 1794340736363,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-showroom-sprint-02",
+          "githubCommitSha": "5354160d2921f4f8603fe7e2b38acd17ddda9fde",
+          "githubCommitMessage": "Refresh showroom build tool lockfile",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/5rZV1rT4SoQqu24xGKP3yEB8LNMh",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_EbS76zxT2ByC9LLjm7AAFZAk82u9",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-p02uk9vlt-mohammed-ajmis-projects.vercel.app",
+        "created": 1794340635823,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-showroom-sprint-02",
+          "githubCommitSha": "71d15cd5211fc20ddfba343a3e7df537a53ee0da",
+          "githubCommitMessage": "Improve showroom motion, mobile discovery and demo basket",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/EbS76zxT2ByC9LLjm7AAFZAk82u9",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_J9ut4ZTxSdMp4DFbSPF717coWLAX",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-rmvh2hf3d-mohammed-ajmis-projects.vercel.app",
+        "created": 1794333746816,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-technology-showroom",
+          "githubCommitSha": "b3edcddd6907138aa7033aa321ae5643e5313fae",
+          "githubCommitMessage": "Record Technology Showroom browser verification",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/J9ut4ZTxSdMp4DFbSPF717coWLAX",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_2NDZkcdv4dQZuZGw7eJZ4PSeUz8Z",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-rir19dh0z-mohammed-ajmis-projects.vercel.app",
+        "created": 1794333252043,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-technology-showroom",
+          "githubCommitSha": "62146d3432dba68d0c9ac6451935017f9959b2e0",
+          "githubCommitMessage": "Build the BEYOND REALITY Technology Showroom",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/2NDZkcdv4dQZuZGw7eJZ4PSeUz8Z",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_Fo3iAnrK8M3neQ5DsAUWPY51SL7u",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-emu0b25l8-mohammed-ajmis-projects.vercel.app",
+        "created": 1794328120461,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-phase-a-signature-showroom",
+          "githubCommitSha": "e5ef8b074a7360cf5c08e591fa8825b0a6244955",
+          "githubCommitMessage": "Phase A Signature Showroom: docs/ART_DIRECTION.md",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/Fo3iAnrK8M3neQ5DsAUWPY51SL7u",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_7psGfiYLWRgyaFgDXh2v9QC3ihtZ",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-2wca0orsc-mohammed-ajmis-projects.vercel.app",
+        "created": 1794328118063,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-phase-a-signature-showroom",
+          "githubCommitSha": "841a49c6b3f83a0f04748a6ded976a152e12bc20",
+          "githubCommitMessage": "Phase A Signature Showroom: README.md",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/7psGfiYLWRgyaFgDXh2v9QC3ihtZ",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_BChw1j8bhZrai7eJqUsL78LTEoMS",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-6pm71jyc8-mohammed-ajmis-projects.vercel.app",
+        "created": 1794328116627,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-phase-a-signature-showroom",
+          "githubCommitSha": "20002e1a718b181a4e702f6c04f0e3d4cc89fb0d",
+          "githubCommitMessage": "Phase A Signature Showroom: data.json",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/BChw1j8bhZrai7eJqUsL78LTEoMS",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_EqqEAydkBghPaTDMrsKqZaVYv4yT",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-aki8xm4td-mohammed-ajmis-projects.vercel.app",
+        "created": 1794328114305,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-phase-a-signature-showroom",
+          "githubCommitSha": "e938a2b24c052906ac38b808b719ec031ec5117a",
+          "githubCommitMessage": "Phase A Signature Showroom: src/products.js",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/EqqEAydkBghPaTDMrsKqZaVYv4yT",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_BsDn5CWLWxQH38qDFzsDwPA9r8T2",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-ag2ji89dz-mohammed-ajmis-projects.vercel.app",
+        "created": 1794328110616,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-phase-a-signature-showroom",
+          "githubCommitSha": "ece5f8fc1adab0c3bc082f3aea9083ddebbdabe8",
+          "githubCommitMessage": "Phase A Signature Showroom: src/app.js",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/BsDn5CWLWxQH38qDFzsDwPA9r8T2",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_J5rvPNW2uALRLbDur6aCD5kNbK8v",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-eqyyza48p-mohammed-ajmis-projects.vercel.app",
+        "created": 1794328102661,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-phase-a-signature-showroom",
+          "githubCommitSha": "3ea03fb14d6380de43e5eedd7a3d72b46b66679d",
+          "githubCommitMessage": "Phase A Signature Showroom: src/styles.css",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/J5rvPNW2uALRLbDur6aCD5kNbK8v",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_9Z518azdV4YpyZ6p9x1RFcCMarqR",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-9fayglyf0-mohammed-ajmis-projects.vercel.app",
+        "created": 1794328099390,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-phase-a-signature-showroom",
+          "githubCommitSha": "d706edc3051eb8e8ead766f3fe840bf1298980c4",
+          "githubCommitMessage": "Phase A Signature Showroom: index.html",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/9Z518azdV4YpyZ6p9x1RFcCMarqR",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_B5wo4gBicJ3MjvXGJDPRhEtkWWpY",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-homeaamyy-mohammed-ajmis-projects.vercel.app",
+        "created": 1794324722961,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-v4-walk-in-gallery",
+          "githubCommitSha": "bdf7ef51196c9f1b134331d3d22ed90d7d6babee",
+          "githubCommitMessage": "Add V4 CHANGELOG.md",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/B5wo4gBicJ3MjvXGJDPRhEtkWWpY",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_2B9TpCjMbdMLHkRzYKM96eLt7yu1",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-qhz3wqzp7-mohammed-ajmis-projects.vercel.app",
+        "created": 1794324719977,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-v4-walk-in-gallery",
+          "githubCommitSha": "eb2163031f494027eef148c15f023ca63b247bca",
+          "githubCommitMessage": "Add V4 README.md",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/2B9TpCjMbdMLHkRzYKM96eLt7yu1",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_CbdhGhAkvbCbrNFk69zPpS9p3pUE",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-oggliwg5w-mohammed-ajmis-projects.vercel.app",
+        "created": 1794324712448,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-v4-walk-in-gallery",
+          "githubCommitSha": "746bf79515ce991269f9fbdf31829c5a21ebe3c3",
+          "githubCommitMessage": "Add V4 catalogue-studio.html",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/CbdhGhAkvbCbrNFk69zPpS9p3pUE",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_A13KmgXodb6kfUTf2vS3fpTyHpLu",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-o9hpbks77-mohammed-ajmis-projects.vercel.app",
+        "created": 1794324684229,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-v4-walk-in-gallery",
+          "githubCommitSha": "53e463c3da9da18a0ff3141880676497ec95f2da",
+          "githubCommitMessage": "Create replaceable bilingual demo catalogue for V4",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/A13KmgXodb6kfUTf2vS3fpTyHpLu",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_9kkD6vZ8oGjTAVDV2WxtwCShc3R3",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-n5ywomnix-mohammed-ajmis-projects.vercel.app",
+        "created": 1794324681596,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-v4-walk-in-gallery",
+          "githubCommitSha": "8717a544362aa651fa2806002fc23b9886e6cf77",
+          "githubCommitMessage": "Build customer-first one-click walk-in gallery V4",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/9kkD6vZ8oGjTAVDV2WxtwCShc3R3",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_HyRYf6jUqD3gsetRTBwMVYLhT8jP",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-fjutl8yc3-mohammed-ajmis-projects.vercel.app",
+        "created": 1794320317998,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-v3-photographic-walk",
+          "githubCommitSha": "fdf1fdfe9faaed007c2e39d692584faf29bc6e5a",
+          "githubCommitMessage": "Document V3 UX realism improvement and limitations",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/HyRYf6jUqD3gsetRTBwMVYLhT8jP",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_3Swg6Cw9KcHsL7qWKP9xHj2WwxTV",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-iorb0tlzd-mohammed-ajmis-projects.vercel.app",
+        "created": 1794320315600,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-v3-photographic-walk",
+          "githubCommitSha": "ad7ebc52a1314c941bed31000511b901509dbec9",
+          "githubCommitMessage": "Document V3 UX realism improvement and limitations",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/3Swg6Cw9KcHsL7qWKP9xHj2WwxTV",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_7H6d9yRoxypApHDgGYTV6p7M2tUx",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-6phatfeb6-mohammed-ajmis-projects.vercel.app",
+        "created": 1794320291335,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-v3-photographic-walk",
+          "githubCommitSha": "c0caacf76ac45518a815d14cb3bc18f53d924874",
+          "githubCommitMessage": "Add V3 catalogue-studio.html",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/7H6d9yRoxypApHDgGYTV6p7M2tUx",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_DBwrfX2t85FieykUfcPqMA7bQBWH",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-gf2pl9sxf-mohammed-ajmis-projects.vercel.app",
+        "created": 1794320287287,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-v3-photographic-walk",
+          "githubCommitSha": "56d8f4a4e34058ef764f94928bbf50cb7a48b32e",
+          "githubCommitMessage": "Add V3 catalogue.json",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/DBwrfX2t85FieykUfcPqMA7bQBWH",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_8j5DL3i7mZjtZdqtUnK3kXfXdkq3",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-fn0dvnn5m-mohammed-ajmis-projects.vercel.app",
+        "created": 1794320247044,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-v3-photographic-walk",
+          "githubCommitSha": "dd8cd064f22d6bcd116b4f994d4b53fb95276cd2",
+          "githubCommitMessage": "Build V3 photographic guided mall walk and editorial commerce styling",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/8j5DL3i7mZjtZdqtUnK3kXfXdkq3",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_FN1c6GfBrN1HQnXtK3USHQ2qmUrd",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-nzdfpfohb-mohammed-ajmis-projects.vercel.app",
+        "created": 1794267484516,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-ux-v2-walk-and-catalogue",
+          "githubCommitSha": "0f531c3fc5dd203fcd7b01b73b8100ff51ab4bfa",
+          "githubCommitMessage": "Document UX v2: IMPLEMENTATION_REPORT.md",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/FN1c6GfBrN1HQnXtK3USHQ2qmUrd",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_2ZARNiWuwBCH1CVTFW5bgxHWSwH4",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-mkrj6oias-mohammed-ajmis-projects.vercel.app",
+        "created": 1794267482524,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-ux-v2-walk-and-catalogue",
+          "githubCommitSha": "b1f150140bf4d13fb3cf058451300e9575df7da8",
+          "githubCommitMessage": "Document UX v2: README.md",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/2ZARNiWuwBCH1CVTFW5bgxHWSwH4",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_GZeHiapQ8naafvzF7oxm4mWNjEVM",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-146o5878b-mohammed-ajmis-projects.vercel.app",
+        "created": 1794267480578,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-ux-v2-walk-and-catalogue",
+          "githubCommitSha": "8dbd2f489f1176f822dd0fa099267ef4ea95ff0a",
+          "githubCommitMessage": "Document UX v2: catalogue.schema.json",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/GZeHiapQ8naafvzF7oxm4mWNjEVM",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_4HAqbHGD23hTXZoBcZjixYEB4Rn8",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-j9nhpshvc-mohammed-ajmis-projects.vercel.app",
+        "created": 1794267441417,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-ux-v2-walk-and-catalogue",
+          "githubCommitSha": "9670ff4006e2db735e74bd8e2f6a6b8812448f17",
+          "githubCommitMessage": "Add validated editable bilingual demonstration catalogue",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/4HAqbHGD23hTXZoBcZjixYEB4Rn8",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_6cLi4iCCHw2y7TfNfR37CJuohCLM",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-7pbee92o0-mohammed-ajmis-projects.vercel.app",
+        "created": 1794267420698,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-ux-v2-walk-and-catalogue",
+          "githubCommitSha": "9eef287a7593e83b1d336f1ad7a948bcafd39774",
+          "githubCommitMessage": "Add Beyond Reality UX v2 catalogue-studio.html",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/6cLi4iCCHw2y7TfNfR37CJuohCLM",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_HnsfTesYMCTViy928J7dgwvCGP91",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-i733fbm8p-mohammed-ajmis-projects.vercel.app",
+        "created": 1794267418306,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-ux-v2-walk-and-catalogue",
+          "githubCommitSha": "e3b9b119c98762d6f49e551f0507921c0765b741",
+          "githubCommitMessage": "Add Beyond Reality UX v2 index.html",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/HnsfTesYMCTViy928J7dgwvCGP91",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_2dJdhwimj869ZRgNdVP4jbs6WLNa",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-5x080eoz7-mohammed-ajmis-projects.vercel.app",
+        "created": 1794265861832,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-ux-polish",
+          "githubCommitSha": "37ffb4e319d2887d105d641a8edb4699b4262b73",
+          "githubCommitMessage": "Document UX improvements, test scope and deployment limitations",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/2dJdhwimj869ZRgNdVP4jbs6WLNa",
+        "isRollbackCandidate": false
+      },
+      {
+        "id": "dpl_6FZLWSbmLULn9EFqhaCLzjLSFRKf",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-5g7lyfkuz-mohammed-ajmis-projects.vercel.app",
+        "created": 1794265837929,
+        "state": "ERROR",
+        "target": null,
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "feature/beyond-reality-ux-polish",
+          "githubCommitSha": "f64a0e881c7ccd513be47c6950729c9697ae9078",
+          "githubCommitMessage": "Add safe template for verified real-product replacement",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/6FZLWSbmLULn9EFqhaCLzjLSFRKf",
+        "isRollbackCandidate": false
+      }
+    ]
+  },
+  "rootProduction": {
+    "pagination": {
+      "count": 1,
+      "prev": 1779345320164
+    },
+    "deployments": [
+      {
+        "id": "dpl_7McaL1c33iw3rQghEB7hEGApCbQP",
+        "name": "files-mentioned-by-the-user-may",
+        "url": "files-mentioned-by-the-user-pkac7vo4v-mohammed-ajmis-projects.vercel.app",
+        "created": 1779345320164,
+        "state": "READY",
+        "target": "production",
+        "creator": {
+          "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+          "username": "ajmi198599-6599"
+        },
+        "meta": {
+          "githubCommitRef": "main",
+          "githubCommitSha": "46a0aa96f00e0ef3c57cb5fc027f9f0111e8f693",
+          "githubCommitMessage": "Phase 3.1 cinematic asset integration",
+          "githubRepo": "cinematic-experience",
+          "githubOrg": "ajmi198599-code"
+        },
+        "inspectorUrl": "https://vercel.com/mohammed-ajmis-projects/files-mentioned-by-the-user-may/7McaL1c33iw3rQghEB7hEGApCbQP",
+        "isRollbackCandidate": true
+      }
+    ]
+  },
+  "candidate": {
+    "deployment": {
+      "id": "dpl_5Rj5tZNcuGyGszbY1aFoimjKspDR",
+      "name": "beyond-reality-technology-showroom",
+      "url": "beyond-reality-technology-showroom-nh5j5ik6m.vercel.app",
+      "type": "LAMBDAS",
+      "state": "READY",
+      "createdAt": 1794349596496,
+      "creator": {
+        "uid": "6BIbVqKQrKT2FhZb2PTApEP4",
+        "username": "ajmi198599-6599"
+      },
+      "project": {
+        "id": "prj_6fNI6rCnDVTNAEEN3kU20f75rRqP",
+        "name": "beyond-reality-technology-showroom",
+        "framework": "vite"
+      },
+      "meta": {
+        "githubCommitRef": "feature/beyond-reality-showroom-sprint-03-1",
+        "githubCommitSha": "a336e200903f5002ccd1b419e6143df2267a66dd",
+        "githubCommitMessage": "BEYOND REALITY Sprint 03.1 quality gate",
+        "githubRepo": "cinematic-experience",
+        "githubOrg": "ajmi198599-code"
+      },
+      "alias": [],
+      "target": null,
+      "regions": [
+        "iad1"
+      ],
+      "buildingAt": 1794349597881,
+      "ready": 1794349606852,
+      "readyState": "READY",
+      "aliasError": null
+    }
+  },
+  "logs": {
+    "events": [
+      {
+        "created": 1794349597552,
+        "date": 1794349597552,
+        "type": "stdout",
+        "text": "Running build in Washington, D.C., USA (East) – iad1",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349597553,
+        "date": 1794349597553,
+        "type": "stdout",
+        "text": "Build machine configuration: 2 cores, 8 GB",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349597558,
+        "date": 1794349597558,
+        "type": "stdout",
+        "text": "Retrieving list of deployment files...",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349597708,
+        "date": 1794349597708,
+        "type": "stdout",
+        "text": "Previous build caches not available.",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349597914,
+        "date": 1794349597914,
+        "type": "stdout",
+        "text": "Downloading 21 deployment files...",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349598781,
+        "date": 1794349598781,
+        "type": "stdout",
+        "text": "Running \"vercel build\"",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349598800,
+        "date": 1794349598800,
+        "type": "stderr",
+        "text": "Vercel CLI 65.11.0",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349599683,
+        "date": 1794349599683,
+        "type": "stderr",
+        "text": "Warning: Detected \"engines\": { \"node\": \"^20.19.0 || >=22.12.0\" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: https://vercel.link/node-version",
+        "level": "warning",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349599689,
+        "date": 1794349599689,
+        "type": "stdout",
+        "text": "Running \"install\" command: `npm ci --include=dev`...",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349600759,
+        "date": 1794349600759,
+        "type": "stderr",
+        "text": "npm warn Unknown env config \"cache-dir\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.",
+        "level": "warning",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349602510,
+        "date": 1794349602510,
+        "type": "stdout",
+        "text": "",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349602510,
+        "date": 1794349602510,
+        "type": "stdout",
+        "text": "added 15 packages, and audited 16 packages in 2s",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349602510,
+        "date": 1794349602510,
+        "type": "stdout",
+        "text": "",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349602510,
+        "date": 1794349602510,
+        "type": "stdout",
+        "text": "5 packages are looking for funding",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349602511,
+        "date": 1794349602511,
+        "type": "stdout",
+        "text": "  run `npm fund` for details",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349602512,
+        "date": 1794349602512,
+        "type": "stdout",
+        "text": "",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349602512,
+        "date": 1794349602512,
+        "type": "stdout",
+        "text": "found 0 vulnerabilities",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349602514,
+        "date": 1794349602514,
+        "type": "stderr",
+        "text": "npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:",
+        "level": "warning",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349602514,
+        "date": 1794349602514,
+        "type": "stderr",
+        "text": "npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)",
+        "level": "warning",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349602515,
+        "date": 1794349602515,
+        "type": "stderr",
+        "text": "npm warn install-scripts",
+        "level": "warning",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349602515,
+        "date": 1794349602515,
+        "type": "stderr",
+        "text": "npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.",
+        "level": "warning",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349602896,
+        "date": 1794349602896,
+        "type": "stderr",
+        "text": "npm warn Unknown env config \"cache-dir\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.",
+        "level": "warning",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349602903,
+        "date": 1794349602903,
+        "type": "stdout",
+        "text": "",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349602903,
+        "date": 1794349602903,
+        "type": "stdout",
+        "text": "> beyond-reality-technology-showroom@1.0.0 build",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349602903,
+        "date": 1794349602903,
+        "type": "stdout",
+        "text": "> vite build",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349602903,
+        "date": 1794349602903,
+        "type": "stdout",
+        "text": "",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349603248,
+        "date": 1794349603248,
+        "type": "stdout",
+        "text": "\u001b[36mvite v7.3.8 \u001b[32mbuilding client environment for production...\u001b[36m\u001b[39m",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349603360,
+        "date": 1794349603360,
+        "type": "stdout",
+        "text": "transforming...",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349605448,
+        "date": 1794349605448,
+        "type": "stdout",
+        "text": "\u001b[32m✓\u001b[39m 22 modules transformed.",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349605671,
+        "date": 1794349605671,
+        "type": "stdout",
+        "text": "rendering chunks...",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349605822,
+        "date": 1794349605822,
+        "type": "stdout",
+        "text": "computing gzip size...",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349605846,
+        "date": 1794349605846,
+        "type": "stdout",
+        "text": "\u001b[2mdist/\u001b[22m\u001b[32mindex.html                 \u001b[39m\u001b[1m\u001b[2m 15.07 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:   4.07 kB\u001b[22m",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349605847,
+        "date": 1794349605847,
+        "type": "stdout",
+        "text": "\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[35mindex-Bf8VmZ3V.css  \u001b[39m\u001b[1m\u001b[2m 18.15 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:   5.08 kB\u001b[22m",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349605848,
+        "date": 1794349605848,
+        "type": "stdout",
+        "text": "\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[36mindex-CeyP2sIK.js   \u001b[39m\u001b[1m\u001b[2m 31.15 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:  12.41 kB\u001b[22m",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349605848,
+        "date": 1794349605848,
+        "type": "stdout",
+        "text": "\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[36mscene-DMdmgPyk.js   \u001b[39m\u001b[1m\u001b[2m 39.46 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:  16.63 kB\u001b[22m",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349605848,
+        "date": 1794349605848,
+        "type": "stdout",
+        "text": "\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[36mthree-B5EZRku0.js   \u001b[39m\u001b[1m\u001b[2m501.28 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip: 126.26 kB\u001b[22m",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349605848,
+        "date": 1794349605848,
+        "type": "stdout",
+        "text": "\u001b[32m✓ built in 2.55s\u001b[39m",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349605955,
+        "date": 1794349605955,
+        "type": "stderr",
+        "text": "Build Completed in /vercel/output [6s]",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349606000,
+        "date": 1794349606000,
+        "type": "stdout",
+        "text": "Deploying outputs...",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349606926,
+        "date": 1794349606926,
+        "type": "stdout",
+        "text": "Deployment completed",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349606930,
+        "date": 1794349606930,
+        "type": "stdout",
+        "text": "Creating build cache...",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349609437,
+        "date": 1794349609437,
+        "type": "stdout",
+        "text": "Created build cache: 3s",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349609437,
+        "date": 1794349609437,
+        "type": "stdout",
+        "text": "Uploading build cache [14.89 MB]",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      },
+      {
+        "created": 1794349609762,
+        "date": 1794349609762,
+        "type": "stdout",
+        "text": "Build cache uploaded: 325.000ms",
+        "info": {
+          "type": "build",
+          "name": "bld_picjriupe",
+          "entrypoint": "."
+        }
+      }
+    ]
+  },
+  "checkedAt": "2026-11-10T22:30:03.843Z"
+}

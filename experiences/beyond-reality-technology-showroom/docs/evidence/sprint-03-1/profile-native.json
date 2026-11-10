@@ -1,0 +1,300 @@
+[
+  {
+    "startup": {
+      "angle": "",
+      "bufferChanges": "1",
+      "bufferPixels": "359541",
+      "camera": "0.570,1.660,9.420",
+      "draws": "58",
+      "frames": "3",
+      "graphics": "reported",
+      "height": 900,
+      "journey": "",
+      "location": "concourse",
+      "pitch": "0.031",
+      "profile": {
+        "startup": {
+          "frameSource": "browser-raf",
+          "graphics": "reported",
+          "renderer": "ANGLE (Microsoft, Microsoft Basic Render Driver (0x0000008C) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "vendor": "Google Inc. (Microsoft)",
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+          "devicePixelRatio": 1,
+          "hardwareConcurrency": 20,
+          "viewport": [
+            1440,
+            900
+          ],
+          "stage": [
+            1025,
+            549
+          ],
+          "pixels": 359541,
+          "draws": 58,
+          "triangles": 19494,
+          "phases": {
+            "webgl-context": 9.4,
+            "reflection-and-textures": 88.1,
+            "concourse-geometry": 28.9,
+            "showroom-geometry": 49.4,
+            "product-geometry": 32,
+            "shader-precompile": 24.4,
+            "view-warmup": 38.8,
+            "first-visible-render": 17.1
+          },
+          "gpu": {
+            "available": false,
+            "disjoint": false,
+            "samples": 0,
+            "p95Ms": null
+          },
+          "longTasks": {
+            "count": 2,
+            "maxMs": 99
+          }
+        },
+        "longTasksAvailable": true
+      },
+      "readyMs": "460",
+      "scene": "ready",
+      "triangles": "19494",
+      "visibility": "visible",
+      "width": 1440,
+      "yaw": "0.043"
+    }
+  },
+  {
+    "profiledEntry": {
+      "done": true,
+      "state": {
+        "angle": "",
+        "bufferChanges": "1",
+        "bufferPixels": "359541",
+        "camera": "0.000,1.660,-1.110",
+        "draws": "35",
+        "frames": "96",
+        "graphics": "reported",
+        "height": 900,
+        "journey": "",
+        "location": "showroom",
+        "pitch": "-0.040",
+        "profile": {
+          "startup": {
+            "frameSource": "browser-raf",
+            "graphics": "reported",
+            "renderer": "ANGLE (Microsoft, Microsoft Basic Render Driver (0x0000008C) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+            "vendor": "Google Inc. (Microsoft)",
+            "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+            "devicePixelRatio": 1,
+            "hardwareConcurrency": 20,
+            "viewport": [
+              1440,
+              900
+            ],
+            "stage": [
+              1025,
+              549
+            ],
+            "pixels": 359541,
+            "draws": 58,
+            "triangles": 19494,
+            "phases": {
+              "webgl-context": 9.4,
+              "reflection-and-textures": 88.1,
+              "concourse-geometry": 28.9,
+              "showroom-geometry": 49.4,
+              "product-geometry": 32,
+              "shader-precompile": 24.4,
+              "view-warmup": 38.8,
+              "first-visible-render": 17.1
+            },
+            "gpu": {
+              "available": false,
+              "disjoint": false,
+              "samples": 0,
+              "p95Ms": null
+            },
+            "longTasks": {
+              "count": 2,
+              "maxMs": 99
+            }
+          },
+          "longTasksAvailable": true,
+          "route": {
+            "destination": "showroom",
+            "complete": true,
+            "initialVisibility": "visible",
+            "initiallyFocused": true,
+            "longTasks": {
+              "count": 0,
+              "maxMs": 0
+            },
+            "frameWorkP95Ms": 9.2,
+            "callbackP95Ms": 51,
+            "gpu": {
+              "available": false,
+              "disjoint": false,
+              "samples": 0,
+              "p95Ms": null
+            },
+            "gaps": [
+              {
+                "ms": 1000,
+                "source": "native",
+                "visibility": "visible",
+                "focused": true,
+                "timerTicks": 14,
+                "heartbeatWindowLimited": false,
+                "count": 0,
+                "maxMs": 0
+              }
+            ]
+          }
+        },
+        "readyMs": "460",
+        "scene": "ready",
+        "travelActiveP95": "51",
+        "travelCameraMs": "3581",
+        "travelFrames": "93",
+        "travelInitialWait": "30",
+        "travelMax": "133",
+        "travelMs": "3763",
+        "travelNativeFrames": "72",
+        "travelNativeInitialWait": "30",
+        "travelNativeMax": "1000",
+        "travelNativeP95": "67",
+        "travelP95": "51",
+        "travelPauses": "0",
+        "travelRenderP95": "9",
+        "travelStalls": "0",
+        "travelTimerFrames": "21",
+        "triangles": "11138",
+        "visibility": "visible",
+        "width": 1440,
+        "yaw": "-0.000"
+      }
+    }
+  },
+  {
+    "profileSnapshot": {
+      "angle": "",
+      "bufferChanges": "1",
+      "bufferPixels": "359541",
+      "camera": "0.000,1.660,-1.110",
+      "draws": "35",
+      "frames": "96",
+      "graphics": "reported",
+      "height": 900,
+      "journey": "",
+      "location": "showroom",
+      "pitch": "-0.040",
+      "profile": {
+        "startup": {
+          "frameSource": "browser-raf",
+          "graphics": "reported",
+          "renderer": "ANGLE (Microsoft, Microsoft Basic Render Driver (0x0000008C) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "vendor": "Google Inc. (Microsoft)",
+          "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+          "devicePixelRatio": 1,
+          "hardwareConcurrency": 20,
+          "viewport": [
+            1440,
+            900
+          ],
+          "stage": [
+            1025,
+            549
+          ],
+          "pixels": 359541,
+          "draws": 58,
+          "triangles": 19494,
+          "phases": {
+            "webgl-context": 9.4,
+            "reflection-and-textures": 88.1,
+            "concourse-geometry": 28.9,
+            "showroom-geometry": 49.4,
+            "product-geometry": 32,
+            "shader-precompile": 24.4,
+            "view-warmup": 38.8,
+            "first-visible-render": 17.1
+          },
+          "gpu": {
+            "available": false,
+            "disjoint": false,
+            "samples": 0,
+            "p95Ms": null
+          },
+          "longTasks": {
+            "count": 2,
+            "maxMs": 99
+          }
+        },
+        "longTasksAvailable": true,
+        "route": {
+          "destination": "showroom",
+          "complete": true,
+          "initialVisibility": "visible",
+          "initiallyFocused": true,
+          "longTasks": {
+            "count": 0,
+            "maxMs": 0
+          },
+          "frameWorkP95Ms": 9.2,
+          "callbackP95Ms": 51,
+          "gpu": {
+            "available": false,
+            "disjoint": false,
+            "samples": 0,
+            "p95Ms": null
+          },
+          "gaps": [
+            {
+              "ms": 1000,
+              "source": "native",
+              "visibility": "visible",
+              "focused": true,
+              "timerTicks": 14,
+              "heartbeatWindowLimited": false,
+              "count": 0,
+              "maxMs": 0
+            }
+          ]
+        }
+      },
+      "readyMs": "460",
+      "scene": "ready",
+      "travelActiveP95": "51",
+      "travelCameraMs": "3581",
+      "travelFrames": "93",
+      "travelInitialWait": "30",
+      "travelMax": "133",
+      "travelMs": "3763",
+      "travelNativeFrames": "72",
+      "travelNativeInitialWait": "30",
+      "travelNativeMax": "1000",
+      "travelNativeP95": "67",
+      "travelP95": "51",
+      "travelPauses": "0",
+      "travelRenderP95": "9",
+      "travelStalls": "0",
+      "travelTimerFrames": "21",
+      "triangles": "11138",
+      "visibility": "visible",
+      "width": 1440,
+      "yaw": "-0.000"
+    }
+  },
+  [
+    {
+      "id": "viewport",
+      "description": "Controls an explicit browser viewport override for responsive or device-size testing. Use it when a task calls for specific dimensions or breakpoint validation; otherwise leave it unset so the browser uses its normal viewport. Reset temporary overrides before finishing unless the user asked to keep them."
+    },
+    {
+      "id": "management",
+      "description": "Organize windows, tabs, tab groups, and bookmarks. Use only for user-requested browser organization."
+    }
+  ]
+]

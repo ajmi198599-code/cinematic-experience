@@ -1,0 +1,23 @@
+[
+  {
+    "cameraIncreased": "2"
+  },
+  {
+    "cameraDecreased": "1"
+  },
+  {
+    "headphonesRemoved": true,
+    "checkoutEnabled": false
+  },
+  {
+    "samePose": true,
+    "focus": "basket-open"
+  },
+  {
+    "persistedRows": [
+      "\n    Everyday Watch\n    \n      \n      1\n      \n    \n    Remove",
+      "\n    Creator Camera\n    \n      \n      1\n      \n    \n    Remove"
+    ],
+    "sessionOnly": false
+  }
+]
