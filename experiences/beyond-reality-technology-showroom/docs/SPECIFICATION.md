@@ -8,11 +8,12 @@ The repository root is a separate React and Three.js perfume experience. Its mod
 
 ## Experience
 
-1. Arrive at eye height in a short mall concourse with a visible storefront. Select the shop from its doorway, the shop card or the floor plan.
+1. Arrive at eye height in a short mall concourse with a visible storefront. Select the shop from its doorway or the shop card.
 2. Follow the camera through the open central threshold, with the storefront and room visible throughout the move.
 3. Walk with keyboard or touch buttons and drag to look. Select a numbered marker, display or catalogue entry. A direct catalogue selection from the concourse follows the same connected route.
 4. Approach each fixture from its open aisle. Inspect the object in place from front and side viewpoints, read the concept details, and return to the central aisle or the concourse.
-5. Use the same product index and room plan in catalogue mode when 3D is unavailable. Arabic mirrors the interface while the physical coordinate system stays consistent.
+5. Add inspected concepts to the local demo basket. Adjust quantities or remove items, then close it and resume at the same position.
+6. Use the same product index and room plan in catalogue mode when 3D is unavailable. Arabic mirrors the interface while the physical coordinate system stays consistent.
 
 ## Art direction
 
@@ -23,15 +24,16 @@ The repository root is a separate React and Three.js perfume experience. Its mod
 | Materials | Pale limestone, honed terrazzo, walnut, blackened metal, warm ivory and pine green from Phase A |
 | Lighting | Skylight geometry, baked diffuse shading and floor shadows, and reflected studio lighting on the concept models |
 | Products | Original concept models based on the catalogue identities. Headphones on a stand, watch on a display cradle, camera on a low mount |
-| Interface | Paper and pine-green shell, concise directions, floor plan, and an index accessible outside the 3D canvas |
+| Interface | Paper and pine-green shell, floor plan, three display cards below the scene on mobile, and near-scene angle and basket controls |
 
 ## Technical contract
 
-- Vite builds a static client. Three.js renders the scene on demand. The renderer batches opaque meshes, bakes static shading at startup and lowers the pixel budget during travel on software graphics. The release has no CDN, font, model, inventory or payment requests.
+- Vite builds a static client. Three.js renders the scene on demand. The renderer batches opaque meshes by room, culls offscreen zones and swaps distant product silhouettes for detailed models at close range. A stable drawing buffer adapts downward only when active frames are repeatedly slow. The release has no CDN, font, model, inventory or payment requests.
 - `world.js` owns the floor bounds, fixture positions, camera poses and routing. The renderer and SVG floor plan consume those definitions. Routes are built across visible segments around padded collision shapes. Rounded corners are accepted only when the new segments are clear.
 - `scene.js` owns the renderer and camera, with building and product geometry separated into modules. The accessible DOM owns shop selection, product copy, focus, language and instructions. Three.js loads separately so the catalogue survives renderer failure.
-- Guided travel remains interruptible by selecting another destination. The planner starts from the camera's current position. Direct movement respects the same clearance as guided travel.
-- Respect the system's reduced-motion preference and expose a motion control. Stop drawing when the camera is idle. Preserve product access on WebGL startup failure or context loss.
+- Guided travel remains interruptible by selecting another destination. The planner starts from the camera's current position. Direct movement respects the same clearance as guided travel. Each rendered frame has a bounded camera step. Hidden tabs and open dialogs pause travel.
+- Respect the system's reduced-motion preference and expose a motion control. Stop drawing when the camera is idle. Preserve product and demo basket access on WebGL startup failure or context loss.
+- The versioned basket stores only product IDs and quantities locally. Its in-memory state survives storage failure for the visit. The checkout control is disabled.
 - Ship only the reviewed build to an isolated Vercel project as a Preview. Product entries are clearly identified as concepts.
 
 ## Acceptance criteria
